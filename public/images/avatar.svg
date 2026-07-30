@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400" fill="none">
+  <rect width="300" height="400" fill="#6366f1"/>
+  <circle cx="150" cy="150" r="65" fill="#ffffff" fill-opacity="0.9"/>
+  <path d="M60 370C60 310 100 270 150 270C200 270 240 310 240 370V400H60V370Z" fill="#ffffff" fill-opacity="0.9"/>
+  <text x="150" y="395" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" opacity="0.7">3x4 PHOTO</text>
+</svg>
