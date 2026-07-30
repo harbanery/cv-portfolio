@@ -40,16 +40,22 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 700,
     color: PDF_COLORS.heading,
-    marginBottom: 2,
+    marginBottom: 18,
   },
   jobTitle: {
     fontSize: 13,
     color: PDF_COLORS.secondary,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   contacts: {
     fontSize: 10,
     color: PDF_COLORS.secondary,
+    lineHeight: 1.6,
+    marginBottom: 2,
+  },
+  contactLinks: {
+    fontSize: 10,
+    color: PDF_COLORS.light,
     lineHeight: 1.6,
   },
   divider: {
@@ -109,26 +115,10 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   // Skills
-  skillRow: {
-    flexDirection: "row",
-    marginBottom: 4,
-  },
-  skillCategory: {
-    fontSize: 11,
-    fontWeight: 700,
-    minWidth: 130,
-    color: PDF_COLORS.heading,
-  },
-  skillItems: {
+  skillsText: {
     fontSize: 11,
     color: PDF_COLORS.secondary,
-    flex: 1,
-  },
-  // Languages
-  langText: {
-    fontSize: 11,
-    color: PDF_COLORS.secondary,
-    marginBottom: 2,
+    lineHeight: 1.7,
   },
   // Projects
   projectTitle: {
@@ -160,10 +150,12 @@ function SectionTitle({ title }: { title: string }) {
 
 function PdfHeader({ data, locale }: { data: CvData; locale: Locale }) {
   const { profile } = data;
-  const contacts = [
+  const primaryContacts = [
     profile.contact.email,
     profile.contact.phone,
     pickLocale(profile.contact.location, locale),
+  ];
+  const linkContacts = [
     ...(profile.contact.website ? [profile.contact.website] : []),
     ...(profile.contact.linkedin ? [profile.contact.linkedin] : []),
     ...(profile.contact.github ? [profile.contact.github] : []),
@@ -173,10 +165,11 @@ function PdfHeader({ data, locale }: { data: CvData; locale: Locale }) {
     <View>
       <View style={styles.headerRow}>
         {profile.avatar && (
+          // react-pdf Image doesn't support alt prop
+          // eslint-disable-next-line jsx-a11y/alt-text
           <Image
             style={styles.avatar}
             src={nodePath.join(process.cwd(), "public", profile.avatar)}
-            alt={profile.name}
           />
         )}
         <View style={styles.headerInfo}>
@@ -184,7 +177,14 @@ function PdfHeader({ data, locale }: { data: CvData; locale: Locale }) {
           <Text style={styles.jobTitle}>
             {pickLocale(profile.title, locale)}
           </Text>
-          <Text style={styles.contacts}>{contacts.join("  |  ")}</Text>
+          <Text style={styles.contacts}>
+            {primaryContacts.join("  |  ")}
+          </Text>
+          {linkContacts.length > 0 && (
+            <Text style={styles.contactLinks}>
+              {linkContacts.join("   |   ")}
+            </Text>
+          )}
         </View>
       </View>
       <View style={styles.divider} />
@@ -238,9 +238,7 @@ function PdfEducation({
     <View>
       {items.slice(0, MAX_ITEMS_PDF).map((edu, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <Text style={styles.itemTitle}>
-            {pickLocale(edu.degree, locale)}
-          </Text>
+          <Text style={styles.itemTitle}>{pickLocale(edu.degree, locale)}</Text>
           <Text style={styles.itemSubtitle}>{edu.institution}</Text>
           <Text style={styles.itemMeta}>
             {formatDateRange(edu.startDate, edu.endDate, locale)}
@@ -318,49 +316,9 @@ function PdfCertifications({
   );
 }
 
-function PdfSkills({
-  items,
-  locale,
-}: {
-  items: CvData["skills"];
-  locale: Locale;
-}) {
-  return (
-    <View>
-      {items.map((group, i) => (
-        <View key={i} style={styles.skillRow} wrap={false}>
-          <Text style={styles.skillCategory}>
-            {pickLocale(group.category, locale)}
-          </Text>
-          <Text style={styles.skillItems}>
-            {group.skills.join(", ")}
-          </Text>
-        </View>
-      ))}
-    </View>
-  );
-}
-
-function PdfLanguages({
-  items,
-  locale,
-}: {
-  items: CvData["languages"];
-  locale: Locale;
-}) {
-  return (
-    <View>
-      {items.map((lang, i) => (
-        <Text key={i} style={styles.langText}>
-          <Text style={{ fontWeight: 700 }}>
-            {pickLocale(lang.language, locale)}
-          </Text>
-          {" - "}
-          {pickLocale(lang.proficiency, locale)}
-        </Text>
-      ))}
-    </View>
-  );
+function PdfSkills({ items }: { items: CvData["skills"]; locale: Locale }) {
+  const allSkills = items.flatMap((group) => group.skills);
+  return <Text style={styles.skillsText}>{allSkills.join(", ")}</Text>;
 }
 
 function PdfProjects({
@@ -401,7 +359,6 @@ export default function PdfDocument({
     organizations: string;
     certifications: string;
     skills: string;
-    languages: string;
     projects: string;
   };
 }) {
@@ -443,14 +400,6 @@ export default function PdfDocument({
           <SectionTitle title={sectionTitles.skills} />
           <PdfSkills items={data.skills} locale={locale} />
         </View>
-
-        {/* 7. Bahasa */}
-        {data.languages.length > 0 && (
-          <View style={styles.sectionWrap} wrap={false}>
-            <SectionTitle title={sectionTitles.languages} />
-            <PdfLanguages items={data.languages} locale={locale} />
-          </View>
-        )}
 
         {/* 8. Portfolio (page baru) */}
         {data.projects.length > 0 && (

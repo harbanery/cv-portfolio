@@ -13,7 +13,6 @@ export function getSectionTitles(locale: Locale) {
     organizations: translate(dict, "section.organizations"),
     certifications: translate(dict, "section.certifications"),
     skills: translate(dict, "section.skills"),
-    languages: translate(dict, "section.languages"),
     projects: translate(dict, "section.projects"),
   };
 }
