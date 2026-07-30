@@ -142,6 +142,56 @@ export const CV_DATA: CvData = {
       ],
     },
   ],
+  organizations: [
+    {
+      source: "personal",
+      organization: "Himpunan Mahasiswa Teknik Informatika",
+      position: {
+        id: "Ketua Bidang Teknologi",
+        en: "Head of Technology Division",
+      },
+      startDate: "2017",
+      endDate: "2018",
+      location: {
+        id: "Depok, Indonesia",
+        en: "Depok, Indonesia",
+      },
+      description: [
+        {
+          id: "Mengkoordinasikan 5 anggota divisi teknologi dalam pengembangan website himpunan",
+          en: "Coordinated 5 technology division members in developing the association website",
+        },
+        {
+          id: "Menyelenggarakan workshop pemrograman web untuk 100+ mahasiswa",
+          en: "Organized web programming workshops for 100+ students",
+        },
+      ],
+    },
+    {
+      source: "volunteer",
+      organization: "Google Developer Student Club",
+      position: {
+        id: "Lead Mentor",
+        en: "Lead Mentor",
+      },
+      startDate: "2022-01",
+      endDate: "2023-06",
+      location: {
+        id: "Jakarta, Indonesia",
+        en: "Jakarta, Indonesia",
+      },
+      description: [
+        {
+          id: "Membimbing 30+ mahasiswa dalam proyek pengembangan aplikasi mobile",
+          en: "Mentored 30+ students in mobile app development projects",
+        },
+        {
+          id: "Menyelenggarakan hackathon tahunan dengan 200+ peserta",
+          en: "Organized annual hackathon with 200+ participants",
+        },
+      ],
+    },
+  ],
   skills: [
     {
       source: "linkedin",
@@ -261,25 +311,29 @@ export const CV_DATA: CvData = {
       source: "certification",
       name: "AWS Certified Developer - Associate",
       issuer: "Amazon Web Services",
-      date: "2024-03",
+      startDate: "2024-02",
+      endDate: "2027-02",
     },
     {
       source: "coursera",
       name: "Meta Front-End Developer",
       issuer: "Coursera",
-      date: "2022-08",
+      startDate: "2022-06",
+      endDate: "2022-08",
     },
     {
       source: "udemy",
       name: "Complete Python Bootcamp",
       issuer: "Udemy",
-      date: "2021-05",
+      startDate: "2021-03",
+      endDate: "2021-05",
     },
     {
       source: "hackerrank",
       name: "Problem Solving (Intermediate)",
       issuer: "HackerRank",
-      date: "2023-11",
+      startDate: "2023-11",
+      endDate: null,
     },
   ],
   languages: [

@@ -28,10 +28,11 @@ const id: TranslationDict = {
   // Section titles
   "section.experience": "Pengalaman Kerja",
   "section.education": "Pendidikan",
-  "section.skills": "Keahlian",
+  "section.organizations": "Pengalaman Organisasi",
   "section.certifications": "Sertifikasi",
+  "section.skills": "Keahlian",
   "section.languages": "Bahasa",
-  "section.projects": "Project",
+  "section.projects": "Portfolio",
 
   // Theme
   "theme.light": "Mode Terang",
@@ -60,10 +61,11 @@ const en: TranslationDict = {
 
   "section.experience": "Work Experience",
   "section.education": "Education",
-  "section.skills": "Skills",
+  "section.organizations": "Organizational Experience",
   "section.certifications": "Certifications",
+  "section.skills": "Skills",
   "section.languages": "Languages",
-  "section.projects": "Projects",
+  "section.projects": "Portfolio",
 
   "theme.light": "Light Mode",
   "theme.dark": "Dark Mode",

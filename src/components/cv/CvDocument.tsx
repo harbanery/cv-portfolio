@@ -8,8 +8,9 @@ import CvSection from "./CvSection";
 import CvSummary from "./CvSummary";
 import CvExperience from "./CvExperience";
 import CvEducation from "./CvEducation";
-import CvSkills from "./CvSkills";
+import CvOrganizations from "./CvOrganizations";
 import CvCertifications from "./CvCertifications";
+import CvSkills from "./CvSkills";
 import CvLanguages from "./CvLanguages";
 import CvProjects from "./CvProjects";
 
@@ -23,32 +24,46 @@ export default function CvDocument({ data }: { data: CvData }) {
 
         <Divider style={{ marginBlock: 24 }} />
 
+        {/* 1. Ringkasan Profil */}
         <CvSummary summary={data.profile.summary} />
 
+        {/* 2. Pengalaman Kerja */}
         <CvSection title={t("section.experience")}>
           <CvExperience items={data.experiences} />
         </CvSection>
 
+        {/* 3. Pendidikan */}
         <CvSection title={t("section.education")}>
           <CvEducation items={data.education} />
         </CvSection>
 
+        {/* 4. Pengalaman Organisasi */}
+        {data.organizations.length > 0 && (
+          <CvSection title={t("section.organizations")}>
+            <CvOrganizations items={data.organizations} />
+          </CvSection>
+        )}
+
+        {/* 5. Sertifikasi */}
         {data.certifications.length > 0 && (
           <CvSection title={t("section.certifications")}>
             <CvCertifications items={data.certifications} />
           </CvSection>
         )}
 
+        {/* 6. Keahlian */}
         <CvSection title={t("section.skills")}>
           <CvSkills groups={data.skills} />
         </CvSection>
 
+        {/* 7. Bahasa */}
         {data.languages.length > 0 && (
           <CvSection title={t("section.languages")}>
             <CvLanguages items={data.languages} />
           </CvSection>
         )}
 
+        {/* 8. Portfolio */}
         {data.projects.length > 0 && (
           <CvSection title={t("section.projects")}>
             <CvProjects items={data.projects} />
@@ -64,8 +79,9 @@ export { default as CvSection } from "./CvSection";
 export { default as CvSummary } from "./CvSummary";
 export { default as CvExperience } from "./CvExperience";
 export { default as CvEducation } from "./CvEducation";
-export { default as CvSkills } from "./CvSkills";
+export { default as CvOrganizations } from "./CvOrganizations";
 export { default as CvCertifications } from "./CvCertifications";
+export { default as CvSkills } from "./CvSkills";
 export { default as CvLanguages } from "./CvLanguages";
 export { default as CvProjects } from "./CvProjects";
 export { default as CvToolbar } from "./CvToolbar";

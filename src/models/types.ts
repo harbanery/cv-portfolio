@@ -57,7 +57,19 @@ export interface CertificationItem {
   source: DataSource;
   name: string;
   issuer: string;
-  date: string;
+  startDate: string;
+  endDate: string | null;
+}
+
+/** Pengalaman organisasi. */
+export interface OrganizationItem {
+  source: DataSource;
+  organization: string;
+  position: LocalizedText;
+  startDate: string;
+  endDate: string | null;
+  location: LocalizedText;
+  description: LocalizedText[];
 }
 
 /** Bahasa. */
@@ -89,6 +101,7 @@ export interface CvData {
   profile: CvProfile;
   experiences: ExperienceItem[];
   education: EducationItem[];
+  organizations: OrganizationItem[];
   skills: SkillGroup[];
   certifications: CertificationItem[];
   languages: LanguageItem[];

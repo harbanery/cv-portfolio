@@ -2,7 +2,7 @@
 
 import { Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
-import { formatDate } from "@/helpers/cvHelpers";
+import { formatDateRange } from "@/helpers/cvHelpers";
 import type { CertificationItem } from "@/models/types";
 import SourceBadge from "./SourceBadge";
 
@@ -30,7 +30,7 @@ export default function CvCertifications({
           </div>
           <div className="flex items-center gap-2">
             <Text type="secondary" style={{ fontSize: 12 }}>
-              {formatDate(cert.date, locale)}
+              {formatDateRange(cert.startDate, cert.endDate, locale)}
             </Text>
             <SourceBadge source={cert.source} />
           </div>
