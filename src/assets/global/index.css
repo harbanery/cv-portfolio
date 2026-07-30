@@ -98,21 +98,3 @@ body {
     width: 100% !important;
   }
 }
-
-/*
- * Override border-color oklch() agar html2canvas dapat memparse warna.
- * Tailwind CSS v4 menggunakan oklch() sebagai default border-color,
- * yang menyebabkan html2canvas error saat generate PDF.
- */
-.cv-document,
-.cv-document *,
-.cv-document *::before,
-.cv-document *::after {
-  border-color: rgb(229, 231, 235);
-}
-.dark .cv-document,
-.dark .cv-document *,
-.dark .cv-document *::before,
-.dark .cv-document *::after {
-  border-color: rgb(63, 63, 70);
-}

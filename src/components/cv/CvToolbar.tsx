@@ -19,7 +19,10 @@ export default function CvToolbar() {
 
     setLoading(true);
     try {
-      await downloadElementAsPdf(element, "CV-Raihan-Yusuf.pdf");
+      const success = await downloadElementAsPdf(element, "CV-Raihan-Yusuf.pdf");
+      if (!success) {
+        message.info(t("cv.printFallback"));
+      }
     } catch {
       message.error(t("cv.downloadError"));
     } finally {
