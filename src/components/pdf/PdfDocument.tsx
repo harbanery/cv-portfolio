@@ -1,186 +1,159 @@
+import nodePath from "node:path";
 import {
   Document,
   Page,
   Text,
   View,
+  Image,
   StyleSheet,
 } from "@react-pdf/renderer";
-import { registerInterFont, PDF_COLORS, MAX_ITEMS_PDF } from "./fontConfig";
+import { registerCvFont, PDF_COLORS, MAX_ITEMS_PDF } from "./fontConfig";
 import type { CvData, Locale } from "@/models/types";
 import { pickLocale, formatDateRange } from "@/helpers/cvHelpers";
-import { SOURCE_CONFIG } from "@/models/sources";
 
-registerInterFont();
+registerCvFont();
 
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Inter",
-    fontSize: 10,
+    fontFamily: "Calibri",
+    fontSize: 11,
     color: PDF_COLORS.text,
-    padding: "36pt 40pt",
+    padding: "40pt 44pt",
     backgroundColor: "#ffffff",
     lineHeight: 1.5,
   },
   // Header
   headerRow: {
     flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 8,
+    gap: 16,
+    marginBottom: 4,
+  },
+  avatar: {
+    width: 72,
+    height: 96,
+    objectFit: "cover",
   },
   headerInfo: {
     flex: 1,
-    textAlign: "center",
   },
   name: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 700,
+    color: PDF_COLORS.heading,
     marginBottom: 2,
   },
-  title: {
-    fontSize: 12,
-    fontWeight: 500,
-    color: PDF_COLORS.primary,
+  jobTitle: {
+    fontSize: 13,
+    color: PDF_COLORS.secondary,
     marginBottom: 6,
   },
   contacts: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: 8,
-  },
-  contactItem: {
-    fontSize: 8,
+    fontSize: 10,
     color: PDF_COLORS.secondary,
+    lineHeight: 1.6,
   },
   divider: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 1.5,
     borderBottomColor: PDF_COLORS.border,
-    marginVertical: 12,
+    marginVertical: 14,
   },
-  // Sections
-  sectionTitle: {
-    fontSize: 11,
-    fontWeight: 700,
-    color: PDF_COLORS.primary,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-    marginBottom: 2,
-  },
-  sectionDivider: {
-    borderBottomWidth: 1,
-    borderBottomColor: PDF_COLORS.border,
-    marginBottom: 8,
-  },
+  // Section
   sectionWrap: {
     marginBottom: 14,
   },
+  sectionTitle: {
+    fontSize: 14,
+    fontWeight: 700,
+    color: PDF_COLORS.heading,
+    textTransform: "uppercase",
+    letterSpacing: 0.8,
+    marginBottom: 4,
+  },
+  sectionUnderline: {
+    borderBottomWidth: 1,
+    borderBottomColor: PDF_COLORS.border,
+    marginBottom: 8,
+  },
   // Summary
   summaryText: {
-    fontSize: 10,
+    fontSize: 11,
     lineHeight: 1.6,
     marginBottom: 14,
   },
-  // Item (experience, education, org)
+  // Items
   itemWrap: {
-    marginBottom: 8,
-  },
-  itemHeaderRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
+    marginBottom: 10,
   },
   itemTitle: {
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: 700,
-  },
-  itemSeparator: {
-    color: PDF_COLORS.light,
+    color: PDF_COLORS.heading,
   },
   itemSubtitle: {
-    fontSize: 10,
+    fontSize: 11,
     color: PDF_COLORS.secondary,
   },
-  itemMetaRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 1,
-    marginBottom: 2,
-  },
   itemMeta: {
-    fontSize: 8,
+    fontSize: 10,
     color: PDF_COLORS.light,
+    marginTop: 1,
+    marginBottom: 3,
   },
   bulletList: {
     marginTop: 2,
-    paddingLeft: 12,
+    paddingLeft: 14,
   },
   bulletItem: {
-    fontSize: 9,
+    fontSize: 11,
     lineHeight: 1.5,
-    marginBottom: 1,
+    marginBottom: 2,
   },
   // Skills
   skillRow: {
     flexDirection: "row",
-    marginBottom: 3,
+    marginBottom: 4,
   },
   skillCategory: {
-    fontSize: 9,
+    fontSize: 11,
     fontWeight: 700,
-    minWidth: 120,
+    minWidth: 130,
+    color: PDF_COLORS.heading,
   },
   skillItems: {
-    fontSize: 9,
+    fontSize: 11,
     color: PDF_COLORS.secondary,
     flex: 1,
   },
-  // Certifications
-  certRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 4,
-  },
   // Languages
-  langRow: {
-    flexDirection: "row",
-    gap: 24,
+  langText: {
+    fontSize: 11,
+    color: PDF_COLORS.secondary,
     marginBottom: 2,
   },
-  // Source badge
-  badge: {
-    fontSize: 7,
-    color: "#ffffff",
-    paddingHorizontal: 4,
-    paddingVertical: 1,
-    borderRadius: 2,
-  },
   // Projects
-  techText: {
-    fontSize: 8,
-    color: PDF_COLORS.primary,
-    marginTop: 2,
+  projectTitle: {
+    fontSize: 11,
+    fontWeight: 700,
+    color: PDF_COLORS.heading,
   },
-  linkText: {
-    fontSize: 8,
-    color: PDF_COLORS.primary,
+  projectDesc: {
+    fontSize: 11,
+    color: PDF_COLORS.secondary,
+    marginTop: 2,
+    marginBottom: 2,
+    lineHeight: 1.5,
+  },
+  projectTech: {
+    fontSize: 10,
+    color: PDF_COLORS.light,
   },
 });
-
-function SourceTag({ source }: { source: string }) {
-  const config = SOURCE_CONFIG[source as keyof typeof SOURCE_CONFIG];
-  if (!config) return null;
-  return (
-    <Text style={[styles.badge, { backgroundColor: config.color }]}>
-      {config.label.en}
-    </Text>
-  );
-}
 
 function SectionTitle({ title }: { title: string }) {
   return (
     <View wrap={false}>
       <Text style={styles.sectionTitle}>{title}</Text>
-      <View style={styles.sectionDivider} />
+      <View style={styles.sectionUnderline} />
     </View>
   );
 }
@@ -199,16 +172,19 @@ function PdfHeader({ data, locale }: { data: CvData; locale: Locale }) {
   return (
     <View>
       <View style={styles.headerRow}>
+        {profile.avatar && (
+          <Image
+            style={styles.avatar}
+            src={nodePath.join(process.cwd(), "public", profile.avatar)}
+            alt={profile.name}
+          />
+        )}
         <View style={styles.headerInfo}>
           <Text style={styles.name}>{profile.name}</Text>
-          <Text style={styles.title}>{pickLocale(profile.title, locale)}</Text>
-          <View style={styles.contacts}>
-            {contacts.map((c, i) => (
-              <Text key={i} style={styles.contactItem}>
-                {c}
-              </Text>
-            ))}
-          </View>
+          <Text style={styles.jobTitle}>
+            {pickLocale(profile.title, locale)}
+          </Text>
+          <Text style={styles.contacts}>{contacts.join("  |  ")}</Text>
         </View>
       </View>
       <View style={styles.divider} />
@@ -223,29 +199,19 @@ function PdfExperience({
   items: CvData["experiences"];
   locale: Locale;
 }) {
-  const limited = items.slice(0, MAX_ITEMS_PDF);
   return (
     <View>
-      {limited.map((exp, i) => (
+      {items.slice(0, MAX_ITEMS_PDF).map((exp, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <View style={styles.itemHeaderRow}>
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <Text style={styles.itemTitle}>
-                {pickLocale(exp.position, locale)}
-              </Text>
-              <Text style={styles.itemSeparator}> | </Text>
-              <Text style={styles.itemSubtitle}>{exp.company}</Text>
-            </View>
-            <SourceTag source={exp.source} />
-          </View>
-          <View style={styles.itemMetaRow}>
-            <Text style={styles.itemMeta}>
-              {formatDateRange(exp.startDate, exp.endDate, locale)}
-            </Text>
-            <Text style={styles.itemMeta}>
-              {pickLocale(exp.location, locale)}
-            </Text>
-          </View>
+          <Text style={styles.itemTitle}>
+            {pickLocale(exp.position, locale)}
+          </Text>
+          <Text style={styles.itemSubtitle}>{exp.company}</Text>
+          <Text style={styles.itemMeta}>
+            {formatDateRange(exp.startDate, exp.endDate, locale)}
+            {"   "}
+            {pickLocale(exp.location, locale)}
+          </Text>
           {exp.description.length > 0 && (
             <View style={styles.bulletList}>
               {exp.description.map((desc, j) => (
@@ -268,30 +234,18 @@ function PdfEducation({
   items: CvData["education"];
   locale: Locale;
 }) {
-  const limited = items.slice(0, MAX_ITEMS_PDF);
   return (
     <View>
-      {limited.map((edu, i) => (
+      {items.slice(0, MAX_ITEMS_PDF).map((edu, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <View style={styles.itemHeaderRow}>
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <Text style={styles.itemTitle}>
-                {pickLocale(edu.degree, locale)}
-              </Text>
-              <Text style={styles.itemSeparator}> | </Text>
-              <Text style={styles.itemSubtitle}>{edu.institution}</Text>
-            </View>
-            <SourceTag source={edu.source} />
-          </View>
-          <View style={styles.itemMetaRow}>
-            <Text style={styles.itemMeta}>
-              {pickLocale(edu.field, locale)}
-              {edu.gpa ? ` | GPA: ${edu.gpa}` : ""}
-            </Text>
-            <Text style={styles.itemMeta}>
-              {formatDateRange(edu.startDate, edu.endDate, locale)}
-            </Text>
-          </View>
+          <Text style={styles.itemTitle}>
+            {pickLocale(edu.degree, locale)}
+          </Text>
+          <Text style={styles.itemSubtitle}>{edu.institution}</Text>
+          <Text style={styles.itemMeta}>
+            {formatDateRange(edu.startDate, edu.endDate, locale)}
+            {edu.gpa ? `   |   GPA: ${edu.gpa}` : ""}
+          </Text>
           {edu.description && edu.description.length > 0 && (
             <View style={styles.bulletList}>
               {edu.description.map((desc, j) => (
@@ -314,29 +268,19 @@ function PdfOrganizations({
   items: CvData["organizations"];
   locale: Locale;
 }) {
-  const limited = items.slice(0, MAX_ITEMS_PDF);
   return (
     <View>
-      {limited.map((org, i) => (
+      {items.slice(0, MAX_ITEMS_PDF).map((org, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <View style={styles.itemHeaderRow}>
-            <View style={{ flexDirection: "row", flex: 1 }}>
-              <Text style={styles.itemTitle}>
-                {pickLocale(org.position, locale)}
-              </Text>
-              <Text style={styles.itemSeparator}> | </Text>
-              <Text style={styles.itemSubtitle}>{org.organization}</Text>
-            </View>
-            <SourceTag source={org.source} />
-          </View>
-          <View style={styles.itemMetaRow}>
-            <Text style={styles.itemMeta}>
-              {formatDateRange(org.startDate, org.endDate, locale)}
-            </Text>
-            <Text style={styles.itemMeta}>
-              {pickLocale(org.location, locale)}
-            </Text>
-          </View>
+          <Text style={styles.itemTitle}>
+            {pickLocale(org.position, locale)}
+          </Text>
+          <Text style={styles.itemSubtitle}>{org.organization}</Text>
+          <Text style={styles.itemMeta}>
+            {formatDateRange(org.startDate, org.endDate, locale)}
+            {"   "}
+            {pickLocale(org.location, locale)}
+          </Text>
           {org.description.length > 0 && (
             <View style={styles.bulletList}>
               {org.description.map((desc, j) => (
@@ -362,18 +306,12 @@ function PdfCertifications({
   return (
     <View>
       {items.map((cert, i) => (
-        <View key={i} style={[styles.certRow]} wrap={false}>
-          <View style={{ flexDirection: "row", flex: 1 }}>
-            <Text style={styles.itemTitle}>{cert.name}</Text>
-            <Text style={styles.itemSeparator}> | </Text>
-            <Text style={styles.itemSubtitle}>{cert.issuer}</Text>
-          </View>
-          <View style={{ flexDirection: "row", gap: 4, alignItems: "center" }}>
-            <Text style={styles.itemMeta}>
-              {formatDateRange(cert.startDate, cert.endDate, locale)}
-            </Text>
-            <SourceTag source={cert.source} />
-          </View>
+        <View key={i} style={styles.itemWrap} wrap={false}>
+          <Text style={styles.itemTitle}>{cert.name}</Text>
+          <Text style={styles.itemSubtitle}>{cert.issuer}</Text>
+          <Text style={styles.itemMeta}>
+            {formatDateRange(cert.startDate, cert.endDate, locale)}
+          </Text>
         </View>
       ))}
     </View>
@@ -392,9 +330,11 @@ function PdfSkills({
       {items.map((group, i) => (
         <View key={i} style={styles.skillRow} wrap={false}>
           <Text style={styles.skillCategory}>
-            {pickLocale(group.category, locale)}:
+            {pickLocale(group.category, locale)}
           </Text>
-          <Text style={styles.skillItems}>{group.skills.join(", ")}</Text>
+          <Text style={styles.skillItems}>
+            {group.skills.join(", ")}
+          </Text>
         </View>
       ))}
     </View>
@@ -409,16 +349,15 @@ function PdfLanguages({
   locale: Locale;
 }) {
   return (
-    <View style={styles.langRow}>
+    <View>
       {items.map((lang, i) => (
-        <View key={i}>
-          <Text style={styles.itemTitle}>
+        <Text key={i} style={styles.langText}>
+          <Text style={{ fontWeight: 700 }}>
             {pickLocale(lang.language, locale)}
           </Text>
-          <Text style={styles.itemSubtitle}>
-            {pickLocale(lang.proficiency, locale)}
-          </Text>
-        </View>
+          {" - "}
+          {pickLocale(lang.proficiency, locale)}
+        </Text>
       ))}
     </View>
   );
@@ -431,26 +370,18 @@ function PdfProjects({
   items: CvData["projects"];
   locale: Locale;
 }) {
-  const limited = items.slice(0, MAX_ITEMS_PDF);
   return (
     <View>
-      {limited.map((project, i) => (
+      {items.slice(0, MAX_ITEMS_PDF).map((project, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <View style={styles.itemHeaderRow}>
-            <Text style={styles.itemTitle}>{project.name}</Text>
-            <SourceTag source={project.source} />
-          </View>
-          <Text style={styles.bulletItem}>
+          <Text style={styles.projectTitle}>{project.name}</Text>
+          <Text style={styles.projectDesc}>
             {pickLocale(project.description, locale)}
           </Text>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={styles.techText}>
-              {project.techStack.join(" | ")}
-            </Text>
-            {project.link && (
-              <Text style={styles.linkText}>{project.link}</Text>
-            )}
-          </View>
+          <Text style={styles.projectTech}>
+            {project.techStack.join(", ")}
+            {project.link ? `   |   ${project.link}` : ""}
+          </Text>
         </View>
       ))}
     </View>

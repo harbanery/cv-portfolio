@@ -24,7 +24,6 @@ export async function POST(request: NextRequest) {
   try {
     buffer = await renderToBuffer(doc);
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       {
         error: "Failed to generate PDF",

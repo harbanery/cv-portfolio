@@ -21,8 +21,6 @@ export async function downloadCvPdf(
     body: JSON.stringify({ locale }),
   });
 
-  console.log("download cv", response);
-
   if (!response.ok) {
     throw new Error(`API error: ${response.status}`);
   }

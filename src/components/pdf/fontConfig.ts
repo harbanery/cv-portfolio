@@ -1,32 +1,27 @@
-import path from "path";
+import nodePath from "node:path";
 import { Font } from "@react-pdf/renderer";
 
 let registered = false;
 
 /**
- * Register Inter font untuk react-pdf.
- * Dipanggil sekali saat modul pertama kali di-import.
+ * Register Calibri font (Carlito, metric-compatible) untuk react-pdf.
  * Menggunakan absolute path filesystem untuk kompatibilitas server-side.
  */
-export function registerInterFont(): void {
+export function registerCvFont(): void {
   if (registered) return;
   registered = true;
 
-  const fontsDir = path.join(process.cwd(), "public", "fonts");
+  const fontsDir = nodePath.join(process.cwd(), "public", "fonts");
 
   Font.register({
-    family: "Inter",
+    family: "Calibri",
     fonts: [
       {
-        src: path.join(fontsDir, "Inter-Regular.ttf"),
+        src: nodePath.join(fontsDir, "Calibri-Regular.ttf"),
         fontWeight: 400,
       },
       {
-        src: path.join(fontsDir, "Inter-Medium.ttf"),
-        fontWeight: 500,
-      },
-      {
-        src: path.join(fontsDir, "Inter-Bold.ttf"),
+        src: nodePath.join(fontsDir, "Calibri-Bold.ttf"),
         fontWeight: 700,
       },
     ],
@@ -35,14 +30,16 @@ export function registerInterFont(): void {
   Font.registerHyphenationCallback((word) => [word]);
 }
 
-/** Konstanta warna dan ukuran untuk PDF. */
+/**
+ * Konstanta warna untuk PDF (netral, ATS-friendly).
+ * Hindari warna mencolok atau grafik rumit.
+ */
 export const PDF_COLORS = {
-  primary: "#6366f1",
-  text: "#171717",
-  secondary: "#6b7280",
-  light: "#9ca3af",
-  border: "#e5e7eb",
-  badgeBg: "#f3f4f6",
+  heading: "#1a1a1a",
+  text: "#333333",
+  secondary: "#555555",
+  light: "#888888",
+  border: "#cccccc",
 };
 
 export const MAX_ITEMS_PDF = 3;
