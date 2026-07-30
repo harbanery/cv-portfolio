@@ -377,7 +377,9 @@ export const CV_DATA: CvData = {
         en: "Daily self-evaluation dashboard app with web push notifications, analytics charts, and multi-language support.",
       },
       techStack: ["Next.js", "React", "Ant Design", "Prisma", "Tailwind CSS"],
-      link: "github.com/raihanyusuf/progress-self",
+      image: "/images/project-progress-self.svg",
+      websiteLink: "raihanyusuf.dev/progress-self",
+      sourceCodeLink: "github.com/raihanyusuf/progress-self",
     },
     {
       source: "github",
@@ -387,7 +389,9 @@ export const CV_DATA: CvData = {
         en: "Full-stack e-commerce platform with integrated payments, real-time inventory management, and analytics dashboard.",
       },
       techStack: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "Redis"],
-      link: "github.com/raihanyusuf/ecommerce-platform",
+      image: "/images/project-ecommerce.svg",
+      websiteLink: "raihanyusuf.dev/ecommerce",
+      sourceCodeLink: "github.com/raihanyusuf/ecommerce-platform",
     },
     {
       source: "github",
@@ -397,6 +401,9 @@ export const CV_DATA: CvData = {
         en: "AI-powered chat assistant with streaming responses, conversation history, and multiple LLM model support.",
       },
       techStack: ["React", "TypeScript", "OpenAI API", "Socket.io"],
+      image: "/images/project-ai-chat.svg",
+      websiteLink: "raihanyusuf.dev/ai-chat",
+      sourceCodeLink: "github.com/raihanyusuf/ai-chat-assistant",
     },
     {
       source: "github",
@@ -406,7 +413,9 @@ export const CV_DATA: CvData = {
         en: "Fitness tracker mobile app with real-time statistics, notification reminders, and cloud sync.",
       },
       techStack: ["React Native", "Expo", "Firebase", "TypeScript"],
-      link: "github.com/raihanyusuf/fitness-tracker",
+      image: "/images/project-fitness.svg",
+      websiteLink: "raihanyusuf.dev/fitness",
+      sourceCodeLink: "github.com/raihanyusuf/fitness-tracker",
     },
     {
       source: "open_source",
@@ -416,7 +425,9 @@ export const CV_DATA: CvData = {
         en: "Open-source React library for simplifying state management with minimal and type-safe hooks.",
       },
       techStack: ["React", "TypeScript", "Vite"],
-      link: "github.com/raihanyusuf/react-simplify",
+      image: "/images/project-react-simplify.svg",
+      websiteLink: "npmjs.com/package/react-simplify",
+      sourceCodeLink: "github.com/raihanyusuf/react-simplify",
     },
     {
       source: "kaggle",
@@ -426,6 +437,8 @@ export const CV_DATA: CvData = {
         en: "ETL pipeline for retail data analytics with interactive visualizations and automated reporting.",
       },
       techStack: ["Python", "Apache Airflow", "Pandas", "PostgreSQL"],
+      image: "/images/project-data-pipeline.svg",
+      sourceCodeLink: "github.com/raihanyusuf/data-pipeline-etl",
     },
   ],
 };

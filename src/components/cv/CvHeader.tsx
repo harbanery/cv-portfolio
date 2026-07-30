@@ -18,21 +18,50 @@ const { Title, Text } = Typography;
 export default function CvHeader({ profile }: { profile: CvProfile }) {
   const { locale } = useLocale();
 
-  const contacts: { icon: React.ReactNode; text: string }[] = [
-    { icon: <MailOutlined />, text: profile.contact.email },
-    { icon: <PhoneOutlined />, text: profile.contact.phone },
+  const primaryContacts: { icon: React.ReactNode; text: string; href?: string }[] = [
+    {
+      icon: <MailOutlined />,
+      text: profile.contact.email,
+      href: `mailto:${profile.contact.email}`,
+    },
+    {
+      icon: <PhoneOutlined />,
+      text: profile.contact.phone,
+      href: `tel:${profile.contact.phone.replace(/\s/g, "")}`,
+    },
     {
       icon: <EnvironmentOutlined />,
       text: pickLocale(profile.contact.location, locale),
     },
+  ];
+
+  const linkContacts: { icon: React.ReactNode; text: string; href: string }[] = [
     ...(profile.contact.website
-      ? [{ icon: <GlobalOutlined />, text: profile.contact.website }]
+      ? [
+          {
+            icon: <GlobalOutlined />,
+            text: profile.contact.website,
+            href: `https://${profile.contact.website}`,
+          },
+        ]
       : []),
     ...(profile.contact.linkedin
-      ? [{ icon: <LinkedinOutlined />, text: profile.contact.linkedin }]
+      ? [
+          {
+            icon: <LinkedinOutlined />,
+            text: profile.contact.linkedin,
+            href: `https://${profile.contact.linkedin}`,
+          },
+        ]
       : []),
     ...(profile.contact.github
-      ? [{ icon: <GithubOutlined />, text: profile.contact.github }]
+      ? [
+          {
+            icon: <GithubOutlined />,
+            text: profile.contact.github,
+            href: `https://${profile.contact.github}`,
+          },
+        ]
       : []),
   ];
 
@@ -73,11 +102,38 @@ export default function CvHeader({ profile }: { profile: CvProfile }) {
           {pickLocale(profile.title, locale)}
         </Text>
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
-          {contacts.map((c, i) => (
-            <span key={i} className="inline-flex items-center gap-1">
+          {primaryContacts.map((c, i) =>
+            c.href ? (
+              <a
+                key={i}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="inline-flex items-center gap-1 hover:text-indigo-500 dark:hover:text-indigo-400"
+              >
+                {c.icon}
+                {c.text}
+              </a>
+            ) : (
+              <span key={i} className="inline-flex items-center gap-1">
+                {c.icon}
+                {c.text}
+              </span>
+            ),
+          )}
+        </div>
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-400 dark:text-gray-500 mt-1">
+          {linkContacts.map((c, i) => (
+            <a
+              key={i}
+              href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 hover:text-indigo-500 dark:hover:text-indigo-400"
+            >
               {c.icon}
               {c.text}
-            </span>
+            </a>
           ))}
         </div>
       </div>

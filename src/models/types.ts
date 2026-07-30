@@ -84,7 +84,9 @@ export interface ProjectItem {
   name: string;
   description: LocalizedText;
   techStack: string[];
-  link?: string;
+  image?: string;
+  websiteLink?: string;
+  sourceCodeLink?: string;
 }
 
 /** Profil utama CV. */

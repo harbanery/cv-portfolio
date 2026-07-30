@@ -338,7 +338,8 @@ function PdfProjects({
           </Text>
           <Text style={styles.projectTech}>
             {project.techStack.join(", ")}
-            {project.link ? `   |   ${project.link}` : ""}
+            {project.websiteLink ? `   |   ${project.websiteLink}` : ""}
+            {project.sourceCodeLink ? `   |   ${project.sourceCodeLink}` : ""}
           </Text>
         </View>
       ))}
