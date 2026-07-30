@@ -79,22 +79,3 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-/* Print styles untuk PDF export */
-@media print {
-  @page {
-    margin: 12mm;
-  }
-  body {
-    background: #ffffff !important;
-  }
-  .no-print {
-    display: none !important;
-  }
-  .cv-document {
-    box-shadow: none !important;
-    border: none !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-}

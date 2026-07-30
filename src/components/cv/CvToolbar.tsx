@@ -6,23 +6,17 @@ import { useState } from "react";
 import { useLocale } from "@/components/locale/LocaleProvider";
 import LanguageToggle from "@/components/locale/LanguageToggle";
 import ThemeToggle from "@/components/theme/ThemeToggle";
-import { downloadElementAsPdf } from "@/helpers/pdfDownload";
+import { downloadCvPdf } from "@/helpers/pdfDownload";
 
 export default function CvToolbar() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const { message } = App.useApp();
   const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
-    const element = document.querySelector<HTMLElement>(".cv-document");
-    if (!element) return;
-
     setLoading(true);
     try {
-      const success = await downloadElementAsPdf(element, "CV-Raihan-Yusuf.pdf");
-      if (!success) {
-        message.info(t("cv.printFallback"));
-      }
+      await downloadCvPdf(locale, "CV-Raihan-Yusuf.pdf");
     } catch {
       message.error(t("cv.downloadError"));
     } finally {

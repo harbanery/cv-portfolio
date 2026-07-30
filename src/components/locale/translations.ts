@@ -21,8 +21,6 @@ const id: TranslationDict = {
   // CV Sections
   "cv.download": "Unduh PDF",
   "cv.downloadError": "Gagal mengunduh PDF. Silakan coba lagi.",
-  "cv.printFallback":
-    "Membuka dialog cetak. Pilih \u201cSimpan sebagai PDF\u201d untuk mengunduh.",
   "cv.source.tooltip": "Sumber data",
 
   // Section titles
@@ -55,8 +53,6 @@ const en: TranslationDict = {
 
   "cv.download": "Download PDF",
   "cv.downloadError": "Failed to download PDF. Please try again.",
-  "cv.printFallback":
-    "Opening print dialog. Choose \u201cSave as PDF\u201d to download.",
   "cv.source.tooltip": "Data source",
 
   "section.experience": "Work Experience",
