@@ -23,6 +23,18 @@ const id: TranslationDict = {
   "cv.downloadError": "Gagal mengunduh PDF. Silakan coba lagi.",
   "cv.source.tooltip": "Sumber data",
 
+  // PDF contact labels (prefix style, e.g. "e: name@example.com")
+  "pdf.contact.email": "email:",
+  "pdf.contact.phone": "wa:",
+  "pdf.contact.location": "dom:",
+  "pdf.contact.website": "web:",
+  "pdf.contact.linkedin": "linkedin:",
+  "pdf.contact.github": "github:",
+
+  // PDF project link labels
+  "pdf.link.website": "link website:",
+  "pdf.link.sourceCode": "link source code:",
+
   // Section titles
   "section.experience": "Pengalaman Kerja",
   "section.education": "Pendidikan",
@@ -54,6 +66,18 @@ const en: TranslationDict = {
   "cv.download": "Download PDF",
   "cv.downloadError": "Failed to download PDF. Please try again.",
   "cv.source.tooltip": "Data source",
+
+  // PDF contact labels (prefix style, e.g. "e: name@example.com")
+  "pdf.contact.email": "email:",
+  "pdf.contact.phone": "wa:",
+  "pdf.contact.location": "loc:",
+  "pdf.contact.website": "web:",
+  "pdf.contact.linkedin": "linkedin:",
+  "pdf.contact.github": "github:",
+
+  // PDF project link labels
+  "pdf.link.website": "link website:",
+  "pdf.link.sourceCode": "link source code:",
 
   "section.experience": "Work Experience",
   "section.education": "Education",

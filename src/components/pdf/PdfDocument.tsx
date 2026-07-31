@@ -5,11 +5,13 @@ import {
   Text,
   View,
   Image,
+  Link,
   StyleSheet,
 } from "@react-pdf/renderer";
 import { registerCvFont, PDF_COLORS, MAX_ITEMS_PDF } from "./fontConfig";
 import type { CvData, Locale } from "@/models/types";
 import { pickLocale, formatDateRange } from "@/helpers/cvHelpers";
+import type { ContactLabels, ProjectLinkLabels } from "@/helpers/pdfHelpers";
 
 registerCvFont();
 
@@ -37,26 +39,36 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 700,
     color: PDF_COLORS.heading,
-    marginBottom: 18,
+    marginBottom: 6,
   },
   jobTitle: {
-    fontSize: 13,
+    fontSize: 12,
     color: PDF_COLORS.secondary,
-    marginBottom: 8,
+    marginBottom: 10,
   },
-  contacts: {
-    fontSize: 10,
-    color: PDF_COLORS.secondary,
-    lineHeight: 1.6,
+  contactLine: {
+    flexDirection: "row",
+    flexWrap: "wrap",
     marginBottom: 2,
   },
-  contactLinks: {
+  contactLabel: {
     fontSize: 10,
     color: PDF_COLORS.light,
-    lineHeight: 1.6,
+    marginRight: 4,
+  },
+  contactValue: {
+    fontSize: 10,
+    color: PDF_COLORS.secondary,
+    marginRight: 14,
+  },
+  contactLink: {
+    fontSize: 10,
+    color: PDF_COLORS.link,
+    textDecoration: "underline",
+    marginRight: 14,
   },
   divider: {
     borderBottomWidth: 1.5,
@@ -136,6 +148,21 @@ const styles = StyleSheet.create({
   projectTech: {
     fontSize: 10,
     color: PDF_COLORS.light,
+    marginBottom: 2,
+  },
+  projectLinkLine: {
+    flexDirection: "row",
+    marginBottom: 1,
+  },
+  projectLinkLabel: {
+    fontSize: 10,
+    color: PDF_COLORS.light,
+    marginRight: 4,
+  },
+  projectLink: {
+    fontSize: 10,
+    color: PDF_COLORS.link,
+    textDecoration: "underline",
   },
 });
 
@@ -148,18 +175,91 @@ function SectionTitle({ title }: { title: string }) {
   );
 }
 
-function PdfHeader({ data, locale }: { data: CvData; locale: Locale }) {
+function PdfHeader({
+  data,
+  locale,
+  contactLabels,
+}: {
+  data: CvData;
+  locale: Locale;
+  contactLabels: ContactLabels;
+}) {
   const { profile } = data;
-  const primaryContacts = [
-    profile.contact.email,
-    profile.contact.phone,
-    pickLocale(profile.contact.location, locale),
+  const locText = pickLocale(profile.contact.location, locale);
+
+  // Baris kontak utama: email, phone, location.
+  // Format: "label value" — label tidak bisa diklik, hanya value yang clickable.
+  // Tanpa pemisah "|".
+  const primaryContacts: { label: string; node: React.ReactNode }[] = [
+    {
+      label: contactLabels.email,
+      node: (
+        <Link
+          style={styles.contactLink}
+          src={`mailto:${profile.contact.email}`}
+        >
+          {profile.contact.email}
+        </Link>
+      ),
+    },
+    {
+      label: contactLabels.phone,
+      node: (
+        <Link
+          style={styles.contactLink}
+          src={`tel:${profile.contact.phone.replace(/\s/g, "")}`}
+        >
+          {profile.contact.phone}
+        </Link>
+      ),
+    },
+    {
+      label: contactLabels.location,
+      node: <Text style={styles.contactValue}>{locText}</Text>,
+    },
   ];
-  const linkContacts = [
-    ...(profile.contact.website ? [profile.contact.website] : []),
-    ...(profile.contact.linkedin ? [profile.contact.linkedin] : []),
-    ...(profile.contact.github ? [profile.contact.github] : []),
-  ];
+
+  // Baris kontak sekunder: website, linkedin, github (opsional).
+  const secondaryContacts: { label: string; node: React.ReactNode }[] = [];
+  if (profile.contact.website) {
+    secondaryContacts.push({
+      label: contactLabels.website,
+      node: (
+        <Link
+          style={styles.contactLink}
+          src={`https://${profile.contact.website}`}
+        >
+          {profile.contact.website}
+        </Link>
+      ),
+    });
+  }
+  if (profile.contact.linkedin) {
+    secondaryContacts.push({
+      label: contactLabels.linkedin,
+      node: (
+        <Link
+          style={styles.contactLink}
+          src={`https://${profile.contact.linkedin}`}
+        >
+          {profile.contact.linkedin}
+        </Link>
+      ),
+    });
+  }
+  if (profile.contact.github) {
+    secondaryContacts.push({
+      label: contactLabels.github,
+      node: (
+        <Link
+          style={styles.contactLink}
+          src={`https://${profile.contact.github}`}
+        >
+          {profile.contact.github}
+        </Link>
+      ),
+    });
+  }
 
   return (
     <View>
@@ -177,13 +277,29 @@ function PdfHeader({ data, locale }: { data: CvData; locale: Locale }) {
           <Text style={styles.jobTitle}>
             {pickLocale(profile.title, locale)}
           </Text>
-          <Text style={styles.contacts}>
-            {primaryContacts.join("  |  ")}
-          </Text>
-          {linkContacts.length > 0 && (
-            <Text style={styles.contactLinks}>
-              {linkContacts.join("   |   ")}
-            </Text>
+          {/* {primaryContacts.map((c, i) => (
+            <View key={`p-${i}`} style={styles.contactLine}>
+              <Text style={styles.contactLabel}>{c.label}</Text>
+              {c.node}
+            </View>
+          ))} */}
+          <View style={styles.contactLine}>
+            {primaryContacts.map((c, i) => (
+              <View key={`s-${i}`} style={{ flexDirection: "row" }}>
+                <Text style={styles.contactLabel}>{c.label}</Text>
+                {c.node}
+              </View>
+            ))}
+          </View>
+          {secondaryContacts.length > 0 && (
+            <View style={styles.contactLine}>
+              {secondaryContacts.map((c, i) => (
+                <View key={`s-${i}`} style={{ flexDirection: "row" }}>
+                  <Text style={styles.contactLabel}>{c.label}</Text>
+                  {c.node}
+                </View>
+              ))}
+            </View>
           )}
         </View>
       </View>
@@ -324,9 +440,11 @@ function PdfSkills({ items }: { items: CvData["skills"]; locale: Locale }) {
 function PdfProjects({
   items,
   locale,
+  projectLinkLabels,
 }: {
   items: CvData["projects"];
   locale: Locale;
+  projectLinkLabels: ProjectLinkLabels;
 }) {
   return (
     <View>
@@ -336,11 +454,33 @@ function PdfProjects({
           <Text style={styles.projectDesc}>
             {pickLocale(project.description, locale)}
           </Text>
-          <Text style={styles.projectTech}>
-            {project.techStack.join(", ")}
-            {project.websiteLink ? `   |   ${project.websiteLink}` : ""}
-            {project.sourceCodeLink ? `   |   ${project.sourceCodeLink}` : ""}
-          </Text>
+          <Text style={styles.projectTech}>{project.techStack.join(", ")}</Text>
+          {project.websiteLink && (
+            <View style={styles.projectLinkLine}>
+              <Text style={styles.projectLinkLabel}>
+                {projectLinkLabels.website}
+              </Text>
+              <Link
+                style={styles.projectLink}
+                src={`https://${project.websiteLink}`}
+              >
+                {project.websiteLink}
+              </Link>
+            </View>
+          )}
+          {project.sourceCodeLink && (
+            <View style={styles.projectLinkLine}>
+              <Text style={styles.projectLinkLabel}>
+                {projectLinkLabels.sourceCode}
+              </Text>
+              <Link
+                style={styles.projectLink}
+                src={`https://${project.sourceCodeLink}`}
+              >
+                {project.sourceCodeLink}
+              </Link>
+            </View>
+          )}
         </View>
       ))}
     </View>
@@ -351,6 +491,8 @@ export default function PdfDocument({
   data,
   locale,
   sectionTitles,
+  contactLabels,
+  projectLinkLabels,
 }: {
   data: CvData;
   locale: Locale;
@@ -362,12 +504,14 @@ export default function PdfDocument({
     skills: string;
     projects: string;
   };
+  contactLabels: ContactLabels;
+  projectLinkLabels: ProjectLinkLabels;
 }) {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* 1. Header + Ringkasan Profil */}
-        <PdfHeader data={data} locale={locale} />
+        <PdfHeader data={data} locale={locale} contactLabels={contactLabels} />
         <Text style={styles.summaryText}>
           {pickLocale(data.profile.summary, locale)}
         </Text>
@@ -406,7 +550,11 @@ export default function PdfDocument({
         {data.projects.length > 0 && (
           <View break style={styles.sectionWrap} wrap={false}>
             <SectionTitle title={sectionTitles.projects} />
-            <PdfProjects items={data.projects} locale={locale} />
+            <PdfProjects
+              items={data.projects}
+              locale={locale}
+              projectLinkLabels={projectLinkLabels}
+            />
           </View>
         )}
       </Page>

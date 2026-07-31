@@ -38,6 +38,7 @@ export const PDF_COLORS = {
   heading: "#1a1a1a",
   text: "#333333",
   secondary: "#555555",
+  link: "#0000EE",
   light: "#888888",
   border: "#cccccc",
 };

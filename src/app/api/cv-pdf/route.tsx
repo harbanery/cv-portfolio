@@ -2,7 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
 import PdfDocument from "@/components/pdf/PdfDocument";
 import { CV_DATA } from "@/models/data";
-import { getSectionTitles, type PdfApiParams } from "@/helpers/pdfHelpers";
+import {
+  getSectionTitles,
+  getContactLabels,
+  getProjectLinkLabels,
+  type PdfApiParams,
+} from "@/helpers/pdfHelpers";
 
 /**
  * API route untuk generate PDF CV server-side.
@@ -15,9 +20,17 @@ export async function POST(request: NextRequest) {
   const locale = body.locale ?? "id";
 
   const sectionTitles = getSectionTitles(locale);
+  const contactLabels = getContactLabels(locale);
+  const projectLinkLabels = getProjectLinkLabels(locale);
 
   const doc = (
-    <PdfDocument data={CV_DATA} locale={locale} sectionTitles={sectionTitles} />
+    <PdfDocument
+      data={CV_DATA}
+      locale={locale}
+      sectionTitles={sectionTitles}
+      contactLabels={contactLabels}
+      projectLinkLabels={projectLinkLabels}
+    />
   );
 
   let buffer: Buffer;
