@@ -1,20 +1,40 @@
-import nodePath from "node:path";
 import {
   Document,
   Page,
   Text,
   View,
-  Image,
   Link,
   StyleSheet,
 } from "@react-pdf/renderer";
-import { registerCvFont, PDF_COLORS, MAX_ITEMS_PDF } from "./fontConfig";
+import {
+  registerCvFont,
+  PDF_COLORS,
+  MAX_PROJECTS_PDF,
+  MAX_HIGHLIGHTS_PDF,
+  MAX_WORK_HIGHLIGHTS_PDF,
+} from "./fontConfig";
 import type { CvData, Locale } from "@/models/types";
-import { pickLocale, formatDateRange } from "@/helpers/cvHelpers";
+import {
+  buildSkillGroups,
+  emailDisplay,
+  emailHref,
+  formatDate,
+  formatDateRange,
+  locationText,
+  phoneDisplay,
+  phoneHref,
+  urlDisplay,
+} from "@/helpers/cvHelpers";
 import type { ContactLabels, ProjectLinkLabels } from "@/helpers/pdfHelpers";
 
 registerCvFont();
 
+/**
+ * Aturan tipografi PDF:
+ * - Heading (nama & judul section): 14–16 pt.
+ * - Teks isi: 10–12 pt.
+ * - Tanpa grafik, progress bar, ikon/simbol rumit, maupun tabel.
+ */
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Calibri",
@@ -25,34 +45,25 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
   },
   // Header
-  headerRow: {
-    flexDirection: "row",
-    gap: 16,
-    marginBottom: 4,
-  },
-  avatar: {
-    width: 72,
-    height: 96,
-    objectFit: "cover",
-  },
-  headerInfo: {
-    flex: 1,
-  },
   name: {
     fontSize: 16,
     fontWeight: 700,
     color: PDF_COLORS.heading,
-    marginBottom: 6,
+    marginBottom: 4,
   },
-  jobTitle: {
+  label: {
     fontSize: 12,
     color: PDF_COLORS.secondary,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   contactLine: {
     flexDirection: "row",
     flexWrap: "wrap",
     marginBottom: 2,
+  },
+  contactItem: {
+    flexDirection: "row",
+    marginRight: 14,
   },
   contactLabel: {
     fontSize: 10,
@@ -62,13 +73,11 @@ const styles = StyleSheet.create({
   contactValue: {
     fontSize: 10,
     color: PDF_COLORS.secondary,
-    marginRight: 14,
   },
   contactLink: {
     fontSize: 10,
     color: PDF_COLORS.link,
     textDecoration: "underline",
-    marginRight: 14,
   },
   divider: {
     borderBottomWidth: 1.5,
@@ -102,8 +111,13 @@ const styles = StyleSheet.create({
   itemWrap: {
     marginBottom: 10,
   },
+  itemRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 1,
+  },
   itemTitle: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: 700,
     color: PDF_COLORS.heading,
   },
@@ -114,8 +128,13 @@ const styles = StyleSheet.create({
   itemMeta: {
     fontSize: 10,
     color: PDF_COLORS.light,
-    marginTop: 1,
     marginBottom: 3,
+  },
+  itemSummary: {
+    fontSize: 11,
+    color: PDF_COLORS.secondary,
+    lineHeight: 1.5,
+    marginBottom: 2,
   },
   bulletList: {
     marginTop: 2,
@@ -126,30 +145,29 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
     marginBottom: 2,
   },
-  // Skills
-  skillsText: {
-    fontSize: 11,
-    color: PDF_COLORS.secondary,
-    lineHeight: 1.7,
+  mutedLine: {
+    fontSize: 10,
+    color: PDF_COLORS.light,
+    lineHeight: 1.5,
+    marginTop: 1,
   },
-  // Projects
-  projectTitle: {
+  // Skills
+  skillRow: {
+    flexDirection: "row",
+    marginBottom: 2,
+  },
+  skillLabel: {
     fontSize: 11,
     fontWeight: 700,
     color: PDF_COLORS.heading,
+    minWidth: 130,
   },
-  projectDesc: {
+  skillItems: {
     fontSize: 11,
     color: PDF_COLORS.secondary,
-    marginTop: 2,
-    marginBottom: 2,
-    lineHeight: 1.5,
+    flex: 1,
   },
-  projectTech: {
-    fontSize: 10,
-    color: PDF_COLORS.light,
-    marginBottom: 2,
-  },
+  // Projects
   projectLinkLine: {
     flexDirection: "row",
     marginBottom: 1,
@@ -177,131 +195,76 @@ function SectionTitle({ title }: { title: string }) {
 
 function PdfHeader({
   data,
-  locale,
   contactLabels,
 }: {
   data: CvData;
-  locale: Locale;
   contactLabels: ContactLabels;
 }) {
-  const { profile } = data;
-  const locText = pickLocale(profile.contact.location, locale);
+  const { basics, contact } = data;
 
-  // Baris kontak utama: email, phone, location.
-  // Format: "label value" — label tidak bisa diklik, hanya value yang clickable.
-  // Tanpa pemisah "|".
   const primaryContacts: { label: string; node: React.ReactNode }[] = [
     {
       label: contactLabels.email,
       node: (
-        <Link
-          style={styles.contactLink}
-          src={`mailto:${profile.contact.email}`}
-        >
-          {profile.contact.email}
+        <Link style={styles.contactLink} src={emailHref(contact.email)}>
+          {emailDisplay(contact.email)}
         </Link>
       ),
     },
     {
       label: contactLabels.phone,
       node: (
-        <Link
-          style={styles.contactLink}
-          src={`tel:${profile.contact.phone.replace(/\s/g, "")}`}
-        >
-          {profile.contact.phone}
+        <Link style={styles.contactLink} src={phoneHref(contact.phone)}>
+          {phoneDisplay(contact.phone)}
         </Link>
       ),
     },
     {
       label: contactLabels.location,
-      node: <Text style={styles.contactValue}>{locText}</Text>,
+      node: (
+        <Text style={styles.contactValue}>{locationText(basics.location)}</Text>
+      ),
     },
   ];
 
-  // Baris kontak sekunder: website, linkedin, github (opsional).
-  const secondaryContacts: { label: string; node: React.ReactNode }[] = [];
-  if (profile.contact.website) {
-    secondaryContacts.push({
-      label: contactLabels.website,
-      node: (
-        <Link
-          style={styles.contactLink}
-          src={`https://${profile.contact.website}`}
-        >
-          {profile.contact.website}
-        </Link>
-      ),
-    });
-  }
-  if (profile.contact.linkedin) {
-    secondaryContacts.push({
+  const secondaryContacts: { label: string; node: React.ReactNode }[] = [
+    {
       label: contactLabels.linkedin,
       node: (
-        <Link
-          style={styles.contactLink}
-          src={`https://${profile.contact.linkedin}`}
-        >
-          {profile.contact.linkedin}
+        <Link style={styles.contactLink} src={contact.linkedin}>
+          {urlDisplay(contact.linkedin)}
         </Link>
       ),
-    });
-  }
-  if (profile.contact.github) {
-    secondaryContacts.push({
+    },
+    {
       label: contactLabels.github,
       node: (
-        <Link
-          style={styles.contactLink}
-          src={`https://${profile.contact.github}`}
-        >
-          {profile.contact.github}
+        <Link style={styles.contactLink} src={contact.github}>
+          {urlDisplay(contact.github)}
         </Link>
       ),
-    });
-  }
+    },
+  ];
 
   return (
     <View>
-      <View style={styles.headerRow}>
-        {profile.avatar && (
-          // react-pdf Image doesn't support alt prop
-          // eslint-disable-next-line jsx-a11y/alt-text
-          <Image
-            style={styles.avatar}
-            src={nodePath.join(process.cwd(), "public", profile.avatar)}
-          />
-        )}
-        <View style={styles.headerInfo}>
-          <Text style={styles.name}>{profile.name}</Text>
-          <Text style={styles.jobTitle}>
-            {pickLocale(profile.title, locale)}
-          </Text>
-          {/* {primaryContacts.map((c, i) => (
-            <View key={`p-${i}`} style={styles.contactLine}>
-              <Text style={styles.contactLabel}>{c.label}</Text>
-              {c.node}
-            </View>
-          ))} */}
-          <View style={styles.contactLine}>
-            {primaryContacts.map((c, i) => (
-              <View key={`s-${i}`} style={{ flexDirection: "row" }}>
-                <Text style={styles.contactLabel}>{c.label}</Text>
-                {c.node}
-              </View>
-            ))}
+      <Text style={styles.name}>{basics.name}</Text>
+      <Text style={styles.label}>{basics.label}</Text>
+      <View style={styles.contactLine}>
+        {primaryContacts.map((c, i) => (
+          <View key={`p-${i}`} style={styles.contactItem}>
+            <Text style={styles.contactLabel}>{c.label}</Text>
+            {c.node}
           </View>
-          {secondaryContacts.length > 0 && (
-            <View style={styles.contactLine}>
-              {secondaryContacts.map((c, i) => (
-                <View key={`s-${i}`} style={{ flexDirection: "row" }}>
-                  <Text style={styles.contactLabel}>{c.label}</Text>
-                  {c.node}
-                </View>
-              ))}
-            </View>
-          )}
-        </View>
+        ))}
+      </View>
+      <View style={styles.contactLine}>
+        {secondaryContacts.map((c, i) => (
+          <View key={`s-${i}`} style={styles.contactItem}>
+            <Text style={styles.contactLabel}>{c.label}</Text>
+            {c.node}
+          </View>
+        ))}
       </View>
       <View style={styles.divider} />
     </View>
@@ -312,29 +275,35 @@ function PdfExperience({
   items,
   locale,
 }: {
-  items: CvData["experiences"];
+  items: CvData["work"];
   locale: Locale;
 }) {
   return (
     <View>
-      {items.slice(0, MAX_ITEMS_PDF).map((exp, i) => (
+      {items.map((exp, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <Text style={styles.itemTitle}>
-            {pickLocale(exp.position, locale)}
+          <View style={styles.itemRow}>
+            <Text style={styles.itemTitle}>{exp.position}</Text>
+            <Text style={styles.itemMeta}>
+              {formatDateRange(exp.startDate, exp.endDate, locale)}
+            </Text>
+          </View>
+          <Text style={styles.itemSubtitle}>
+            {exp.company}
+            {exp.location ? `  ·  ${exp.location}` : ""}
           </Text>
-          <Text style={styles.itemSubtitle}>{exp.company}</Text>
-          <Text style={styles.itemMeta}>
-            {formatDateRange(exp.startDate, exp.endDate, locale)}
-            {"   "}
-            {pickLocale(exp.location, locale)}
-          </Text>
-          {exp.description.length > 0 && (
+          {exp.summary ? (
+            <Text style={styles.itemSummary}>{exp.summary}</Text>
+          ) : null}
+          {exp.highlights.length > 0 && (
             <View style={styles.bulletList}>
-              {exp.description.map((desc, j) => (
-                <Text key={j} style={styles.bulletItem}>
-                  {`\u2022 ${pickLocale(desc, locale)}`}
-                </Text>
-              ))}
+              {exp.highlights
+                .slice(0, MAX_WORK_HIGHLIGHTS_PDF)
+                .map((desc, j) => (
+                  <Text key={j} style={styles.bulletItem}>
+                    {`\u2022 ${desc}`}
+                  </Text>
+                ))}
             </View>
           )}
         </View>
@@ -352,56 +321,31 @@ function PdfEducation({
 }) {
   return (
     <View>
-      {items.slice(0, MAX_ITEMS_PDF).map((edu, i) => (
+      {items.map((edu, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <Text style={styles.itemTitle}>{pickLocale(edu.degree, locale)}</Text>
-          <Text style={styles.itemSubtitle}>{edu.institution}</Text>
-          <Text style={styles.itemMeta}>
-            {formatDateRange(edu.startDate, edu.endDate, locale)}
-            {edu.gpa ? `   |   GPA: ${edu.gpa}` : ""}
+          <View style={styles.itemRow}>
+            <Text style={styles.itemTitle}>{edu.institution}</Text>
+            <Text style={styles.itemMeta}>
+              {formatDateRange(edu.startDate, edu.endDate, locale)}
+            </Text>
+          </View>
+          <Text style={styles.itemSubtitle}>
+            {edu.field}
+            {edu.degree ? `  ·  ${edu.degree}` : ""}
+            {edu.grade ? `  ·  GPA: ${edu.grade}` : ""}
           </Text>
-          {edu.description && edu.description.length > 0 && (
-            <View style={styles.bulletList}>
-              {edu.description.map((desc, j) => (
-                <Text key={j} style={styles.bulletItem}>
-                  {`\u2022 ${pickLocale(desc, locale)}`}
-                </Text>
-              ))}
-            </View>
+          {edu.courses.length > 0 && (
+            <Text style={styles.mutedLine}>{edu.courses.join(" · ")}</Text>
           )}
-        </View>
-      ))}
-    </View>
-  );
-}
-
-function PdfOrganizations({
-  items,
-  locale,
-}: {
-  items: CvData["organizations"];
-  locale: Locale;
-}) {
-  return (
-    <View>
-      {items.slice(0, MAX_ITEMS_PDF).map((org, i) => (
-        <View key={i} style={styles.itemWrap} wrap={false}>
-          <Text style={styles.itemTitle}>
-            {pickLocale(org.position, locale)}
-          </Text>
-          <Text style={styles.itemSubtitle}>{org.organization}</Text>
-          <Text style={styles.itemMeta}>
-            {formatDateRange(org.startDate, org.endDate, locale)}
-            {"   "}
-            {pickLocale(org.location, locale)}
-          </Text>
-          {org.description.length > 0 && (
+          {edu.highlights.length > 0 && (
             <View style={styles.bulletList}>
-              {org.description.map((desc, j) => (
-                <Text key={j} style={styles.bulletItem}>
-                  {`\u2022 ${pickLocale(desc, locale)}`}
-                </Text>
-              ))}
+              {edu.highlights
+                .slice(0, MAX_WORK_HIGHLIGHTS_PDF)
+                .map((desc, j) => (
+                  <Text key={j} style={styles.bulletItem}>
+                    {`\u2022 ${desc}`}
+                  </Text>
+                ))}
             </View>
           )}
         </View>
@@ -421,10 +365,13 @@ function PdfCertifications({
     <View>
       {items.map((cert, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <Text style={styles.itemTitle}>{cert.name}</Text>
-          <Text style={styles.itemSubtitle}>{cert.issuer}</Text>
-          <Text style={styles.itemMeta}>
-            {formatDateRange(cert.startDate, cert.endDate, locale)}
+          <View style={styles.itemRow}>
+            <Text style={styles.itemTitle}>{cert.name}</Text>
+            <Text style={styles.itemMeta}>{formatDate(cert.date, locale)}</Text>
+          </View>
+          <Text style={styles.itemSubtitle}>
+            {cert.issuer}
+            {cert.credentialId ? `  ·  ${cert.credentialId}` : ""}
           </Text>
         </View>
       ))}
@@ -432,9 +379,30 @@ function PdfCertifications({
   );
 }
 
-function PdfSkills({ items }: { items: CvData["skills"]; locale: Locale }) {
-  const allSkills = items.flatMap((group) => group.skills);
-  return <Text style={styles.skillsText}>{allSkills.join(", ")}</Text>;
+function PdfSkills({ data, locale }: { data: CvData; locale: Locale }) {
+  const groups = buildSkillGroups(data.skills, locale);
+  return (
+    <View>
+      {groups.map((group, i) => (
+        <View key={i} style={styles.skillRow} wrap={false}>
+          <Text style={styles.skillLabel}>{group.label}</Text>
+          <Text style={styles.skillItems}>{group.items.join(", ")}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
+function PdfLanguages({ items }: { items: CvData["languages"] }) {
+  return (
+    <View style={styles.bulletList}>
+      {items.map((lang, i) => (
+        <Text key={i} style={styles.bulletItem}>
+          {`\u2022 ${lang.language} \u2014 ${lang.fluency}`}
+        </Text>
+      ))}
+    </View>
+  );
 }
 
 function PdfProjects({
@@ -448,39 +416,86 @@ function PdfProjects({
 }) {
   return (
     <View>
-      {items.slice(0, MAX_ITEMS_PDF).map((project, i) => (
+      {items
+        ?.filter((p) => !p.disabled)
+        ?.slice(0, MAX_PROJECTS_PDF)
+        .map((project, i) => (
+          <View key={i} style={styles.itemWrap} wrap={false}>
+            <View style={styles.itemRow}>
+              <Text style={styles.itemTitle}>{project.name}</Text>
+              <Text style={styles.itemMeta}>
+                {formatDateRange(project.startDate, project.endDate, locale)}
+              </Text>
+            </View>
+            <Text style={styles.itemSubtitle}>{project.role}</Text>
+            {project.description ? (
+              <Text style={styles.itemSummary}>{project.description}</Text>
+            ) : null}
+            {project.techStack.length > 0 && (
+              <Text style={styles.mutedLine}>
+                {project.techStack.join(" · ")}
+              </Text>
+            )}
+            {project.highlights.length > 0 && (
+              <View style={styles.bulletList}>
+                {project.highlights.slice(0, MAX_HIGHLIGHTS_PDF).map((h, j) => (
+                  <Text key={j} style={styles.bulletItem}>
+                    {`\u2022 ${h}`}
+                  </Text>
+                ))}
+              </View>
+            )}
+            {project.metrics.length > 0 && (
+              <Text style={styles.mutedLine}>
+                {project.metrics
+                  .map((m) => `${m.metric}: ${m.value}`)
+                  .join("  |  ")}
+              </Text>
+            )}
+            {project.url.website ? (
+              <View style={styles.projectLinkLine}>
+                <Text style={styles.projectLinkLabel}>
+                  {projectLinkLabels.website}
+                </Text>
+                <Link style={styles.projectLink} src={project.url.website}>
+                  {urlDisplay(project.url.website)}
+                </Link>
+              </View>
+            ) : null}
+            {project.url.sourceCode ? (
+              <View style={styles.projectLinkLine}>
+                <Text style={styles.projectLinkLabel}>
+                  {projectLinkLabels.sourceCode}
+                </Text>
+                <Link style={styles.projectLink} src={project.url.sourceCode}>
+                  {urlDisplay(project.url.sourceCode)}
+                </Link>
+              </View>
+            ) : null}
+          </View>
+        ))}
+    </View>
+  );
+}
+
+function PdfAwards({
+  items,
+  locale,
+}: {
+  items: CvData["awards"];
+  locale: Locale;
+}) {
+  return (
+    <View>
+      {items.map((award, i) => (
         <View key={i} style={styles.itemWrap} wrap={false}>
-          <Text style={styles.projectTitle}>{project.name}</Text>
-          <Text style={styles.projectDesc}>
-            {pickLocale(project.description, locale)}
-          </Text>
-          <Text style={styles.projectTech}>{project.techStack.join(", ")}</Text>
-          {project.websiteLink && (
-            <View style={styles.projectLinkLine}>
-              <Text style={styles.projectLinkLabel}>
-                {projectLinkLabels.website}
-              </Text>
-              <Link
-                style={styles.projectLink}
-                src={`https://${project.websiteLink}`}
-              >
-                {project.websiteLink}
-              </Link>
-            </View>
-          )}
-          {project.sourceCodeLink && (
-            <View style={styles.projectLinkLine}>
-              <Text style={styles.projectLinkLabel}>
-                {projectLinkLabels.sourceCode}
-              </Text>
-              <Link
-                style={styles.projectLink}
-                src={`https://${project.sourceCodeLink}`}
-              >
-                {project.sourceCodeLink}
-              </Link>
-            </View>
-          )}
+          <View style={styles.itemRow}>
+            <Text style={styles.itemTitle}>{award.title}</Text>
+            <Text style={styles.itemMeta}>
+              {formatDate(award.date, locale)}
+            </Text>
+          </View>
+          <Text style={styles.itemSubtitle}>{award.issuer}</Text>
         </View>
       ))}
     </View>
@@ -499,10 +514,11 @@ export default function PdfDocument({
   sectionTitles: {
     experience: string;
     education: string;
-    organizations: string;
     certifications: string;
     skills: string;
+    languages: string;
     projects: string;
+    awards: string;
   };
   contactLabels: ContactLabels;
   projectLinkLabels: ProjectLinkLabels;
@@ -511,44 +527,38 @@ export default function PdfDocument({
     <Document>
       <Page size="A4" style={styles.page}>
         {/* 1. Header + Ringkasan Profil */}
-        <PdfHeader data={data} locale={locale} contactLabels={contactLabels} />
-        <Text style={styles.summaryText}>
-          {pickLocale(data.profile.summary, locale)}
-        </Text>
+        <PdfHeader data={data} contactLabels={contactLabels} />
+        <Text style={styles.summaryText}>{data.basics.summary}</Text>
 
         {/* 2. Pengalaman Kerja */}
-        <View style={styles.sectionWrap} wrap={false}>
+        <View style={styles.sectionWrap}>
           <SectionTitle title={sectionTitles.experience} />
-          <PdfExperience items={data.experiences} locale={locale} />
+          <PdfExperience items={data.work} locale={locale} />
         </View>
 
         {/* 3. Pendidikan */}
-        <View style={styles.sectionWrap} wrap={false}>
+        <View style={styles.sectionWrap}>
           <SectionTitle title={sectionTitles.education} />
           <PdfEducation items={data.education} locale={locale} />
         </View>
 
-        {/* 4. Pengalaman Organisasi */}
-        <View style={styles.sectionWrap} wrap={false}>
-          <SectionTitle title={sectionTitles.organizations} />
-          <PdfOrganizations items={data.organizations} locale={locale} />
-        </View>
+        {/* 4. Sertifikasi */}
+        {data.certifications.length > 0 && (
+          <View style={styles.sectionWrap}>
+            <SectionTitle title={sectionTitles.certifications} />
+            <PdfCertifications items={data.certifications} locale={locale} />
+          </View>
+        )}
 
-        {/* 5. Sertifikasi */}
-        <View style={styles.sectionWrap} wrap={false}>
-          <SectionTitle title={sectionTitles.certifications} />
-          <PdfCertifications items={data.certifications} locale={locale} />
-        </View>
-
-        {/* 6. Keahlian */}
-        <View style={styles.sectionWrap} wrap={false}>
+        {/* 5. Keahlian */}
+        <View style={styles.sectionWrap}>
           <SectionTitle title={sectionTitles.skills} />
-          <PdfSkills items={data.skills} locale={locale} />
+          <PdfSkills data={data} locale={locale} />
         </View>
 
-        {/* 8. Portfolio (page baru) */}
+        {/* 6. Portfolio */}
         {data.projects.length > 0 && (
-          <View break style={styles.sectionWrap} wrap={false}>
+          <View break style={styles.sectionWrap}>
             <SectionTitle title={sectionTitles.projects} />
             <PdfProjects
               items={data.projects}

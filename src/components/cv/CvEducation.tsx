@@ -2,17 +2,12 @@
 
 import { Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
-import { formatDateRange, pickLocale } from "@/helpers/cvHelpers";
-import type { EducationItem } from "@/models/types";
-import SourceBadge from "./SourceBadge";
+import { formatDateRange } from "@/helpers/cvHelpers";
+import type { CvEducationItem } from "@/models/types";
 
 const { Text } = Typography;
 
-export default function CvEducation({
-  items,
-}: {
-  items: EducationItem[];
-}) {
+export default function CvEducation({ items }: { items: CvEducationItem[] }) {
   const { locale } = useLocale();
 
   return (
@@ -22,30 +17,37 @@ export default function CvEducation({
           <div className="flex items-start justify-between gap-2 flex-wrap">
             <div>
               <Text strong style={{ fontSize: 15 }}>
-                {pickLocale(edu.degree, locale)}
+                {edu.institution}
               </Text>
               <span className="mx-2 text-gray-400">|</span>
-              <Text type="secondary">{edu.institution}</Text>
+              <Text type="secondary">{edu.field}</Text>
             </div>
-            <SourceBadge source={edu.source} />
-          </div>
-          <div className="flex items-center justify-between flex-wrap text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-            <Text type="secondary" style={{ fontSize: 12 }}>
-              {pickLocale(edu.field, locale)}
-              {edu.gpa ? ` | GPA: ${edu.gpa}` : ""}
-            </Text>
             <Text type="secondary" style={{ fontSize: 12 }}>
               {formatDateRange(edu.startDate, edu.endDate, locale)}
             </Text>
           </div>
-          {edu.description && edu.description.length > 0 && (
+          <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              {edu.degree}
+              {edu.grade ? ` | GPA: ${edu.grade}` : ""}
+            </Text>
+          </div>
+          {edu.courses.length > 0 && (
+            <Text
+              type="secondary"
+              style={{ display: "block", fontSize: 12, marginTop: 2 }}
+            >
+              {edu.courses.join(" · ")}
+            </Text>
+          )}
+          {edu.highlights.length > 0 && (
             <ul
               className="mt-1 mb-0 pl-5 list-disc list-outside text-sm"
               style={{ lineHeight: 1.6 }}
             >
-              {edu.description.map((desc, j) => (
+              {edu.highlights.map((desc, j) => (
                 <li key={j} className="mb-0.5">
-                  {pickLocale(desc, locale)}
+                  {desc}
                 </li>
               ))}
             </ul>

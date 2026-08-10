@@ -18,31 +18,47 @@ const id: TranslationDict = {
   "common.present": "Sekarang",
   "common.loading": "Memuat...",
 
-  // CV Sections
+  // CV toolbar
   "cv.download": "Unduh PDF",
   "cv.downloadError": "Gagal mengunduh PDF. Silakan coba lagi.",
-  "cv.source.tooltip": "Sumber data",
 
-  // PDF contact labels (prefix style, e.g. "e: name@example.com")
+  // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",
   "pdf.contact.phone": "wa:",
   "pdf.contact.location": "dom:",
-  "pdf.contact.website": "web:",
   "pdf.contact.linkedin": "linkedin:",
   "pdf.contact.github": "github:",
 
-  // PDF project link labels
+  // PDF project labels
   "pdf.link.website": "link website:",
   "pdf.link.sourceCode": "link source code:",
+  "pdf.project.role": "peran:",
+  "pdf.project.tech": "teknologi:",
+  "pdf.project.metrics": "pencapaian:",
 
   // Section titles
   "section.experience": "Pengalaman Kerja",
   "section.education": "Pendidikan",
-  "section.organizations": "Pengalaman Organisasi",
   "section.certifications": "Sertifikasi",
   "section.skills": "Keahlian",
   "section.languages": "Bahasa",
   "section.projects": "Portfolio",
+  "section.awards": "Penghargaan",
+
+  // Skill categories
+  "skill.languages": "Bahasa Pemrograman",
+  "skill.frameworks": "Framework",
+  "skill.libraries": "Library",
+  "skill.databases": "Database",
+  "skill.tools": "Tools",
+  "skill.platforms": "Platform",
+  "skill.methodologies": "Metodologi",
+  "skill.domains": "Domain",
+
+  // Project fields
+  "project.role": "Peran",
+  "project.techStack": "Teknologi",
+  "project.metrics": "Pencapaian",
 
   // Theme
   "theme.light": "Mode Terang",
@@ -65,27 +81,43 @@ const en: TranslationDict = {
 
   "cv.download": "Download PDF",
   "cv.downloadError": "Failed to download PDF. Please try again.",
-  "cv.source.tooltip": "Data source",
 
-  // PDF contact labels (prefix style, e.g. "e: name@example.com")
+  // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",
   "pdf.contact.phone": "wa:",
   "pdf.contact.location": "loc:",
-  "pdf.contact.website": "web:",
   "pdf.contact.linkedin": "linkedin:",
   "pdf.contact.github": "github:",
 
-  // PDF project link labels
+  // PDF project labels
   "pdf.link.website": "link website:",
   "pdf.link.sourceCode": "link source code:",
+  "pdf.project.role": "role:",
+  "pdf.project.tech": "tech:",
+  "pdf.project.metrics": "metrics:",
 
   "section.experience": "Work Experience",
   "section.education": "Education",
-  "section.organizations": "Organizational Experience",
   "section.certifications": "Certifications",
   "section.skills": "Skills",
   "section.languages": "Languages",
   "section.projects": "Portfolio",
+  "section.awards": "Awards",
+
+  // Skill categories
+  "skill.languages": "Programming Languages",
+  "skill.frameworks": "Frameworks",
+  "skill.libraries": "Libraries",
+  "skill.databases": "Databases",
+  "skill.tools": "Tools",
+  "skill.platforms": "Platforms",
+  "skill.methodologies": "Methodologies",
+  "skill.domains": "Domains",
+
+  // Project fields
+  "project.role": "Role",
+  "project.techStack": "Tech Stack",
+  "project.metrics": "Metrics",
 
   "theme.light": "Light Mode",
   "theme.dark": "Dark Mode",

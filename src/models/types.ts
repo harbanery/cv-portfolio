@@ -1,111 +1,144 @@
+/**
+ * Tipe data CV yang merefleksikan struktur `public/references/cv_data.json`.
+ *
+ * Data sumber hanya tersedia dalam satu bahasa (Inggris). Lokalisasi
+ * (locale) hanya berlaku untuk label UI, judul section, dan format tanggal,
+ * bukan untuk konten teks.
+ */
+
 /** Type untuk supported locales. */
 export type Locale = "id" | "en";
 
-/** Teks yang tersedia dalam multiple bahasa. */
-export interface LocalizedText {
-  id: string;
-  en: string;
+/** Lokasi geografis. */
+export interface CvLocation {
+  city: string;
+  region: string;
+  countryCode: string;
 }
 
-/** Re-export DataSource dari sources.ts */
-export type { DataSource } from "./sources";
+/** Informasi dasar profil. */
+export interface CvBasics {
+  name: string;
+  label: string;
+  summary: string;
+  title: string;
+  location: CvLocation;
+  profiles: unknown[];
+}
 
-import type { DataSource } from "./sources";
-
-/** Informasi kontak. */
-export interface ContactInfo {
+/** Informasi kontak. Nilai dapat berupa URL lengkap atau prefixed (mailto:). */
+export interface CvContact {
   email: string;
   phone: string;
-  location: LocalizedText;
-  website?: string;
-  linkedin?: string;
-  github?: string;
+  linkedin: string;
+  github: string;
 }
 
 /** Pengalaman kerja. */
-export interface ExperienceItem {
-  source: DataSource;
+export interface CvWorkItem {
   company: string;
-  position: LocalizedText;
+  position: string;
   startDate: string;
   endDate: string | null;
-  location: LocalizedText;
-  description: LocalizedText[];
+  summary: string;
+  highlights: string[];
+  location: string;
+  isCurrentRole: boolean;
 }
 
 /** Pendidikan. */
-export interface EducationItem {
-  source: DataSource;
+export interface CvEducationItem {
   institution: string;
-  degree: LocalizedText;
-  field: LocalizedText;
+  degree: string;
+  field: string;
   startDate: string;
-  endDate: string | null;
-  gpa?: string;
-  description?: LocalizedText[];
-}
-
-/** Kelompok keahlian. */
-export interface SkillGroup {
-  source: DataSource;
-  category: LocalizedText;
-  skills: string[];
+  endDate: string;
+  grade: string;
+  courses: string[];
+  highlights: string[];
 }
 
 /** Sertifikasi. */
-export interface CertificationItem {
-  source: DataSource;
+export interface CvCertificationItem {
   name: string;
   issuer: string;
-  startDate: string;
-  endDate: string | null;
+  date: string;
+  url: string;
+  credentialId: string;
 }
 
-/** Pengalaman organisasi. */
-export interface OrganizationItem {
-  source: DataSource;
-  organization: string;
-  position: LocalizedText;
-  startDate: string;
-  endDate: string | null;
-  location: LocalizedText;
-  description: LocalizedText[];
+/** Keahlian dikelompokkan per kategori. */
+export interface CvSkills {
+  languages: string[];
+  frameworks: string[];
+  libraries: string[];
+  databases: string[];
+  tools: string[];
+  platforms: string[];
+  methodologies: string[];
+  domains: string[];
 }
 
-/** Bahasa. */
-export interface LanguageItem {
-  language: LocalizedText;
-  proficiency: LocalizedText;
+/** Satu metrik pencapaian project. */
+export interface CvProjectMetric {
+  metric: string;
+  value: string;
 }
 
-/** Project. */
-export interface ProjectItem {
-  source: DataSource;
+/** Tautan terkait sebuah project. */
+export interface CvProjectUrls {
+  website?: string;
+  sourceCode?: string;
+}
+
+/** Project / portfolio. */
+export interface CvProjectItem {
   name: string;
-  description: LocalizedText;
+  disabled?: boolean;
+  company: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  description: string;
   techStack: string[];
-  image?: string;
-  websiteLink?: string;
-  sourceCodeLink?: string;
+  highlights: string[];
+  metrics: CvProjectMetric[];
+  images: string[];
+  url: CvProjectUrls;
 }
 
-/** Profil utama CV. */
-export interface CvProfile {
-  name: string;
-  title: LocalizedText;
-  avatar?: string;
-  contact: ContactInfo;
-  summary: LocalizedText;
+/** Penghargaan. */
+export interface CvAwardItem {
+  title: string;
+  issuer: string;
+  date: string;
+  summary: string;
+}
+
+/** Bahasa yang dikuasai. */
+export interface CvLanguageItem {
+  language: string;
+  fluency: string;
+}
+
+/** Metadata sumber data. */
+export interface CvMeta {
+  sourceFiles: string[];
+  generatedAt: string;
+  version: string;
 }
 
 /** Data lengkap CV. */
 export interface CvData {
-  profile: CvProfile;
-  experiences: ExperienceItem[];
-  education: EducationItem[];
-  organizations: OrganizationItem[];
-  skills: SkillGroup[];
-  certifications: CertificationItem[];
-  languages: LanguageItem[];
-  projects: ProjectItem[];
+  basics: CvBasics;
+  contact: CvContact;
+  work: CvWorkItem[];
+  education: CvEducationItem[];
+  certifications: CvCertificationItem[];
+  skills: CvSkills;
+  projects: CvProjectItem[];
+  awards: CvAwardItem[];
+  languages: CvLanguageItem[];
+  interests: unknown[];
+  meta: CvMeta;
 }

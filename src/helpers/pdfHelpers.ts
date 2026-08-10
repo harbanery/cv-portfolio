@@ -1,4 +1,8 @@
-import { TRANSLATIONS, translate, type Locale } from "@/components/locale/translations";
+import {
+  TRANSLATIONS,
+  translate,
+  type Locale,
+} from "@/components/locale/translations";
 import type { CvData } from "@/models/types";
 
 /**
@@ -10,24 +14,24 @@ export function getSectionTitles(locale: Locale) {
   return {
     experience: translate(dict, "section.experience"),
     education: translate(dict, "section.education"),
-    organizations: translate(dict, "section.organizations"),
     certifications: translate(dict, "section.certifications"),
     skills: translate(dict, "section.skills"),
+    languages: translate(dict, "section.languages"),
     projects: translate(dict, "section.projects"),
+    awards: translate(dict, "section.awards"),
   };
 }
 
-/** Label prefix untuk setiap field kontak di PDF (mis. "e:", "p:"). */
+/** Label prefix untuk setiap field kontak di PDF. */
 export interface ContactLabels {
   email: string;
   phone: string;
   location: string;
-  website: string;
   linkedin: string;
   github: string;
 }
 
-/** Label untuk link project di PDF (mis. "link website:"). */
+/** Label untuk link project di PDF. */
 export interface ProjectLinkLabels {
   website: string;
   sourceCode: string;
@@ -40,7 +44,6 @@ export function getContactLabels(locale: Locale): ContactLabels {
     email: translate(dict, "pdf.contact.email"),
     phone: translate(dict, "pdf.contact.phone"),
     location: translate(dict, "pdf.contact.location"),
-    website: translate(dict, "pdf.contact.website"),
     linkedin: translate(dict, "pdf.contact.linkedin"),
     github: translate(dict, "pdf.contact.github"),
   };

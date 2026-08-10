@@ -2,24 +2,26 @@
 
 import { Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
-import { formatDateRange } from "@/helpers/cvHelpers";
-import type { CertificationItem } from "@/models/types";
-import SourceBadge from "./SourceBadge";
+import { formatDate } from "@/helpers/cvHelpers";
+import type { CvCertificationItem } from "@/models/types";
 
-const { Text } = Typography;
+const { Text, Link } = Typography;
 
 export default function CvCertifications({
   items,
 }: {
-  items: CertificationItem[];
+  items: CvCertificationItem[];
 }) {
   const { locale } = useLocale();
 
   return (
     <div className="flex flex-col gap-2">
       {items.map((cert, i) => (
-        <div key={i} className="flex items-start justify-between gap-2 flex-wrap">
-          <div>
+        <div
+          key={i}
+          className="flex items-start justify-between gap-2 flex-wrap"
+        >
+          <div className="min-w-0">
             <Text strong style={{ fontSize: 13 }}>
               {cert.name}
             </Text>
@@ -27,13 +29,20 @@ export default function CvCertifications({
             <Text type="secondary" style={{ fontSize: 13 }}>
               {cert.issuer}
             </Text>
+            {cert.url && (
+              <Link
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 12, marginLeft: 8 }}
+              >
+                {locale === "id" ? "Lihat" : "View"}
+              </Link>
+            )}
           </div>
-          <div className="flex items-center gap-2">
-            <Text type="secondary" style={{ fontSize: 12 }}>
-              {formatDateRange(cert.startDate, cert.endDate, locale)}
-            </Text>
-            <SourceBadge source={cert.source} />
-          </div>
+          <Text type="secondary" style={{ fontSize: 12 }}>
+            {formatDate(cert.date, locale)}
+          </Text>
         </div>
       ))}
     </div>

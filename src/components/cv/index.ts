@@ -5,11 +5,10 @@ export {
   CvSummary,
   CvExperience,
   CvEducation,
-  CvOrganizations,
   CvCertifications,
   CvSkills,
   CvLanguages,
   CvProjects,
+  CvAwards,
   CvToolbar,
-  SourceBadge,
 } from "./CvDocument";

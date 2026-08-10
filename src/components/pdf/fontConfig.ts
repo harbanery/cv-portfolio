@@ -44,3 +44,9 @@ export const PDF_COLORS = {
 };
 
 export const MAX_ITEMS_PDF = 3;
+/** Jumlah project yang dirender di PDF (dibatasi agar layout tetap rapi). */
+export const MAX_PROJECTS_PDF = 5;
+/** Jumlah highlight (bullet) per project di PDF. */
+export const MAX_HIGHLIGHTS_PDF = 3;
+/** Jumlah highlight (bullet) per pengalaman kerja di PDF. */
+export const MAX_WORK_HIGHLIGHTS_PDF = 4;

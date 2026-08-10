@@ -8,11 +8,11 @@ import CvSection from "./CvSection";
 import CvSummary from "./CvSummary";
 import CvExperience from "./CvExperience";
 import CvEducation from "./CvEducation";
-import CvOrganizations from "./CvOrganizations";
 import CvCertifications from "./CvCertifications";
 import CvSkills from "./CvSkills";
 import CvLanguages from "./CvLanguages";
 import CvProjects from "./CvProjects";
+import CvAwards from "./CvAwards";
 
 export default function CvDocument({ data }: { data: CvData }) {
   const { t } = useLocale();
@@ -20,16 +20,16 @@ export default function CvDocument({ data }: { data: CvData }) {
   return (
     <article className="cv-document w-full max-w-[850px] mx-auto bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
       <div className="px-8 sm:px-12 py-8 sm:py-10">
-        <CvHeader profile={data.profile} />
+        <CvHeader basics={data.basics} contact={data.contact} />
 
         <Divider style={{ marginBlock: 24 }} />
 
         {/* 1. Ringkasan Profil */}
-        <CvSummary summary={data.profile.summary} />
+        <CvSummary summary={data.basics.summary} />
 
         {/* 2. Pengalaman Kerja */}
         <CvSection title={t("section.experience")}>
-          <CvExperience items={data.experiences} />
+          <CvExperience items={data.work} />
         </CvSection>
 
         {/* 3. Pendidikan */}
@@ -37,33 +37,26 @@ export default function CvDocument({ data }: { data: CvData }) {
           <CvEducation items={data.education} />
         </CvSection>
 
-        {/* 4. Pengalaman Organisasi */}
-        {data.organizations.length > 0 && (
-          <CvSection title={t("section.organizations")}>
-            <CvOrganizations items={data.organizations} />
-          </CvSection>
-        )}
-
-        {/* 5. Sertifikasi */}
+        {/* 4. Sertifikasi */}
         {data.certifications.length > 0 && (
           <CvSection title={t("section.certifications")}>
             <CvCertifications items={data.certifications} />
           </CvSection>
         )}
 
-        {/* 6. Keahlian */}
+        {/* 5. Keahlian */}
         <CvSection title={t("section.skills")}>
-          <CvSkills groups={data.skills} />
+          <CvSkills skills={data.skills} />
         </CvSection>
 
-        {/* 7. Bahasa */}
+        {/* 6. Bahasa */}
         {data.languages.length > 0 && (
           <CvSection title={t("section.languages")}>
             <CvLanguages items={data.languages} />
           </CvSection>
         )}
 
-        {/* 8. Portfolio */}
+        {/* 7. Portfolio */}
         {data.projects.length > 0 && (
           <CvSection title={t("section.projects")}>
             <CvProjects items={data.projects} />
@@ -79,10 +72,9 @@ export { default as CvSection } from "./CvSection";
 export { default as CvSummary } from "./CvSummary";
 export { default as CvExperience } from "./CvExperience";
 export { default as CvEducation } from "./CvEducation";
-export { default as CvOrganizations } from "./CvOrganizations";
 export { default as CvCertifications } from "./CvCertifications";
 export { default as CvSkills } from "./CvSkills";
 export { default as CvLanguages } from "./CvLanguages";
 export { default as CvProjects } from "./CvProjects";
+export { default as CvAwards } from "./CvAwards";
 export { default as CvToolbar } from "./CvToolbar";
-export { default as SourceBadge } from "./SourceBadge";

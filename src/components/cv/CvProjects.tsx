@@ -3,42 +3,62 @@
 import { CodeOutlined, GlobalOutlined } from "@ant-design/icons";
 import { Tag, Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
-import { pickLocale } from "@/helpers/cvHelpers";
-import type { ProjectItem } from "@/models/types";
-import SourceBadge from "./SourceBadge";
+import { formatDateRange, urlDisplay } from "@/helpers/cvHelpers";
+import type { CvProjectItem } from "@/models/types";
 
 const { Text, Paragraph } = Typography;
 
-export default function CvProjects({ items }: { items: ProjectItem[] }) {
-  const { locale } = useLocale();
+export default function CvProjects({ items }: { items: CvProjectItem[] }) {
+  const { locale, t } = useLocale();
 
   return (
-    <div className="flex flex-col gap-4">
-      {items.map((project, i) => (
-        <div key={i} className="flex gap-4">
-          {project.image && (
-            <div className="flex-shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.image}
-                alt={project.name}
-                className="w-32 h-20 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
-              />
-            </div>
-          )}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2 flex-wrap">
-              <Text strong style={{ fontSize: 15 }}>
-                {project.name}
-              </Text>
-              <SourceBadge source={project.source} />
-            </div>
-            <Paragraph
-              style={{ marginTop: 4, marginBottom: 4, fontSize: 13, lineHeight: 1.6 }}
-            >
-              {pickLocale(project.description, locale)}
-            </Paragraph>
-            <div className="flex items-center gap-2 flex-wrap">
+    <div className="flex flex-col gap-5">
+      {items
+        ?.filter((p) => !p.disabled)
+        ?.map((project, i) => (
+          <div key={i} className="flex gap-4">
+            {project.images[0] && (
+              <div className="flex-shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.images[0]}
+                  alt={project.name}
+                  className="w-34 h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700"
+                />
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-2 flex-wrap">
+                <div>
+                  <Text strong style={{ fontSize: 15 }}>
+                    {project.name}
+                  </Text>
+                  <Text
+                    type="secondary"
+                    style={{ fontSize: 12, marginLeft: 8 }}
+                  >
+                    {project.role}
+                    {project.company ? ` - ${project.company}` : ""}
+                  </Text>
+                </div>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  {formatDateRange(project.startDate, project.endDate, locale)}
+                </Text>
+              </div>
+
+              {project.description && (
+                <Paragraph
+                  style={{
+                    marginTop: 4,
+                    marginBottom: 4,
+                    fontSize: 13,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {project.description}
+                </Paragraph>
+              )}
+
               <div className="flex flex-wrap gap-1">
                 {project.techStack.map((tech, j) => (
                   <Tag key={j} color="blue" style={{ marginInlineEnd: 0 }}>
@@ -46,36 +66,66 @@ export default function CvProjects({ items }: { items: ProjectItem[] }) {
                   </Tag>
                 ))}
               </div>
+
+              {project.highlights.length > 0 && (
+                <ul
+                  className="mt-2 mb-1 pl-5 list-disc list-outside text-sm"
+                  style={{ lineHeight: 1.6 }}
+                >
+                  {project.highlights.map((h, j) => (
+                    <li key={j} className="mb-0.5">
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {project.metrics.length > 0 && (
+                <div className="mt-2">
+                  <Text type="secondary" strong style={{ fontSize: 12 }}>
+                    {t("project.metrics")}
+                  </Text>
+                  <div className="flex flex-wrap gap-x-4 gap-y-0.5 mt-0.5">
+                    {project.metrics.map((m, j) => (
+                      <Text key={j} style={{ fontSize: 12 }}>
+                        <Text strong>{m.value}</Text>
+                        <span className="text-gray-400"> · </span>
+                        <Text type="secondary">{m.metric}</Text>
+                      </Text>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {(project.url.website || project.url.sourceCode) && (
+                <div className="flex items-center gap-3 flex-wrap mt-1">
+                  {project.url.website && (
+                    <a
+                      href={project.url.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-indigo-500 hover:text-indigo-600"
+                    >
+                      <GlobalOutlined />
+                      {urlDisplay(project.url.website)}
+                    </a>
+                  )}
+                  {project.url.sourceCode && (
+                    <a
+                      href={project.url.sourceCode}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                    >
+                      <CodeOutlined />
+                      {urlDisplay(project.url.sourceCode)}
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
-            {(project.websiteLink || project.sourceCodeLink) && (
-              <div className="flex items-center gap-3 flex-wrap mt-1">
-                {project.websiteLink && (
-                  <a
-                    href={`https://${project.websiteLink}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-indigo-500 hover:text-indigo-600"
-                  >
-                    <GlobalOutlined />
-                    {project.websiteLink}
-                  </a>
-                )}
-                {project.sourceCodeLink && (
-                  <a
-                    href={`https://${project.sourceCodeLink}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-                  >
-                    <CodeOutlined />
-                    {project.sourceCodeLink}
-                  </a>
-                )}
-              </div>
-            )}
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 }
