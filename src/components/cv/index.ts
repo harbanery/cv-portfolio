@@ -12,3 +12,4 @@ export {
   CvAwards,
   CvToolbar,
 } from "./CvDocument";
+export { CvModeProvider, useCvMode } from "./CvModeProvider";

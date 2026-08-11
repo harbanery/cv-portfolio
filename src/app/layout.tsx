@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { LocaleProvider } from "@/components/locale/LocaleProvider";
 import { AvatarProvider } from "@/components/avatar/AvatarProvider";
+import { CvModeProvider } from "@/components/cv/CvModeProvider";
 import Footer from "@/components/footer";
 import { geistMono, geistSans, inter } from "@/utils/fonts/next-google";
 import {
@@ -94,8 +95,10 @@ export default function RootLayout({
           <LocaleProvider>
             <ThemeProvider>
               <AvatarProvider>
-                {children}
-                <Footer />
+                <CvModeProvider>
+                  {children}
+                  <Footer />
+                </CvModeProvider>
               </AvatarProvider>
             </ThemeProvider>
           </LocaleProvider>

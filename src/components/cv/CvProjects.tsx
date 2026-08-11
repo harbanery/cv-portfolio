@@ -8,7 +8,13 @@ import type { CvProjectItem } from "@/models/types";
 
 const { Text, Paragraph } = Typography;
 
-export default function CvProjects({ items }: { items: CvProjectItem[] }) {
+export default function CvProjects({
+  items,
+  type,
+}: {
+  items: CvProjectItem[];
+  type?: "website" | "cv";
+}) {
   const { locale, t } = useLocale();
 
   return (
@@ -23,7 +29,7 @@ export default function CvProjects({ items }: { items: CvProjectItem[] }) {
 
                 <Image
                   alt={project.name}
-                  width={200}
+                  width={type === "website" ? 280 : 200}
                   className="h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700"
                   src={project.images[0]}
                   preview={{

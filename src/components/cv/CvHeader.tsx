@@ -60,9 +60,11 @@ function ContactLinks({
 export default function CvHeader({
   basics,
   contact,
+  websiteMode = false,
 }: {
   basics: CvBasics;
   contact: CvContact;
+  websiteMode?: boolean;
 }) {
   const { avatar, hydrated } = useAvatarMode();
   const showAvatar = hydrated && avatar;
@@ -117,16 +119,18 @@ export default function CvHeader({
     </>
   );
 
-  if (showAvatar) {
+  if (showAvatar || websiteMode) {
     return (
       <header className="flex items-center gap-6">
-        {/* Avatar rasio 35x45mm (413x531px @ 300DPI) */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/me.png"
-          alt={basics.name}
-          className="flex-shrink-0 w-[88px] h-[113px] object-cover rounded-lg border border-gray-200 dark:border-gray-700"
-        />
+        {showAvatar && (
+          /* Avatar rasio 35x45mm (413x531px @ 300DPI) */
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src="/images/me.png"
+            alt={basics.name}
+            className="flex-shrink-0 w-[88px] h-[113px] object-cover rounded-lg border border-gray-200 dark:border-gray-700"
+          />
+        )}
         <div className="flex-1 min-w-0">
           {nameBlock}
           <ContactLinks contacts={contacts} justify="start" />

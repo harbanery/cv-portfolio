@@ -27,6 +27,12 @@ const id: TranslationDict = {
   "avatar.disable": "Sembunyikan Avatar",
   "avatar.enableAvatar": "Aktifkan mode avatar",
 
+  // CV mode
+  "cvmode.enable": "Mode CV",
+  "cvmode.disable": "Mode Website",
+  "cvmode.enableCv": "Aktifkan mode CV",
+  "cvmode.enableWebsite": "Aktifkan mode website",
+
   // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",
   "pdf.contact.phone": "wa:",
@@ -92,6 +98,12 @@ const en: TranslationDict = {
   "avatar.enable": "Show Avatar",
   "avatar.disable": "Hide Avatar",
   "avatar.enableAvatar": "Enable avatar mode",
+
+  // CV mode
+  "cvmode.enable": "CV Mode",
+  "cvmode.disable": "Website Mode",
+  "cvmode.enableCv": "Enable CV mode",
+  "cvmode.enableWebsite": "Enable website mode",
 
   // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",

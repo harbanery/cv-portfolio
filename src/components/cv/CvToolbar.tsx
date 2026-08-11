@@ -1,24 +1,35 @@
 "use client";
 
-import { DownloadOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  DownloadOutlined,
+  FileTextOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { App, Button, Space, Tooltip } from "antd";
 import { useState } from "react";
 import { useLocale } from "@/components/locale/LocaleProvider";
 import LanguageToggle from "@/components/locale/LanguageToggle";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useAvatarMode } from "@/components/avatar/AvatarProvider";
+import { useCvMode } from "@/components/cv/CvModeProvider";
 import { downloadCvPdf } from "@/helpers/pdfDownload";
 
 export default function CvToolbar() {
   const { t, locale } = useLocale();
   const { message } = App.useApp();
-  const { avatar, hydrated, toggle } = useAvatarMode();
+  const { avatar, hydrated: avatarHydrated, toggle: toggleAvatar } =
+    useAvatarMode();
+  const { cvMode, hydrated: cvModeHydrated, toggle: toggleCvMode } = useCvMode();
   const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
     setLoading(true);
     try {
-      await downloadCvPdf(locale, "CV-Raihan-Yusuf.pdf", hydrated && avatar);
+      await downloadCvPdf(
+        locale,
+        "CV-Raihan-Yusuf.pdf",
+        avatarHydrated && avatar,
+      );
     } catch {
       message.error(t("cv.downloadError"));
     } finally {
@@ -26,16 +37,28 @@ export default function CvToolbar() {
     }
   };
 
+  const resolvedCvMode = cvModeHydrated ? cvMode : true;
+
   return (
     <div className="no-print sticky top-0 z-50 flex items-center justify-center gap-2 bg-white/80 dark:bg-black/80 backdrop-blur-sm px-4 py-3 border-b border-gray-200 dark:border-gray-800">
       <Space size="small">
         <ThemeToggle />
         <LanguageToggle />
+        <Tooltip
+          title={resolvedCvMode ? t("cvmode.disable") : t("cvmode.enable")}
+        >
+          <Button
+            type={resolvedCvMode ? "primary" : "default"}
+            icon={<FileTextOutlined />}
+            onClick={toggleCvMode}
+            aria-label={t("cvmode.enableWebsite")}
+          />
+        </Tooltip>
         <Tooltip title={avatar ? t("avatar.disable") : t("avatar.enable")}>
           <Button
             type={avatar ? "primary" : "default"}
             icon={<UserOutlined />}
-            onClick={toggle}
+            onClick={toggleAvatar}
             aria-label={t("avatar.enableAvatar")}
           />
         </Tooltip>
