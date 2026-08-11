@@ -1,6 +1,6 @@
 import "@/assets/global/index.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { LocaleProvider } from "@/components/locale/LocaleProvider";
 import { AvatarProvider } from "@/components/avatar/AvatarProvider";
@@ -20,6 +20,12 @@ export const metadata: Metadata = {
   applicationName: META_APP,
   ...(META_DESCRIPTION && { description: META_DESCRIPTION }),
   metadataBase: new URL(BASE_URL),
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: META_APP,
+  },
   formatDetection: {
     telephone: false,
     email: false,
@@ -31,8 +37,8 @@ export const metadata: Metadata = {
     type: "profile",
     siteName: META_APP,
     countryName: "Indonesia",
-    locale: "en-US",
-    alternateLocale: "id-ID",
+    locale: "id-ID",
+    alternateLocale: "en-US",
     url: `/`,
     images: [
       {
@@ -68,14 +74,47 @@ export const metadata: Metadata = {
     },
     {
       rel: "apple-touch-icon",
-      type: "image/x-icon",
-      url: `/favicon.ico`,
+      type: "image/png",
+      url: `/ios/180.png`,
+      sizes: "180x180",
+    },
+    {
+      rel: "apple-touch-icon",
+      type: "image/png",
+      url: `/ios/152.png`,
+      sizes: "152x152",
+    },
+    {
+      rel: "apple-touch-icon",
+      type: "image/png",
+      url: `/ios/120.png`,
+      sizes: "120x120",
+    },
+    {
+      rel: "apple-touch-icon",
+      type: "image/png",
+      url: `/ios/1024.png`,
+      sizes: "1024x1024",
     },
     {
       rel: "shortcut icon",
       type: "image/x-icon",
       url: `/favicon.ico`,
     },
+  ],
+};
+
+/**
+ * Viewport config. `themeColor` wajib didefinisikan di sini (bukan di metadata)
+ * agar warna chrome browser mengikuti tema terang/gelap aplikasi.
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3f4f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0b" },
   ],
 };
 
@@ -86,7 +125,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${neueHaasDisplay.variable} ${inter.variable} h-full antialiased`}
     >

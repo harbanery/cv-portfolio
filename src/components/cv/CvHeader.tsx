@@ -25,9 +25,12 @@ function ContactLinks({
   contacts: { icon: React.ReactNode; text: string; href?: string }[];
   justify: "center" | "start";
 }) {
-  const justifyClass = justify === "center" ? "justify-center" : "justify-start";
+  const justifyClass =
+    justify === "center" ? "justify-center" : "justify-start";
   return (
-    <div className={`flex flex-wrap ${justifyClass} items-center gap-x-4 gap-y-1`}>
+    <div
+      className={`flex flex-wrap ${justifyClass} items-center gap-x-4 gap-y-1`}
+    >
       <div
         className={`flex flex-wrap ${justifyClass} gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400`}
       >
@@ -121,14 +124,14 @@ export default function CvHeader({
 
   if (showAvatar || websiteMode) {
     return (
-      <header className="flex items-center gap-6">
+      <header className="flex flex-col md:flex-row items-center gap-6">
         {showAvatar && (
           /* Avatar rasio 35x45mm (413x531px @ 300DPI) */
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src="/images/me.png"
             alt={basics.name}
-            className="flex-shrink-0 w-[88px] h-[113px] object-cover rounded-lg border border-gray-200 dark:border-gray-700"
+            className="flex-shrink-0 w-full h-auto md:w-[88px] md:h-[113px] object-cover rounded-lg border border-gray-200 dark:border-gray-700"
           />
         )}
         <div className="flex-1 min-w-0">

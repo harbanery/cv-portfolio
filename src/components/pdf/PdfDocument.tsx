@@ -293,6 +293,8 @@ function PdfHeader({
     <View>
       {avatar && avatarSrc ? (
         <View style={styles.headerRow}>
+          {/* react-pdf `Image` does not support an `alt` prop. */}
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <Image style={styles.avatar} src={avatarSrc} />
           {headerContent}
         </View>
@@ -511,30 +513,6 @@ function PdfProjects({
             ) : null}
           </View>
         ))}
-    </View>
-  );
-}
-
-function PdfAwards({
-  items,
-  locale,
-}: {
-  items: CvData["awards"];
-  locale: Locale;
-}) {
-  return (
-    <View>
-      {items.map((award, i) => (
-        <View key={i} style={styles.itemWrap} wrap={false}>
-          <View style={styles.itemRow}>
-            <Text style={styles.itemTitle}>{award.title}</Text>
-            <Text style={styles.itemMeta}>
-              {formatDate(award.date, locale)}
-            </Text>
-          </View>
-          <Text style={styles.itemSubtitle}>{award.issuer}</Text>
-        </View>
-      ))}
     </View>
   );
 }

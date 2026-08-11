@@ -10,10 +10,10 @@ const { Text, Paragraph } = Typography;
 
 export default function CvProjects({
   items,
-  type,
+  websiteMode = false,
 }: {
   items: CvProjectItem[];
-  type?: "website" | "cv";
+  websiteMode?: boolean;
 }) {
   const { locale, t } = useLocale();
 
@@ -22,15 +22,12 @@ export default function CvProjects({
       {items
         ?.filter((p) => !p.disabled)
         ?.map((project, i) => (
-          <div key={i + 1} className="flex gap-4">
+          <div key={i + 1} className="flex flex-col lg:flex-row gap-4">
             {project.images[0] && (
               <div className="shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-
                 <Image
                   alt={project.name}
-                  width={type === "website" ? 280 : 200}
-                  className="h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700"
+                  className={`${websiteMode ? "w-full md:!w-[280px]" : "w-full md:!w-[200px]"} h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700`}
                   src={project.images[0]}
                   preview={{
                     actionsRender: () => null,

@@ -14,7 +14,7 @@ export default function CvSkills({ skills }: { skills: CvSkills }) {
   return (
     <div className="flex flex-col gap-3">
       {groups.map((group, i) => (
-        <div key={i} className="flex items-start gap-3">
+        <div key={i} className="flex flex-col md:flex-row items-start gap-3">
           <Text strong style={{ minWidth: 95, fontSize: 13, paddingTop: 1 }}>
             {group.label}:
           </Text>

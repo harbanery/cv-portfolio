@@ -68,7 +68,7 @@ export default function CvToolbar() {
           onClick={handleDownload}
           loading={loading}
         >
-          {t("cv.download")}
+          <span className="hidden sm:inline">{t("cv.download")}</span>
         </Button>
       </Space>
     </div>

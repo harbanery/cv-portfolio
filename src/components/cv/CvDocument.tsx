@@ -13,7 +13,6 @@ import CvCertifications from "./CvCertifications";
 import CvSkills from "./CvSkills";
 import CvLanguages from "./CvLanguages";
 import CvProjects from "./CvProjects";
-import CvAwards from "./CvAwards";
 
 /** Narrow single-column CV layout (default). */
 function CvLayout({ data }: { data: CvData }) {
@@ -21,7 +20,7 @@ function CvLayout({ data }: { data: CvData }) {
 
   return (
     <article className="cv-document w-full max-w-[850px] mx-auto bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
-      <div className="px-8 sm:px-12 py-8 sm:py-10">
+      <div className="px-5 sm:px-8 md:px-12 py-6 sm:py-8 md:py-10">
         <CvHeader basics={data.basics} contact={data.contact} />
 
         <Divider style={{ marginBlock: 24 }} />
@@ -74,9 +73,9 @@ function WebsiteLayout({ data }: { data: CvData }) {
   const { t } = useLocale();
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-8 lg:py-10">
+    <div className="w-full max-w-7xl mx-auto lg:py-10">
       {/* Header — full width, left-aligned */}
-      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-8 sm:p-10 mb-8">
+      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-5 sm:p-8 md:p-10 mb-6 sm:mb-8">
         <CvHeader basics={data.basics} contact={data.contact} websiteMode />
         <Divider style={{ marginBlock: 24 }} />
         <CvSummary summary={data.basics.summary} />
@@ -85,14 +84,14 @@ function WebsiteLayout({ data }: { data: CvData }) {
       {/* Two-column grid: Experience + Education side by side */}
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={13}>
-          <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-8 h-full">
+          <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-5 sm:p-6 md:p-8 h-full">
             <CvSection title={t("section.experience")}>
               <CvExperience items={data.work} />
             </CvSection>
           </div>
         </Col>
         <Col xs={24} lg={11}>
-          <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-8 h-full">
+          <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-5 sm:p-6 md:p-8 h-full">
             <CvSection title={t("section.education")}>
               <CvEducation items={data.education} />
             </CvSection>
@@ -111,7 +110,7 @@ function WebsiteLayout({ data }: { data: CvData }) {
       </Row>
 
       {/* Skills — full width row */}
-      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-8 mt-6">
+      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-5 sm:p-6 md:p-8 mt-6">
         <CvSection title={t("section.skills")}>
           <CvSkills skills={data.skills} />
         </CvSection>
@@ -119,9 +118,9 @@ function WebsiteLayout({ data }: { data: CvData }) {
 
       {/* Portfolio — full width row */}
       {data.projects.length > 0 && (
-        <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-8 mt-6">
+        <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 p-5 sm:p-6 md:p-8 mt-6">
           <CvSection title={t("section.projects")}>
-            <CvProjects items={data.projects} type="website" />
+            <CvProjects items={data.projects} websiteMode />
           </CvSection>
         </div>
       )}
