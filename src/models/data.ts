@@ -1,8 +1,8 @@
-import cvDataRaw from "../../public/references/cv_data.json";
+import cvDataRaw from "../../public/data/me.json";
 import type { CvData } from "./types";
 
 /**
- * Data CV yang diimpor langsung dari `public/references/cv_data.json`.
+ * Data CV yang diimpor langsung dari `public/data/me.json`.
  *
  * File JSON ini adalah sumber data tunggal (single source of truth) untuk
  * seluruh aplikasi, dipakai baik di sisi client (komponen CV) maupun sisi

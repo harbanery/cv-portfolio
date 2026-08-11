@@ -62,4 +62,5 @@ export function getProjectLinkLabels(locale: Locale): ProjectLinkLabels {
 export interface PdfApiParams {
   data: CvData;
   locale: Locale;
+  avatar?: boolean;
 }

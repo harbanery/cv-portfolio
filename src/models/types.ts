@@ -1,5 +1,5 @@
 /**
- * Tipe data CV yang merefleksikan struktur `public/references/cv_data.json`.
+ * Tipe data CV yang merefleksikan struktur `public/data/me.json`.
  *
  * Data sumber hanya tersedia dalam satu bahasa (Inggris). Lokalisasi
  * (locale) hanya berlaku untuk label UI, judul section, dan format tanggal,
@@ -77,6 +77,7 @@ export interface CvSkills {
   platforms: string[];
   methodologies: string[];
   domains: string[];
+  softSkills: string[];
 }
 
 /** Satu metrik pencapaian project. */

@@ -3,6 +3,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { LocaleProvider } from "@/components/locale/LocaleProvider";
+import { AvatarProvider } from "@/components/avatar/AvatarProvider";
 import Footer from "@/components/footer";
 import { geistMono, geistSans, inter } from "@/utils/fonts/next-google";
 import {
@@ -92,8 +93,10 @@ export default function RootLayout({
         <AntdRegistry>
           <LocaleProvider>
             <ThemeProvider>
-              {children}
-              <Footer />
+              <AvatarProvider>
+                {children}
+                <Footer />
+              </AvatarProvider>
             </ThemeProvider>
           </LocaleProvider>
         </AntdRegistry>

@@ -10,15 +10,17 @@ import type { Locale } from "@/models/types";
  *
  * @param locale Locale aktif
  * @param filename Nama file PDF yang akan diunduh
+ * @param withAvatar Tampilkan avatar di header PDF
  */
 export async function downloadCvPdf(
   locale: Locale,
   filename: string,
+  withAvatar = false,
 ): Promise<void> {
   const response = await fetch("/api/cv-pdf", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ locale }),
+    body: JSON.stringify({ locale, avatar: withAvatar }),
   });
 
   if (!response.ok) {

@@ -1,22 +1,24 @@
 "use client";
 
-import { DownloadOutlined } from "@ant-design/icons";
-import { App, Button, Space } from "antd";
+import { DownloadOutlined, UserOutlined } from "@ant-design/icons";
+import { App, Button, Space, Tooltip } from "antd";
 import { useState } from "react";
 import { useLocale } from "@/components/locale/LocaleProvider";
 import LanguageToggle from "@/components/locale/LanguageToggle";
 import ThemeToggle from "@/components/theme/ThemeToggle";
+import { useAvatarMode } from "@/components/avatar/AvatarProvider";
 import { downloadCvPdf } from "@/helpers/pdfDownload";
 
 export default function CvToolbar() {
   const { t, locale } = useLocale();
   const { message } = App.useApp();
+  const { avatar, hydrated, toggle } = useAvatarMode();
   const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
     setLoading(true);
     try {
-      await downloadCvPdf(locale, "CV-Raihan-Yusuf.pdf");
+      await downloadCvPdf(locale, "CV-Raihan-Yusuf.pdf", hydrated && avatar);
     } catch {
       message.error(t("cv.downloadError"));
     } finally {
@@ -29,6 +31,14 @@ export default function CvToolbar() {
       <Space size="small">
         <ThemeToggle />
         <LanguageToggle />
+        <Tooltip title={avatar ? t("avatar.disable") : t("avatar.enable")}>
+          <Button
+            type={avatar ? "primary" : "default"}
+            icon={<UserOutlined />}
+            onClick={toggle}
+            aria-label={t("avatar.enableAvatar")}
+          />
+        </Tooltip>
         <Button
           type="primary"
           icon={<DownloadOutlined />}

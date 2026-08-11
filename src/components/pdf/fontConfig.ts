@@ -1,4 +1,5 @@
 import nodePath from "node:path";
+import nodeFs from "node:fs";
 import { Font } from "@react-pdf/renderer";
 
 let registered = false;
@@ -42,6 +43,27 @@ export const PDF_COLORS = {
   light: "#888888",
   border: "#cccccc",
 };
+
+/**
+ * Muat foto avatar (public/images/me.png) sebagai data URI base64 untuk
+ * dipakai oleh react-pdf `Image` di sisi server. Hasil di-cache agar tidak
+ * membaca ulang file pada setiap request.
+ *
+ * Mengembalikan null bila file tidak ditemukan.
+ */
+let cachedAvatarSrc: string | null | undefined;
+
+export function getAvatarDataUri(): string | null {
+  if (cachedAvatarSrc !== undefined) return cachedAvatarSrc;
+  const imgPath = nodePath.join(process.cwd(), "public", "images", "me.png");
+  try {
+    const buffer = nodeFs.readFileSync(imgPath);
+    cachedAvatarSrc = `data:image/png;base64,${buffer.toString("base64")}`;
+  } catch {
+    cachedAvatarSrc = null;
+  }
+  return cachedAvatarSrc;
+}
 
 export const MAX_ITEMS_PDF = 3;
 /** Jumlah project yang dirender di PDF (dibatasi agar layout tetap rapi). */

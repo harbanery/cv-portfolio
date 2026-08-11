@@ -22,6 +22,11 @@ const id: TranslationDict = {
   "cv.download": "Unduh PDF",
   "cv.downloadError": "Gagal mengunduh PDF. Silakan coba lagi.",
 
+  // Avatar mode
+  "avatar.enable": "Tampilkan Avatar",
+  "avatar.disable": "Sembunyikan Avatar",
+  "avatar.enableAvatar": "Aktifkan mode avatar",
+
   // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",
   "pdf.contact.phone": "wa:",
@@ -46,7 +51,7 @@ const id: TranslationDict = {
   "section.awards": "Penghargaan",
 
   // Skill categories
-  "skill.languages": "Bahasa Pemrograman",
+  "skill.languages": "Bahasa",
   "skill.frameworks": "Framework",
   "skill.libraries": "Library",
   "skill.databases": "Database",
@@ -54,6 +59,7 @@ const id: TranslationDict = {
   "skill.platforms": "Platform",
   "skill.methodologies": "Metodologi",
   "skill.domains": "Domain",
+  "skill.softSkills": "Soft Skills",
 
   // Project fields
   "project.role": "Peran",
@@ -82,6 +88,11 @@ const en: TranslationDict = {
   "cv.download": "Download PDF",
   "cv.downloadError": "Failed to download PDF. Please try again.",
 
+  // Avatar mode
+  "avatar.enable": "Show Avatar",
+  "avatar.disable": "Hide Avatar",
+  "avatar.enableAvatar": "Enable avatar mode",
+
   // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",
   "pdf.contact.phone": "wa:",
@@ -105,7 +116,7 @@ const en: TranslationDict = {
   "section.awards": "Awards",
 
   // Skill categories
-  "skill.languages": "Programming Languages",
+  "skill.languages": "Languages",
   "skill.frameworks": "Frameworks",
   "skill.libraries": "Libraries",
   "skill.databases": "Databases",
@@ -113,6 +124,7 @@ const en: TranslationDict = {
   "skill.platforms": "Platforms",
   "skill.methodologies": "Methodologies",
   "skill.domains": "Domains",
+  "skill.softSkills": "Soft Skills",
 
   // Project fields
   "project.role": "Role",

@@ -18,6 +18,7 @@ import {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as Partial<PdfApiParams>;
   const locale = body.locale ?? "id";
+  const withAvatar = body.avatar === true;
 
   const sectionTitles = getSectionTitles(locale);
   const contactLabels = getContactLabels(locale);
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
       sectionTitles={sectionTitles}
       contactLabels={contactLabels}
       projectLinkLabels={projectLinkLabels}
+      avatar={withAvatar}
     />
   );
 

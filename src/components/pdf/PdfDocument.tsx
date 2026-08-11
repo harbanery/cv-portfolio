@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Link,
+  Image,
   StyleSheet,
 } from "@react-pdf/renderer";
 import {
@@ -12,6 +13,7 @@ import {
   MAX_PROJECTS_PDF,
   MAX_HIGHLIGHTS_PDF,
   MAX_WORK_HIGHLIGHTS_PDF,
+  getAvatarDataUri,
 } from "./fontConfig";
 import type { CvData, Locale } from "@/models/types";
 import {
@@ -78,6 +80,20 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: PDF_COLORS.link,
     textDecoration: "underline",
+  },
+  // Avatar (35 x 45 mm ≈ 99pt x 128pt)
+  headerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  avatar: {
+    width: 99,
+    height: 128,
+    marginRight: 18,
+    objectFit: "cover",
+  },
+  headerText: {
+    flex: 1,
   },
   divider: {
     borderBottomWidth: 1.5,
@@ -196,9 +212,11 @@ function SectionTitle({ title }: { title: string }) {
 function PdfHeader({
   data,
   contactLabels,
+  avatar,
 }: {
   data: CvData;
   contactLabels: ContactLabels;
+  avatar: boolean;
 }) {
   const { basics, contact } = data;
 
@@ -246,8 +264,10 @@ function PdfHeader({
     },
   ];
 
-  return (
-    <View>
+  const avatarSrc = avatar ? getAvatarDataUri() : null;
+
+  const headerContent = (
+    <View style={avatar ? styles.headerText : undefined}>
       <Text style={styles.name}>{basics.name}</Text>
       <Text style={styles.label}>{basics.label}</Text>
       <View style={styles.contactLine}>
@@ -266,6 +286,19 @@ function PdfHeader({
           </View>
         ))}
       </View>
+    </View>
+  );
+
+  return (
+    <View>
+      {avatar && avatarSrc ? (
+        <View style={styles.headerRow}>
+          <Image style={styles.avatar} src={avatarSrc} />
+          {headerContent}
+        </View>
+      ) : (
+        headerContent
+      )}
       <View style={styles.divider} />
     </View>
   );
@@ -331,8 +364,12 @@ function PdfEducation({
           </View>
           <Text style={styles.itemSubtitle}>
             {edu.field}
-            {edu.degree ? `  ·  ${edu.degree}` : ""}
-            {edu.grade ? `  ·  GPA: ${edu.grade}` : ""}
+            {(edu.field && edu.degree) || (edu.field && edu.grade)
+              ? "  ·  "
+              : ""}
+            {edu.degree ? `${edu.degree}` : ""}
+            {edu.degree && edu.grade ? "  ·  " : ""}
+            {edu.grade ? `GPA: ${edu.grade}` : ""}
           </Text>
           {edu.courses.length > 0 && (
             <Text style={styles.mutedLine}>{edu.courses.join(" · ")}</Text>
@@ -445,20 +482,20 @@ function PdfProjects({
                 ))}
               </View>
             )}
-            {project.metrics.length > 0 && (
+            {/* {project.metrics.length > 0 && (
               <Text style={styles.mutedLine}>
                 {project.metrics
                   .map((m) => `${m.metric}: ${m.value}`)
                   .join("  |  ")}
               </Text>
-            )}
+            )} */}
             {project.url.website ? (
               <View style={styles.projectLinkLine}>
                 <Text style={styles.projectLinkLabel}>
                   {projectLinkLabels.website}
                 </Text>
                 <Link style={styles.projectLink} src={project.url.website}>
-                  {urlDisplay(project.url.website)}
+                  {project.url.website}
                 </Link>
               </View>
             ) : null}
@@ -468,7 +505,7 @@ function PdfProjects({
                   {projectLinkLabels.sourceCode}
                 </Text>
                 <Link style={styles.projectLink} src={project.url.sourceCode}>
-                  {urlDisplay(project.url.sourceCode)}
+                  {project.url.sourceCode}
                 </Link>
               </View>
             ) : null}
@@ -508,6 +545,7 @@ export default function PdfDocument({
   sectionTitles,
   contactLabels,
   projectLinkLabels,
+  avatar = false,
 }: {
   data: CvData;
   locale: Locale;
@@ -522,12 +560,13 @@ export default function PdfDocument({
   };
   contactLabels: ContactLabels;
   projectLinkLabels: ProjectLinkLabels;
+  avatar?: boolean;
 }) {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* 1. Header + Ringkasan Profil */}
-        <PdfHeader data={data} contactLabels={contactLabels} />
+        <PdfHeader data={data} contactLabels={contactLabels} avatar={avatar} />
         <Text style={styles.summaryText}>{data.basics.summary}</Text>
 
         {/* 2. Pengalaman Kerja */}

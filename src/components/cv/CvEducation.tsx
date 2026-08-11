@@ -29,7 +29,8 @@ export default function CvEducation({ items }: { items: CvEducationItem[] }) {
           <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
             <Text type="secondary" style={{ fontSize: 12 }}>
               {edu.degree}
-              {edu.grade ? ` | GPA: ${edu.grade}` : ""}
+              {edu.degree && edu.grade ? " | " : ""}
+              {edu.grade ? `GPA: ${edu.grade}` : ""}
             </Text>
           </div>
           {edu.courses.length > 0 && (

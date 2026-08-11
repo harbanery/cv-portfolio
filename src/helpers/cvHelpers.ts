@@ -81,6 +81,7 @@ const SKILL_CATEGORY_KEYS = [
   ["platforms", "skill.platforms"],
   ["methodologies", "skill.methodologies"],
   ["domains", "skill.domains"],
+  ["softSkills", "skill.softSkills"],
 ] as const;
 
 export interface SkillGroup {

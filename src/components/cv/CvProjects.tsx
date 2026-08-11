@@ -1,7 +1,7 @@
 "use client";
 
 import { CodeOutlined, GlobalOutlined } from "@ant-design/icons";
-import { Tag, Typography } from "antd";
+import { Image, Tag, Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
 import { formatDateRange, urlDisplay } from "@/helpers/cvHelpers";
 import type { CvProjectItem } from "@/models/types";
@@ -16,14 +16,19 @@ export default function CvProjects({ items }: { items: CvProjectItem[] }) {
       {items
         ?.filter((p) => !p.disabled)
         ?.map((project, i) => (
-          <div key={i} className="flex gap-4">
+          <div key={i + 1} className="flex gap-4">
             {project.images[0] && (
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.images[0]}
+
+                <Image
                   alt={project.name}
-                  className="w-34 h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700"
+                  width={200}
+                  className="h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700"
+                  src={project.images[0]}
+                  preview={{
+                    actionsRender: () => null,
+                  }}
                 />
               </div>
             )}
