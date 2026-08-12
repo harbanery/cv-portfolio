@@ -6,6 +6,7 @@ import { LocaleProvider } from "@/components/locale/LocaleProvider";
 import { AvatarProvider } from "@/components/avatar/AvatarProvider";
 import { CvModeProvider } from "@/components/cv/CvModeProvider";
 import Footer from "@/components/footer";
+import { VercelCompatibleComponents } from "@/components/vercel";
 import { geistMono, geistSans, inter } from "@/utils/fonts/next-google";
 import {
   BASE_URL,
@@ -142,6 +143,7 @@ export default function RootLayout({
             </ThemeProvider>
           </LocaleProvider>
         </AntdRegistry>
+        <VercelCompatibleComponents.Analytics />
       </body>
     </html>
   );
