@@ -28,6 +28,10 @@ import {
   urlDisplay,
 } from "@/helpers/cvHelpers";
 import type { ContactLabels, ProjectLinkLabels } from "@/helpers/pdfHelpers";
+import {
+  TRANSLATIONS,
+  translate,
+} from "@/components/locale/translations";
 
 registerCvFont();
 
@@ -371,7 +375,9 @@ function PdfEducation({
               : ""}
             {edu.degree ? `${edu.degree}` : ""}
             {edu.degree && edu.grade ? "  ·  " : ""}
-            {edu.grade ? `GPA: ${edu.grade}` : ""}
+            {edu.grade
+              ? `${translate(TRANSLATIONS[locale] ?? TRANSLATIONS.id, "education.gpa")}: ${edu.grade}`
+              : ""}
           </Text>
           {edu.courses.length > 0 && (
             <Text style={styles.mutedLine}>{edu.courses.join(" · ")}</Text>

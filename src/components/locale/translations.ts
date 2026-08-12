@@ -72,6 +72,12 @@ const id: TranslationDict = {
   "project.techStack": "Teknologi",
   "project.metrics": "Pencapaian",
 
+  // Education fields
+  "education.gpa": "IPK",
+
+  // Certification fields
+  "cert.view": "Lihat",
+
   // Theme
   "theme.light": "Mode Terang",
   "theme.dark": "Mode Gelap",
@@ -142,6 +148,12 @@ const en: TranslationDict = {
   "project.role": "Role",
   "project.techStack": "Tech Stack",
   "project.metrics": "Metrics",
+
+  // Education fields
+  "education.gpa": "GPA",
+
+  // Certification fields
+  "cert.view": "View",
 
   "theme.light": "Light Mode",
   "theme.dark": "Dark Mode",

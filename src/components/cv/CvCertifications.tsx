@@ -12,7 +12,7 @@ export default function CvCertifications({
 }: {
   items: CvCertificationItem[];
 }) {
-  const { locale } = useLocale();
+  const { locale, t } = useLocale();
 
   return (
     <div className="flex flex-col gap-2">
@@ -36,7 +36,7 @@ export default function CvCertifications({
                 rel="noopener noreferrer"
                 style={{ fontSize: 12, marginLeft: 8 }}
               >
-                {locale === "id" ? "Lihat" : "View"}
+                {t("cert.view")}
               </Link>
             )}
           </div>

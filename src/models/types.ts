@@ -1,9 +1,10 @@
 /**
- * Tipe data CV yang merefleksikan struktur `public/data/me.json`.
+ * Tipe data CV yang merefleksikan struktur `public/data/me.{id,en}.json`.
  *
- * Data sumber hanya tersedia dalam satu bahasa (Inggris). Lokalisasi
- * (locale) hanya berlaku untuk label UI, judul section, dan format tanggal,
- * bukan untuk konten teks.
+ * Konten CV tersedia dalam dua bahasa (Inggris & Indonesia) melalui file
+ * `me.en.json` dan `me.id.json`. Pemilihan bahasa konten dilakukan di
+ * `models/data.ts` (`getCvData`), sementara label UI & format tanggal
+ * ditangani oleh `components/locale/translations.ts`.
  */
 
 /** Type untuk supported locales. */

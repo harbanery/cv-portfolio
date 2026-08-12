@@ -232,7 +232,7 @@
       "role": "Front-End Developer",
       "startDate": "2025-01",
       "endDate": "2026-07",
-      "description": "Production-grade PWA for PT. Kereta Commuter Indonesia enabling schedule search, seat reservation, and e-ticket purchase for the airport rail service, owned as the dominant contributor across an 18-month lifecycle.",
+      "description": "Production-grade PWA for PT. Kereta Commuter Indonesia and in collaboration with the KCI RTS back-end team, enabling schedule search, seat reservation, and e-ticket purchase for the airport rail service, owned as the dominant contributor across an 8-month lifecycle in February 2025 - May 2025 and April 2026 - July 2026.",
       "techStack": [
         "Next.js 16",
         "React 19",

@@ -2,6 +2,7 @@
 
 import { Col, Divider, Row } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
+import { useTranslatedCvData } from "@/components/locale/useTranslatedData";
 import { useCvMode } from "./CvModeProvider";
 import type { CvData } from "@/models/types";
 import CvHeader from "./CvHeader";
@@ -128,11 +129,17 @@ function WebsiteLayout({ data }: { data: CvData }) {
   );
 }
 
-export default function CvDocument({ data }: { data: CvData }) {
+export default function CvDocument({ data }: { data?: CvData }) {
   const { cvMode, hydrated } = useCvMode();
+  const translatedData = useTranslatedCvData();
+  const resolvedData = data ?? translatedData;
   const isCvMode = hydrated ? cvMode : true;
 
-  return isCvMode ? <CvLayout data={data} /> : <WebsiteLayout data={data} />;
+  return isCvMode ? (
+    <CvLayout data={resolvedData} />
+  ) : (
+    <WebsiteLayout data={resolvedData} />
+  );
 }
 
 export { default as CvHeader } from "./CvHeader";

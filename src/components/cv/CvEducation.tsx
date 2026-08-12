@@ -8,7 +8,7 @@ import type { CvEducationItem } from "@/models/types";
 const { Text } = Typography;
 
 export default function CvEducation({ items }: { items: CvEducationItem[] }) {
-  const { locale } = useLocale();
+  const { locale, t } = useLocale();
 
   return (
     <div className="flex flex-col gap-4">
@@ -30,7 +30,7 @@ export default function CvEducation({ items }: { items: CvEducationItem[] }) {
             <Text type="secondary" style={{ fontSize: 12 }}>
               {edu.degree}
               {edu.degree && edu.grade ? " | " : ""}
-              {edu.grade ? `GPA: ${edu.grade}` : ""}
+              {edu.grade ? `${t("education.gpa")}: ${edu.grade}` : ""}
             </Text>
           </div>
           {edu.courses.length > 0 && (

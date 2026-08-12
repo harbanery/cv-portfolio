@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
 import PdfDocument from "@/components/pdf/PdfDocument";
-import { CV_DATA } from "@/models/data";
+import { getCvData } from "@/models/data";
 import {
   getSectionTitles,
   getContactLabels,
@@ -12,7 +12,8 @@ import {
 /**
  * API route untuk generate PDF CV server-side.
  *
- * Method POST dengan body JSON berisi { locale } (data CV di-hardcode untuk saat ini).
+ * Method POST dengan body JSON berisi { locale, avatar }. Konten CV dipilih
+ * per-locale dari `getCvData(locale)` (me.en.json / me.id.json).
  * Mengembalikan PDF binary dengan content-type application/pdf.
  */
 export async function POST(request: NextRequest) {
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
 
   const doc = (
     <PdfDocument
-      data={CV_DATA}
+      data={getCvData(locale)}
       locale={locale}
       sectionTitles={sectionTitles}
       contactLabels={contactLabels}
