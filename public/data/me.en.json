@@ -72,7 +72,7 @@
         "Golang"
       ],
       "highlights": [
-        "Studied and developed hard skills, such as Golang, React.js, Next.js, Javascript, and Laravel.",
+        "Studied and developed hard skills, such as Golang, React.js, Next.js, and Javascript.",
         "Created and completed projects like Peworld, Blanja, and Mama Recipe.",
         "Learned soft skills, such as self, growth mindset, public speaking, personal branding, self-management, time management, reflection, life plan, and work ethic to become a professional individual."
       ]
@@ -81,8 +81,8 @@
       "institution": "Universitas Dian Nuswantoro",
       "degree": "Bachelor's degree",
       "field": "Computer Science",
-      "startDate": "2019-10",
-      "endDate": "2023-03",
+      "startDate": "2019-09",
+      "endDate": "2023-02",
       "grade": "3.67 / 4.00",
       "courses": [
         "Cryptography",
@@ -100,7 +100,7 @@
       "degree": "",
       "field": "Science",
       "startDate": "2016-07",
-      "endDate": "2019-05",
+      "endDate": "2019-04",
       "grade": "",
       "courses": [],
       "highlights": []
@@ -135,11 +135,10 @@
     "languages": [
       "JavaScript",
       "TypeScript",
-      "Go (Golang)",
+      "Golang",
       "PHP",
       "Python",
-      "Java",
-      "Dart"
+      "Java"
     ],
     "frameworks": [
       "React.js",
@@ -155,13 +154,6 @@
       "Tailwind CSS",
       "Material UI",
       "Axios",
-      "CryptoJS",
-      "jsPDF",
-      "bwip-js",
-      "xlsx",
-      "ExcelJS",
-      "dayjs",
-      "Joi",
       "React Query",
       "GORM",
       "Socket.io-client",
@@ -179,8 +171,6 @@
       "Swagger API",
       "ESLint",
       "Jest",
-      "React Testing Library",
-      "MSW",
       "SonarQube",
       "Docker",
       "Kubernetes",
@@ -189,7 +179,7 @@
       "phpMyAdmin",
       "MinIO"
     ],
-    "platforms": ["AWS Cloud", "Linux", "Vercel"],
+    "platforms": ["Vercel"],
     "methodologies": [
       "i18n",
       "Progressive Web Applications (PWAs)",
@@ -204,14 +194,7 @@
       "Cryptography",
       "OOP"
     ],
-    "domains": [
-      "Transportation",
-      "Healthtech",
-      "Logistics",
-      "E-commerce",
-      "Project Management",
-      "Operational Technology"
-    ],
+    "domains": [],
     "softSkills": [
       "Self",
       "Growth Mindset",
@@ -232,23 +215,15 @@
       "role": "Front-End Developer",
       "startDate": "2025-01",
       "endDate": "2026-07",
-      "description": "Production-grade PWA for PT. Kereta Commuter Indonesia and in collaboration with the KCI RTS back-end team, enabling schedule search, seat reservation, and e-ticket purchase for the airport rail service, owned as the dominant contributor across an 8-month lifecycle in February 2025 - May 2025 and April 2026 - July 2026.",
+      "description": "A reservation web application for PT. Kereta Commuter Indonesia and in collaboration with the KCI RTS back-end team, enabling schedule search, seat reservation, and e-ticket purchase for the airport train service, owned as the dominant contributor across an active project cycles from February–May 2025 and April–July 2026.",
       "techStack": [
-        "Next.js 16",
-        "React 19",
+        "Next.js",
         "TypeScript",
-        "Ant Design 6",
+        "Ant Design",
         "Tailwind CSS",
         "Axios",
-        "CryptoJS",
-        "jsPDF",
-        "bwip-js",
-        "next-intl",
-        "dayjs",
-        "next-pwa",
-        "Docker",
         "PM2",
-        "GitLab CI/CD"
+        "GitLab"
       ],
       "highlights": [
         "Engineered an interactive seat-selection engine with column-grouped dynamic rendering, round-trip seat state management, and a free-seating mode.",
@@ -285,11 +260,9 @@
       "description": "Predictive maintenance platform for operational technology monitoring and ticket management, delivering real-time SLA tracking, penalty calculation, and device management with full-stack ownership.",
       "techStack": [
         "Next.js",
-        "React",
         "TypeScript",
         "Tailwind CSS",
         "Ant Design",
-        "Next.js API Routes",
         "Node.js",
         "SQL",
         "Redis",
@@ -410,20 +383,14 @@
       "endDate": "2025-12",
       "description": "Distributed microservices railway platform for KCI handling ticket booking, payment processing, and QR ticket generation across airport and local train services, contributed to as a volunteer backend developer.",
       "techStack": [
-        "Go (Golang)",
+        "Golang",
         "Fiber",
         "PostgreSQL",
         "GORM",
         "Redis",
         "JWT",
-        "Google Wallet API",
-        "C-Pay",
-        "Docker",
-        "Kubernetes",
-        "Logrus",
-        "Loki",
         "MinIO",
-        "GitLab CI/CD"
+        "GitLab"
       ],
       "highlights": [
         "Engineered the airport train booking engine with real-time RTS integration, reducing booking processing time by 40%.",
@@ -441,9 +408,7 @@
         { "metric": "Technical debt reduction", "value": "35%" },
         { "metric": "Redundant code removed", "value": "1,168 lines" }
       ],
-      "images": [
-        "https://media.licdn.com/dms/image/sync/v2/D5627AQFV56syKPxeWA/articleshare-shrink_160/B56Z_rFimaKMAU-/0/1786355527861?e=1786960800&v=beta&t=0m4wJ3UROiL3MvZeEI42s7oEIAYOK7T87kMJzV1HDlc"
-      ],
+      "images": ["/images/projects/c-access.png"],
       "url": {
         "website": "https://play.google.com/store/apps/details?id=com.kci.access"
       }
@@ -457,15 +422,11 @@
       "description": "Enterprise web platform streamlining project lifecycle management for project managers and executive staff, with ownership of core features, document systems, and technical architecture.",
       "techStack": [
         "Next.js",
-        "React",
         "TypeScript",
         "Tailwind CSS",
-        "xlsx",
-        "dayjs",
         "Redis",
-        "RESTful APIs",
         "ESLint",
-        "Git"
+        "GitLab"
       ],
       "highlights": [
         "Engineered a comprehensive project dashboard with real-time project cards, filtering, and responsive design.",
@@ -482,9 +443,7 @@
         { "metric": "Initial bundle size reduction", "value": "35%" },
         { "metric": "TypeScript coverage", "value": "95%" }
       ],
-      "images": [
-        "https://media.licdn.com/dms/image/v2/D562DAQEMZ4GheYrFAQ/profile-treasury-image-shrink_1280_1280/B56Z9klH4XG4AY-/0/1784098881427?e=1786964400&v=beta&t=7nvzV9YjVIdvk_pniDPSB8I2sukbWZCGocK_ANEwzb4"
-      ],
+      "images": ["/images/projects/pma.png"],
       "url": {}
     },
     {
@@ -494,16 +453,21 @@
       "startDate": "2024-05",
       "endDate": "2024-07",
       "description": "Responsive web application for cooking enthusiasts providing recipes with images and detailed instructions, utilizing Server-Side Rendering for performance and SEO.",
-      "techStack": ["React.js", "Tailwind CSS", "JWT", "Server-Side Rendering"],
+      "techStack": [
+        "Next.js",
+        "Tailwind CSS",
+        "JWT",
+        "Server-Side Rendering",
+        "Vercel",
+        "Github"
+      ],
       "highlights": [
         "Created a user-friendly interface ensuring cross-device compatibility.",
         "Implemented user authentication and authorization using JWT managed in cookies.",
         "Utilized Server-Side Rendering to improve performance and SEO."
       ],
       "metrics": [],
-      "images": [
-        "https://media.licdn.com/dms/image/v2/D562DAQFXerDVh-SvYA/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1719263788000?e=1786964400&v=beta&t=BVlYqJXV52Coo2lKbUVjjaczOxvmp-09Ul5HIBcjM5g"
-      ],
+      "images": ["/images/projects/mama-recipe.png"],
       "url": {
         "website": "https://mama-recipe-food.vercel.app",
         "sourceCode": "https://github.com/harbanery/mama-food-recipe-app"
@@ -516,15 +480,21 @@
       "startDate": "2024-05",
       "endDate": "2024-07",
       "description": "E-commerce platform offering a wide range of products across categories, delivering an easy and secure online shopping experience.",
-      "techStack": ["Golang"],
+      "techStack": [
+        "Golang",
+        "Fiber",
+        "Cloudinary",
+        "GORM",
+        "PostgreSQL",
+        "JWT",
+        "Github"
+      ],
       "highlights": [
         "Developed the back-end architecture for a responsive and secure e-commerce platform.",
         "Applied modern web development best practices for a user-friendly shopping experience."
       ],
       "metrics": [],
-      "images": [
-        "https://media.licdn.com/dms/image/v2/D562DAQE7RVXlz7gL5g/profile-treasury-image-shrink_8192_8192/profile-treasury-image-shrink_8192_8192/0/1719673841242?e=1786964400&v=beta&t=QtzeWeeYM0s7ayq3iI4aZEXTtljfOPxblFVx26UsI2A"
-      ],
+      "images": ["/images/projects/blanja.png"],
       "url": {
         "website": "https://blanja-website-project.netlify.app",
         "sourceCode": "https://github.com/harbanery/blanja-marketplace-app"
@@ -537,15 +507,13 @@
       "startDate": "2024-05",
       "endDate": "2024-07",
       "description": "Web-based application assisting recruiters in finding employees, displaying employee data, and offering jobs, built with a responsive and attractive user interface.",
-      "techStack": ["React.js", "Vite", "Tailwind CSS"],
+      "techStack": ["React.js", "Tailwind CSS", "Vercel", "Github"],
       "highlights": [
         "Developed and enhanced user interfaces using React.js with Vite.",
         "Implemented responsive design for an attractive recruiter and candidate experience."
       ],
       "metrics": [],
-      "images": [
-        "https://media.licdn.com/dms/image/v2/D562DAQF8cblXo5Ds7A/profile-treasury-image-shrink_8192_8192/profile-treasury-image-shrink_8192_8192/0/1719341835891?e=1786964400&v=beta&t=nSYrcrV_1ZlqWP9sQOU-901Iya0OcNDLngVwMhYqrMs"
-      ],
+      "images": ["/images/projects/peworld.png"],
       "url": {
         "website": "https://peworld-hirejob.vercel.app",
         "sourceCode": "https://github.com/harbanery/peworld-hirejob-app"

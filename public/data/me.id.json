@@ -72,7 +72,7 @@
         "Golang"
       ],
       "highlights": [
-        "Mempelajari dan mengembangkan hard skill, seperti Golang, React.js, Next.js, Javascript, dan Laravel.",
+        "Mempelajari dan mengembangkan hard skill, seperti Golang, React.js, Next.js, and Javascript.",
         "Membuat dan menyelesaikan project seperti Peworld, Blanja, dan Mama Recipe.",
         "Mempelajari soft skill, seperti self, growth mindset, public speaking, personal branding, self-management, time management, reflection, life plan, dan work ethic untuk menjadi individu yang profesional."
       ]
@@ -81,8 +81,8 @@
       "institution": "Universitas Dian Nuswantoro",
       "degree": "Sarjana (S1)",
       "field": "Ilmu Komputer",
-      "startDate": "2019-10",
-      "endDate": "2023-03",
+      "startDate": "2019-09",
+      "endDate": "2023-02",
       "grade": "3.67 / 4.00",
       "courses": [
         "Kriptografi",
@@ -100,7 +100,7 @@
       "degree": "",
       "field": "IPA",
       "startDate": "2016-07",
-      "endDate": "2019-05",
+      "endDate": "2019-04",
       "grade": "",
       "courses": [],
       "highlights": []
@@ -135,11 +135,10 @@
     "languages": [
       "JavaScript",
       "TypeScript",
-      "Go (Golang)",
+      "Golang",
       "PHP",
       "Python",
-      "Java",
-      "Dart"
+      "Java"
     ],
     "frameworks": [
       "React.js",
@@ -155,13 +154,6 @@
       "Tailwind CSS",
       "Material UI",
       "Axios",
-      "CryptoJS",
-      "jsPDF",
-      "bwip-js",
-      "xlsx",
-      "ExcelJS",
-      "dayjs",
-      "Joi",
       "React Query",
       "GORM",
       "Socket.io-client",
@@ -179,8 +171,6 @@
       "Swagger API",
       "ESLint",
       "Jest",
-      "React Testing Library",
-      "MSW",
       "SonarQube",
       "Docker",
       "Kubernetes",
@@ -189,7 +179,7 @@
       "phpMyAdmin",
       "MinIO"
     ],
-    "platforms": ["AWS Cloud", "Linux", "Vercel"],
+    "platforms": ["Vercel"],
     "methodologies": [
       "i18n",
       "Progressive Web Applications (PWAs)",
@@ -204,14 +194,7 @@
       "Kriptografi",
       "OOP"
     ],
-    "domains": [
-      "Transportasi",
-      "Healthtech",
-      "Logistik",
-      "E-commerce",
-      "Manajemen Proyek",
-      "Teknologi Operasional"
-    ],
+    "domains": [],
     "softSkills": [
       "Self",
       "Growth Mindset",
@@ -232,23 +215,15 @@
       "role": "Front-End Developer",
       "startDate": "2025-01",
       "endDate": "2026-07",
-      "description": "PWA siap-produksi untuk PT. Kereta Commuter Indonesia dan bekerjasama dengan tim back-end dari KCI RTS yang memungkinkan pencarian jadwal, reservasi kursi, dan pembelian e-tiket untuk layanan kereta bandara, dikelola sebagai kontributor dominan sepanjang siklus aktif 6 bulan di Februari 2025 - Mei 2025 dan April 2026 - Juli 2026.",
+      "description": "Aplikasi web reservasi untuk PT. Kereta Commuter Indonesia dan bekerjasama dengan tim back-end dari KCI RTS yang memungkinkan pencarian jadwal, reservasi kursi, dan pembelian e-tiket untuk layanan kereta bandara, dikelola sebagai kontributor dominan sepanjang siklus aktif pada periode Februari-Mei 2025 dan April-Juli 2026.",
       "techStack": [
-        "Next.js 16",
-        "React 19",
+        "Next.js",
         "TypeScript",
-        "Ant Design 6",
+        "Ant Design",
         "Tailwind CSS",
         "Axios",
-        "CryptoJS",
-        "jsPDF",
-        "bwip-js",
-        "next-intl",
-        "dayjs",
-        "next-pwa",
-        "Docker",
         "PM2",
-        "GitLab CI/CD"
+        "GitLab"
       ],
       "highlights": [
         "Membangun mesin pemilihan kursi interaktif dengan rendering dinamis berkelompok per kolom, manajemen state kursi pulang-pergi, dan mode free-seating.",
@@ -283,11 +258,9 @@
       "description": "Platform predictive maintenance untuk pemantauan teknologi operasional dan manajemen tiket, menghadirkan pelacakan SLA real-time, perhitungan penalti, dan manajemen perangkat dengan kepemilikan full-stack.",
       "techStack": [
         "Next.js",
-        "React",
         "TypeScript",
         "Tailwind CSS",
         "Ant Design",
-        "Next.js API Routes",
         "Node.js",
         "SQL",
         "Redis",
@@ -331,8 +304,8 @@
       "endDate": "2026-03",
       "description": "Aplikasi web logistik dan pengiriman B2B yang komprehensif yang dibangun dengan Next.js, merekayasa komponen UI kritis dan sistem form yang kompleks untuk pemrosesan pesanan domestik dan internasional serta penagihan.",
       "techStack": [
-        "Next.js 16",
-        "React 19",
+        "Next.js",
+        "React",
         "TypeScript",
         "Tailwind CSS",
         "Ant Design",
@@ -414,20 +387,14 @@
       "endDate": "2025-12",
       "description": "Platform kereta microservices terdistribusi untuk KCI yang menangani pemesanan tiket, pemrosesan pembayaran, dan pembuatan tiket QR di seluruh layanan kereta bandara dan lokal, dikontribusikan sebagai pengembang backend sukarela.",
       "techStack": [
-        "Go (Golang)",
+        "Golang",
         "Fiber",
         "PostgreSQL",
         "GORM",
         "Redis",
         "JWT",
-        "Google Wallet API",
-        "C-Pay",
-        "Docker",
-        "Kubernetes",
-        "Logrus",
-        "Loki",
         "MinIO",
-        "GitLab CI/CD"
+        "GitLab"
       ],
       "highlights": [
         "Membangun mesin pemesanan kereta bandara dengan integrasi RTS real-time, mengurangi waktu pemrosesan pemesanan sebesar 40%.",
@@ -459,15 +426,11 @@
       "description": "Platform web enterprise yang menyederhanakan manajemen siklus hidup project untuk project manager dan staf eksekutif, dengan kepemilikan atas fitur inti, sistem dokumen, dan arsitektur teknis.",
       "techStack": [
         "Next.js",
-        "React",
         "TypeScript",
         "Tailwind CSS",
-        "xlsx",
-        "dayjs",
         "Redis",
-        "RESTful APIs",
         "ESLint",
-        "Git"
+        "GitLab"
       ],
       "highlights": [
         "Membangun dashboard project komprehensif dengan kartu project real-time, filtering, dan desain responsif.",
@@ -497,7 +460,14 @@
       "startDate": "2024-05",
       "endDate": "2024-07",
       "description": "Aplikasi web responsif untuk para pecinta memasak yang menyediakan resep dengan gambar dan instruksi terperinci, memanfaatkan Server-Side Rendering untuk performa dan SEO.",
-      "techStack": ["React.js", "Tailwind CSS", "JWT", "Server-Side Rendering"],
+      "techStack": [
+        "Next.js",
+        "Tailwind CSS",
+        "JWT",
+        "Server-Side Rendering",
+        "Vercel",
+        "Github"
+      ],
       "highlights": [
         "Membuat antarmuka yang mudah digunakan yang memastikan kompatibilitas lintas perangkat.",
         "Mengimplementasikan autentikasi dan otorisasi pengguna menggunakan JWT yang dikelola di cookie.",
@@ -517,7 +487,15 @@
       "startDate": "2024-05",
       "endDate": "2024-07",
       "description": "Platform e-commerce yang menawarkan berbagai produk lintas kategori, menghadirkan pengalaman belanja online yang mudah dan aman.",
-      "techStack": ["Golang"],
+      "techStack": [
+        "Golang",
+        "Fiber",
+        "Cloudinary",
+        "GORM",
+        "PostgreSQL",
+        "JWT",
+        "Github"
+      ],
       "highlights": [
         "Mengembangkan arsitektur back-end untuk platform e-commerce yang responsif dan aman.",
         "Menerapkan praktik terbaik pengembangan web modern untuk pengalaman belanja yang mudah digunakan."
@@ -536,7 +514,7 @@
       "startDate": "2024-05",
       "endDate": "2024-07",
       "description": "Aplikasi berbasis web yang membantu recruiter dalam mencari karyawan, menampilkan data karyawan, dan menawarkan pekerjaan, dibangun dengan antarmuka pengguna yang responsif dan menarik.",
-      "techStack": ["React.js", "Vite", "Tailwind CSS"],
+      "techStack": ["React.js", "Tailwind CSS", "Vercel", "Github"],
       "highlights": [
         "Mengembangkan dan menyempurnakan antarmuka pengguna menggunakan React.js dengan Vite.",
         "Mengimplementasikan desain responsif untuk pengalaman recruiter dan kandidat yang menarik."

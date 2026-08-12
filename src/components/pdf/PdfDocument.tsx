@@ -28,10 +28,7 @@ import {
   urlDisplay,
 } from "@/helpers/cvHelpers";
 import type { ContactLabels, ProjectLinkLabels } from "@/helpers/pdfHelpers";
-import {
-  TRANSLATIONS,
-  translate,
-} from "@/components/locale/translations";
+import { TRANSLATIONS, translate } from "@/components/locale/translations";
 
 registerCvFont();
 
@@ -91,8 +88,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   avatar: {
-    width: 99,
-    height: 128,
+    width: 74.25,
+    height: 96,
     marginRight: 18,
     objectFit: "cover",
   },
@@ -126,6 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 1.6,
     marginBottom: 14,
+    textAlign: "justify",
   },
   // Items
   itemWrap: {
@@ -155,6 +153,7 @@ const styles = StyleSheet.create({
     color: PDF_COLORS.secondary,
     lineHeight: 1.5,
     marginBottom: 2,
+    textAlign: "justify",
   },
   bulletList: {
     marginTop: 2,
@@ -164,6 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 1.5,
     marginBottom: 2,
+    textAlign: "justify",
   },
   mutedLine: {
     fontSize: 10,
