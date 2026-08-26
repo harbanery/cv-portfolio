@@ -116,60 +116,61 @@
       "credentialId": "135E3OHS65JR"
     },
     {
-      "name": "Google Network Security Specialization",
-      "issuer": "Google",
-      "date": "2026-05",
-      "url": "https://coursera.org/share/089f457016de75802d7b24cde5a3f9f0",
-      "credentialId": "NSZEENG9WFS8"
-    },
-    {
-      "name": "Certificate of Fullstack Web & Golang Developer",
+      "name": "Fullstack Web & Golang Developer",
       "issuer": "Pijar Camp",
       "date": "2024-07",
-      "url": "https://drive.google.com/file/d/1u9J6nrf_WtczaAfj0do-vZcsBlpZWAEp/view?usp=drive_link",
+      "url": "https://res.cloudinary.com/duo95jmu4/raw/upload/v1787716923/admin-portfolio/1787716922946-Sertifikat_Pijar_Camp_Batch_2_FWGD.docx",
+      "credentialId": ""
+    },
+    {
+      "name": "International Seminar on Application for Technology of Information and Communication",
+      "issuer": "IEEE",
+      "date": "2022-10",
+      "url": "https://res.cloudinary.com/duo95jmu4/raw/upload/v1787652101/admin-portfolio/1787652101395-iSemantic.docx",
       "credentialId": ""
     }
   ],
 
   "skills": {
     "languages": [
-      "JavaScript",
-      "TypeScript",
       "Golang",
+      "TypeScript",
+      "JavaScript",
+      "CSS",
       "PHP",
       "Python",
       "Java"
     ],
     "frameworks": [
-      "React.js",
       "Next.js",
+      "React.js",
       "Node.js",
-      "Laravel",
-      "CodeIgniter",
       "Fiber",
-      "Redux.js"
+      "Laravel",
+      "CodeIgniter"
     ],
     "libraries": [
       "Ant Design",
       "Tailwind CSS",
-      "Material UI",
       "Axios",
       "React Query",
       "GORM",
-      "Socket.io-client",
       "Cloudinary",
+      "Redux",
       "next-intl"
     ],
-    "databases": ["PostgreSQL", "MariaDB", "MySQL", "Redis", "SQL"],
+    "databases": ["PostgreSQL", "MySQL", "Redis", "SQL"],
     "tools": [
       "Git",
       "GitLab",
       "GitHub",
+      "Figma",
       "Jira",
+      "Trello",
+      "Notion",
       "Slack",
       "Postman",
       "Swagger API",
-      "ESLint",
       "Jest",
       "SonarQube",
       "Docker",
@@ -179,10 +180,10 @@
       "phpMyAdmin",
       "MinIO"
     ],
-    "platforms": ["Vercel"],
+    "platforms": [],
     "methodologies": [
       "i18n",
-      "Progressive Web Applications (PWAs)",
+      "PWA",
       "Unit Testing",
       "TDD",
       "CI/CD",
@@ -190,22 +191,11 @@
       "Microservices",
       "Code Splitting",
       "JWT",
-      "AES-CBC Encryption",
       "Cryptography",
       "OOP"
     ],
     "domains": [],
-    "softSkills": [
-      "Self",
-      "Growth Mindset",
-      "Public Speaking",
-      "Personal Branding",
-      "Self-Management",
-      "Time Management",
-      "Reflection",
-      "Life Plan",
-      "Work Ethic"
-    ]
+    "softSkills": []
   },
 
   "projects": [
@@ -243,9 +233,7 @@
         },
         { "metric": "Feature commits", "value": "454" }
       ],
-      "images": [
-        "https://media.licdn.com/dms/image/sync/v2/D5627AQFB2Ot_9fOxFw/articleshare-shrink_1280_800/B56Z9Cyye9GgAg-/0/1783532042576?e=1786960800&v=beta&t=0HarI-6st71FFhTDCSPmAbkITLpYHFoJzxGfl5i2eFE"
-      ],
+      "images": ["/images/projects/airport-train.png"],
       "url": {
         "website": "https://airport-train.kci.id"
       }
