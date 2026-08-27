@@ -2,7 +2,7 @@
 
 import { Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
-import { formatDate } from "@/helpers/cvHelpers";
+import { formatDate } from "@/utils/cvUtils";
 import type { CvAwardItem } from "@/models/types";
 
 const { Text } = Typography;

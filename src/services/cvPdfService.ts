@@ -3,11 +3,10 @@ import {
   translate,
   type Locale,
 } from "@/components/locale/translations";
-import type { CvData } from "@/models/types";
 
 /**
- * Helper untuk mendapatkan judul section sesuai locale.
- * Bisa dipanggil di server-side (API route) maupun client-side.
+ * Service label & judul section untuk PDF CV sesuai locale.
+ * Bisa dipanggil di server-side (API route / server/cvPdf) maupun client-side.
  */
 export function getSectionTitles(locale: Locale) {
   const dict = TRANSLATIONS[locale] ?? TRANSLATIONS.id;
@@ -56,11 +55,4 @@ export function getProjectLinkLabels(locale: Locale): ProjectLinkLabels {
     website: translate(dict, "pdf.link.website"),
     sourceCode: translate(dict, "pdf.link.sourceCode"),
   };
-}
-
-/** Type untuk parameter yang dikirim ke API PDF. */
-export interface PdfApiParams {
-  data: CvData;
-  locale: Locale;
-  avatar?: boolean;
 }

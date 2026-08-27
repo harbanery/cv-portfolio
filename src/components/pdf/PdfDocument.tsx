@@ -26,8 +26,11 @@ import {
   phoneDisplay,
   phoneHref,
   urlDisplay,
-} from "@/helpers/cvHelpers";
-import type { ContactLabels, ProjectLinkLabels } from "@/helpers/pdfHelpers";
+} from "@/utils/cvUtils";
+import type {
+  ContactLabels,
+  ProjectLinkLabels,
+} from "@/services/cvPdfService";
 import { TRANSLATIONS, translate } from "@/components/locale/translations";
 
 registerCvFont();
@@ -579,7 +582,15 @@ export default function PdfDocument({
           <PdfSkills data={data} locale={locale} />
         </View>
 
-        {/* 6. Portfolio */}
+        {/* 6. Bahasa */}
+        {data.languages.length > 0 && (
+          <View style={styles.sectionWrap}>
+            <SectionTitle title={sectionTitles.languages} />
+            <PdfLanguages items={data.languages} />
+          </View>
+        )}
+
+        {/* 7. Portfolio */}
         {data.projects.length > 0 && (
           <View break style={styles.sectionWrap}>
             <SectionTitle title={sectionTitles.projects} />

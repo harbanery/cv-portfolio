@@ -1,106 +1,97 @@
 {
   "basics": {
-    "name": "Raihan Yusuf",
+    "name": "John Doe",
     "label": "Fullstack Developer",
-    "summary": "Fullstack Developer yang berorientasi pada hasil dan berpengalaman membangun aplikasi web yang skalabel serta mudah digunakan. Memulai perjalanan pengembangan web pada Maret 2024 di Pijar Camp oleh Telkom Indonesia, dilanjutkan dengan pengalaman langsung sebagai intern di Imperial Healthtech. Sejak Oktober 2024, bekerja sebagai React JS Programmer di PT Nutech Integrasi, memanfaatkan Next.js, TypeScript, dan Golang untuk membangun sistem frontend dan backend yang efisien, mengoptimalkan performa aplikasi, serta menghadirkan solusi digital yang berdampak.",
-    "title": "React JS Programmer @ PT Nutech Integrasi | Fullstack Developer | Next.js | Typescript | Golang",
+    "summary": "Fullstack Developer berorientasi pada hasil dengan pengalaman membangun aplikasi web yang skalabel dan mudah digunakan. Berpengalaman merancang arsitektur frontend dan backend, mengoptimalkan performa aplikasi, serta memimpin kolaborasi tim lintas fungsi untuk menghadirkan produk digital yang berdampak bagi pengguna.",
+    "title": "Senior Software Engineer @ TechCorp | Fullstack Developer | React | Node.js | TypeScript",
     "location": {
-      "city": "Bogor",
-      "region": "Jawa Barat",
+      "city": "Jakarta",
+      "region": "DKI Jakarta",
       "countryCode": "ID"
     },
     "profiles": []
   },
 
   "contact": {
-    "email": "mailto:ryusuf05@gmail.com",
-    "phone": "https://wa.me/6285156463606",
-    "linkedin": "https://www.linkedin.com/in/raihan-yusuf/",
-    "github": "https://github.com/harbanery"
+    "email": "mailto:john.doe@example.com",
+    "phone": "https://wa.me/6281234567890",
+    "linkedin": "https://www.linkedin.com/in/john-doe/",
+    "github": "https://github.com/johndoe"
   },
 
   "work": [
     {
-      "company": "PT Nutech Integrasi",
-      "position": "React JS Programmer",
-      "startDate": "2024-10",
+      "company": "TechCorp Indonesia",
+      "position": "Senior Software Engineer",
+      "startDate": "2023-03",
       "endDate": null,
-      "summary": "Engineer frontend utama di enam sistem enterprise siap-produksi pada bidang transportasi, logistik, dan teknologi operasional, dengan kontribusi backend sukarela pada platform kereta berbasis microservices Go.",
+      "summary": "Memimpin pengembangan platform SaaS multi-tenant dengan fokus pada skalabilitas, keamanan, dan pengalaman pengguna, serta membimbing tim engineer melalui code review dan pairing session.",
       "highlights": [
-        "Membangun aplikasi frontend siap-produksi sebagai pengembang React/Next.js utama di enam sistem enterprise, menguasai 94% commit pada platform tiket kereta nasional yang melayani ribuan penumpang setiap hari.",
-        "Mengoptimalkan performa frontend melalui code splitting, lazy loading, tuning query SQL, dan memoization React, menurunkan waktu muat dashboard hingga 60% dan mengurangi ukuran bundle sebesar 15-25%.",
-        "Meningkatkan kualitas kode dengan mendorong cakupan pengujian dari di bawah 20% menjadi 80%+ melalui 2.000+ unit test, mengurangi bug produksi kritis hingga 95%.",
-        "Mengurangi utang teknis melalui ritme refactoring yang konsisten dengan lebih dari 150 commit refactoring dan penghapusan dead-code sembari menjaga kesetaraan fitur.",
-        "Mendesain infrastruktur frontend yang dapat digunakan kembali, termasuk klien API terenkripsi terpusat, logging observabilitas berkorelasi sesi, dan sistem theming melalui Ant Design ConfigProvider, menstandarisasi setiap interaksi backend di seluruh modul.",
-        "Menghadirkan infrastruktur internasionalisasi (i18n) lengkap yang mendukung pasar Indonesia dan Inggris, mengurangi waktu lokalisasi sebesar 70% dan mempercepat kesiapan multi-region."
+        "Merancang arsitektur microservices yang menurunkan waktu deploy rata-rata dari 45 menit menjadi 8 menit.",
+        "Meningkatkan performa aplikasi melalui caching bertingkat dan code splitting, memangkas waktu muat halaman hingga 55%.",
+        "Membangun design system internal berbasis komponen yang dipakai oleh 4 tim produk berbeda.",
+        "Mementori 5 engineer junior melalui program pairing mingguan dan code review terstruktur."
       ],
-      "location": "Jakarta Selatan, Jakarta, Indonesia",
+      "location": "Jakarta Selatan, Indonesia",
       "isCurrentRole": true
     },
     {
-      "company": "Imperial Healthtech",
-      "position": "Software Engineer Intern",
-      "startDate": "2024-10",
-      "endDate": "2024-10",
-      "summary": "Pengalaman software engineering pertama di dunia nyata membangun aplikasi frontend untuk sistem rekam medis, berkolaborasi melalui Slack dan Jira sambil mempelajari alur kerja layanan kesehatan dan integrasi API FHIR SatuSehat.",
+      "company": "Digitalika Studio",
+      "position": "Fullstack Developer",
+      "startDate": "2021-01",
+      "endDate": "2023-02",
+      "summary": "Membangun berbagai aplikasi web untuk klien dari industri ritel, edukasi, dan logistik, dari perancangan database hingga implementasi antarmuka pengguna.",
       "highlights": [
-        "Membangun aplikasi frontend untuk sistem rekam medis yang mengimplementasikan integrasi API FHIR SatuSehat untuk memungkinkan pertukaran data layanan kesehatan.",
-        "Menyusun alur kerja engineering kolaboratif menggunakan Slack dan Jira, meningkatkan manajemen tugas dan produktivitas pengembangan.",
-        "Berkontribusi dalam memahami proses alur kerja medis yang kompleks dan kebutuhan aplikasi layanan kesehatan dalam domain healthtech.",
-        "Membangun arsitektur frontend dasar untuk aplikasi layanan kesehatan, menunjukkan kemampuan belajar yang cepat di industri yang terspesialisasi."
+        "Mengembangkan 12+ aplikasi web klien dengan tingkat kepuasan klien rata-rata 4.8 dari 5.",
+        "Mengimplementasikan CI/CD pipeline yang mengotomatisan pengujian dan deployment ke Vercel dan AWS.",
+        "Memigrasikan sistem monolitik ke arsitektur modular sehingga waktu pengembangan fitur baru turun 40%.",
+        "Menyusun dokumentasi teknis lengkap yang menurunkan waktu onboarding developer baru dari 2 minggu menjadi 4 hari."
       ],
-      "location": "Semarang, Indonesia",
+      "location": "Bandung, Indonesia",
+      "isCurrentRole": false
+    },
+    {
+      "company": "StartupHaus",
+      "position": "Frontend Developer Intern",
+      "startDate": "2020-06",
+      "endDate": "2020-12",
+      "summary": "Pengalaman pertama di industri software, membangun antarmuka aplikasi manajemen proyek dan berkolaborasi dalam ritme kerja agile.",
+      "highlights": [
+        "Mengimplementasikan 20+ komponen UI reusable menggunakan React dan TypeScript.",
+        "Memperbaiki 30+ bug antarmuka yang dilaporkan pengguna selama siklus magang.",
+        "Berpartisipasi dalam sprint planning dan retrospektif mingguan tim produk."
+      ],
+      "location": "Jakarta, Indonesia",
       "isCurrentRole": false
     }
   ],
 
   "education": [
     {
-      "institution": "Pijar Camp",
-      "degree": "",
-      "field": "Fullstack Web & Golang Developer",
-      "startDate": "2024-03",
-      "endDate": "2024-07",
-      "grade": "95.33% (A+)",
-      "courses": [
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "React.js",
-        "Redux.js",
-        "Next.js",
-        "Golang"
-      ],
-      "highlights": [
-        "Mempelajari dan mengembangkan hard skill, seperti Golang, React.js, Next.js, and Javascript.",
-        "Membuat dan menyelesaikan project seperti Peworld, Blanja, dan Mama Recipe.",
-        "Mempelajari soft skill, seperti self, growth mindset, public speaking, personal branding, self-management, time management, reflection, life plan, dan work ethic untuk menjadi individu yang profesional."
-      ]
-    },
-    {
-      "institution": "Universitas Dian Nuswantoro",
+      "institution": "Universitas Indonesia",
       "degree": "Sarjana (S1)",
       "field": "Ilmu Komputer",
-      "startDate": "2019-09",
-      "endDate": "2023-02",
-      "grade": "3.67 / 4.00",
+      "startDate": "2016-08",
+      "endDate": "2020-06",
+      "grade": "3.72 / 4.00",
       "courses": [
-        "Kriptografi",
-        "Pemrograman Web",
-        "Pemrograman Berorientasi Objek"
+        "Struktur Data",
+        "Basis Data",
+        "Rekayasa Perangkat Lunak",
+        "Jaringan Komputer"
       ],
       "highlights": [
-        "Skripsi: “Implementasi Super Encryption pada Kriptografi Video: Kombinasi Vigenere Cipher dan Transposition Myszkowski”",
-        "Penelitian Tambahan: “Implementasi Website Desa Wisata Tempellemahbang, Jepon, Blora untuk Promosi dan Peningkatan Pengunjung”",
-        "Mempelajari bahasa pemrograman, termasuk Python, Java, HTML, PHP, dan SQL."
+        "Skripsi: “Penerapan Progressive Web App untuk Pembelajaran Daring di Sekolah Menengah”.",
+        "Asisten laboratorium pemrograman selama 3 semester.",
+        "Ketua divisi teknologi acara kompuni ilmiah fakultas."
       ]
     },
     {
-      "institution": "SMA Negeri 5 Bogor",
+      "institution": "SMA Negeri 1 Jakarta",
       "degree": "",
       "field": "IPA",
-      "startDate": "2016-07",
-      "endDate": "2019-04",
+      "startDate": "2013-07",
+      "endDate": "2016-05",
       "grade": "",
       "courses": [],
       "highlights": []
@@ -109,433 +100,220 @@
 
   "certifications": [
     {
-      "name": "Google IT Support",
-      "issuer": "Google",
-      "date": "2026-07",
-      "url": "https://coursera.org/share/ae0e0f5de6485e83fe9995503244720b",
-      "credentialId": "135E3OHS65JR"
+      "name": "AWS Certified Solutions Architect – Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2024-09",
+      "url": "https://aws.amazon.com/verification",
+      "credentialId": "AWS-SAA-123456"
     },
     {
-      "name": "Fullstack Web & Golang Developer",
-      "issuer": "Pijar Camp",
-      "date": "2024-07",
-      "url": "https://res.cloudinary.com/duo95jmu4/raw/upload/v1787716923/admin-portfolio/1787716922946-Sertifikat_Pijar_Camp_Batch_2_FWGD.docx",
-      "credentialId": ""
+      "name": "Professional Scrum Master I",
+      "issuer": "Scrum.org",
+      "date": "2023-05",
+      "url": "https://scrum.org/certificates",
+      "credentialId": "PSM-I-654321"
     },
     {
-      "name": "International Seminar on Application for Technology of Information and Communication",
-      "issuer": "IEEE",
-      "date": "2022-10",
-      "url": "https://res.cloudinary.com/duo95jmu4/raw/upload/v1787652101/admin-portfolio/1787652101395-iSemantic.docx",
-      "credentialId": ""
+      "name": "Meta Front-End Developer Professional Certificate",
+      "issuer": "Meta",
+      "date": "2022-11",
+      "url": "https://coursera.org/verify/meta-frontend",
+      "credentialId": "META-FE-789012"
     }
   ],
 
   "skills": {
     "languages": [
-      "Golang",
       "TypeScript",
       "JavaScript",
-      "CSS",
-      "PHP",
+      "Go",
       "Python",
-      "Java"
+      "SQL",
+      "HTML",
+      "CSS"
     ],
     "frameworks": [
+      "React",
       "Next.js",
-      "React.js",
       "Node.js",
-      "Fiber",
-      "Laravel",
-      "CodeIgniter"
+      "Express",
+      "NestJS",
+      "Gin"
     ],
     "libraries": [
       "Ant Design",
       "Tailwind CSS",
-      "Axios",
+      "Redux Toolkit",
       "React Query",
-      "GORM",
-      "Cloudinary",
-      "Redux",
-      "next-intl"
+      "Prisma",
+      "Zod"
     ],
-    "databases": ["PostgreSQL", "MySQL", "Redis", "SQL"],
+    "databases": ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
     "tools": [
       "Git",
-      "GitLab",
       "GitHub",
-      "Figma",
-      "Jira",
-      "Trello",
-      "Notion",
-      "Slack",
-      "Postman",
-      "Swagger API",
-      "Jest",
-      "SonarQube",
       "Docker",
       "Kubernetes",
-      "PM2",
-      "XAMPP",
-      "phpMyAdmin",
-      "MinIO"
+      "Jest",
+      "Playwright",
+      "Figma",
+      "Postman",
+      "Jira"
     ],
-    "platforms": [],
+    "platforms": ["AWS", "Vercel", "GCP"],
     "methodologies": [
-      "i18n",
-      "PWA",
-      "Unit Testing",
+      "Agile",
+      "Scrum",
       "TDD",
       "CI/CD",
       "Clean Architecture",
-      "Microservices",
-      "Code Splitting",
-      "JWT",
-      "Kriptografi",
-      "OOP"
+      "Microservices"
     ],
-    "domains": [],
-    "softSkills": []
+    "domains": ["SaaS", "E-Commerce", "Fintech"],
+    "softSkills": [
+      "Kepemimpinan tim",
+      "Komunikasi efektif",
+      "Problem solving"
+    ]
   },
 
   "projects": [
     {
-      "name": "Airport Train Web Reservation",
-      "company": "PT Nutech Integrasi",
-      "role": "Front-End Developer",
-      "startDate": "2025-01",
-      "endDate": "2026-07",
-      "description": "Aplikasi web reservasi untuk PT. Kereta Commuter Indonesia dan bekerjasama dengan tim back-end dari KCI RTS yang memungkinkan pencarian jadwal, reservasi kursi, dan pembelian e-tiket untuk layanan kereta bandara, dikelola sebagai kontributor dominan sepanjang siklus aktif pada periode Februari-Mei 2025 dan April-Juli 2026.",
+      "name": "TaskFlow",
+      "company": "TechCorp Indonesia",
+      "role": "Lead Frontend Developer",
+      "startDate": "2024-02",
+      "endDate": "2025-01",
+      "description": "Aplikasi manajemen tugas kolaboratif dengan papan kanban real-time, pelacakan waktu, dan integrasi kalender untuk tim produk skala menengah.",
       "techStack": [
         "Next.js",
         "TypeScript",
         "Ant Design",
         "Tailwind CSS",
-        "Axios",
-        "PM2",
-        "GitLab"
+        "WebSocket",
+        "PostgreSQL"
       ],
       "highlights": [
-        "Membangun mesin pemilihan kursi interaktif dengan rendering dinamis berkelompok per kolom, manajemen state kursi pulang-pergi, dan mode free-seating.",
-        "Mendesain klien API terenkripsi terpusat dengan interceptor, injeksi bearer-token, penanganan refresh-token, dan structured logging berkorelasi sesi.",
-        "Mengimplementasikan enkripsi payload AES-CBC/PKCS7 untuk state reservasi yang disimpan di cookie guna melindungi data pemesanan yang sensitif.",
-        "Menghadirkan pembuatan e-tiket PDF di sisi client dengan barcode PDF417, menghilangkan ketergantungan server untuk penerbitan tiket.",
-        "Meningkatkan stack aplikasi ke Next.js 16, React 19, dan Ant Design 6 dengan theming ConfigProvider."
+        "Membangun papan kanban real-time berbasis WebSocket yang sinkron di semua perangkat dalam <100ms.",
+        "Mengimplementasikan virtualized list untuk menangani 10.000+ kartu tanpa penurunan performa.",
+        "Merancang mode offline-first dengan sinkronisasi otomatis saat koneksi kembali tersedia."
       ],
       "metrics": [
-        { "metric": "Total commit", "value": "533" },
-        { "metric": "Pangsa commit repositori", "value": "~94%" },
-        { "metric": "Baris kode ditambahkan", "value": "~96.300" },
-        { "metric": "Hari commit aktif", "value": "85" },
-        {
-          "metric": "Periode kontribusi",
-          "value": "Jan 2025 – Jul 2026 (~18 bulan)"
-        },
-        { "metric": "Commit fitur", "value": "454" }
+        { "metric": "Pengguna aktif bulanan", "value": "12.000+" },
+        { "metric": "Penurunan waktu muat", "value": "55%" },
+        { "metric": "Total commit", "value": "850+" }
       ],
-      "images": ["/images/projects/airport-train.png"],
+      "images": ["/images/projects/taskflow.png"],
       "url": {
-        "website": "https://airport-train.kci.id"
+        "website": "https://taskflow.example.com",
+        "sourceCode": "https://github.com/johndoe/taskflow"
       }
     },
     {
-      "name": "OM Predictive Maintenance Web (DOM)",
-      "disabled": true,
-      "company": "PT Nutech Integrasi",
-      "role": "Full-Stack Developer",
-      "startDate": "2026-02",
-      "endDate": "2026-07",
-      "description": "Platform predictive maintenance untuk pemantauan teknologi operasional dan manajemen tiket, menghadirkan pelacakan SLA real-time, perhitungan penalti, dan manajemen perangkat dengan kepemilikan full-stack.",
+      "name": "ShopEase",
+      "company": "Digitalika Studio",
+      "role": "Fullstack Developer",
+      "startDate": "2022-05",
+      "endDate": "2023-01",
+      "description": "Platform e-commerce multi-vendor dengan sistem checkout terenkripsi, manajemen stok real-time, dan dashboard penjual yang komprehensif.",
       "techStack": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Ant Design",
+        "React",
         "Node.js",
-        "SQL",
+        "NestJS",
+        "PostgreSQL",
         "Redis",
-        "JWT",
-        "Magic Link",
-        "GitLab CI/CD"
+        "Prisma",
+        "Midtrans"
       ],
       "highlights": [
-        "Membangun dashboard tiket SLA yang komprehensif dengan perhitungan penalti real-time dan ekspor PDF.",
-        "Mendesain PenaltyTable lanjutan dengan pagination dan filtering berbasis region, mengurangi waktu muat data sebesar 60%.",
-        "Menghadirkan implementasi dark mode lengkap di 50+ komponen tanpa regresi layout.",
-        "Mengimplementasikan sistem push notification yang menurunkan waktu respons sebesar 35%.",
-        "Membangun sistem manajemen pengguna dengan autentikasi magic link dan kontrol akses berbasis peran."
+        "Membangun alur checkout dengan tingkat konversi 68% melalui optimasi UX bertahap.",
+        "Mengimplementasikan sinkronisasi stok real-time antara marketplace dan gudang.",
+        "Menurunkan beban database 70% melalui caching Redis pada katalog produk."
       ],
       "metrics": [
-        { "metric": "Total commit", "value": "233" },
-        { "metric": "Baris kode ditambahkan", "value": "32.342" },
-        {
-          "metric": "Waktu muat dashboard SLA",
-          "value": "4.2s menjadi 1.8s (penurunan 60%)"
-        },
-        {
-          "metric": "Akurasi perhitungan penalti",
-          "value": "85% menjadi 99,5%"
-        },
-        { "metric": "Inisiatif refactoring", "value": "117" },
-        {
-          "metric": "Cakupan dark mode",
-          "value": "100% di 50+ komponen"
-        }
+        { "metric": "Vendor aktif", "value": "250+" },
+        { "metric": "Transaksi per bulan", "value": "40.000+" },
+        { "metric": "Tingkat konversi checkout", "value": "68%" }
       ],
-      "images": [],
-      "url": {}
+      "images": ["/images/projects/shopease.png"],
+      "url": {
+        "website": "https://shopease.example.com",
+        "sourceCode": "https://github.com/johndoe/shopease"
+      }
     },
     {
-      "name": "POS Global Logistics",
-      "disabled": true,
-      "company": "PT Nutech Integrasi",
-      "role": "Front-End Developer",
-      "startDate": "2024-12",
-      "endDate": "2026-03",
-      "description": "Aplikasi web logistik dan pengiriman B2B yang komprehensif yang dibangun dengan Next.js, merekayasa komponen UI kritis dan sistem form yang kompleks untuk pemrosesan pesanan domestik dan internasional serta penagihan.",
+      "name": "TravelGo",
+      "company": "Digitalika Studio",
+      "role": "Frontend Developer",
+      "startDate": "2021-08",
+      "endDate": "2022-04",
+      "description": "Aplikasi pemesanan tiket perjalanan dengan pencarian multi-moda (pesawat, kereta, bus), perbandingan harga, dan e-ticket digital.",
       "techStack": [
         "Next.js",
-        "React",
         "TypeScript",
         "Tailwind CSS",
-        "Ant Design",
-        "Emotion",
         "React Query",
-        "Joi",
-        "Axios",
-        "JWT",
-        "PostgreSQL",
-        "Redis",
-        "Jest",
-        "Docker"
+        "Mapbox"
       ],
       "highlights": [
-        "Membangun sistem manajemen pelanggan yang komprehensif dengan validasi form kompleks dan penanganan upload file.",
-        "Mendesain alur kerja pemrosesan pesanan lanjutan dengan pemilihan layanan dan logika validasi pengiriman.",
-        "Menghadirkan manajemen penagihan yang andal dengan pengambilan, validasi unduhan, dan penanganan error.",
-        "Mengimplementasikan infrastruktur pengujian komprehensif yang meningkatkan cakupan kode dari 40% menjadi 75%.",
-        "Melakukan refactoring pada termin pembayaran dan penanganan kontrak, mengurangi error submission form sebesar 60%."
+        "Membangun antarmuka pencarian multi-moda dengan filter dinamis tanpa reload halaman.",
+        "Mengintegrasikan peta interaktif untuk pemilihan kursi bus dan kereta.",
+        "Mencapai skor Lighthouse 95+ untuk kategori performa dan aksesibilitas."
       ],
       "metrics": [
-        { "metric": "Total commit", "value": "80+" },
-        { "metric": "Baris kode ditambahkan/dimodifikasi", "value": "15.000+" },
-        { "metric": "Pengurangan waktu pemrosesan pesanan", "value": "35%" },
-        { "metric": "Pengurangan error submission form", "value": "60%" },
-        { "metric": "Peningkatan cakupan kode", "value": "40% menjadi 75%" }
+        { "metric": "Skor Lighthouse", "value": "95+" },
+        { "metric": "Penurunan bounce rate", "value": "32%" },
+        { "metric": "Rata-rata waktu pencarian", "value": "0.8 detik" }
       ],
-      "images": [],
-      "url": {}
+      "images": ["/images/projects/travelgo.png"],
+      "url": {
+        "website": "https://travelgo.example.com",
+        "sourceCode": "https://github.com/johndoe/travelgo"
+      }
     },
     {
-      "name": "POS Order Management System (POS-OMS)",
-      "disabled": true,
-      "company": "PT Nutech Integrasi",
-      "role": "Front-End Developer",
-      "startDate": "2025-12",
-      "endDate": "2026-01",
-      "description": "Portal Next.js untuk operasi pengiriman global dengan kepemilikan penuh atas implementasi internasionalisasi, peningkatan cakupan pengujian, dan refactoring komponen.",
+      "name": "FoodCourier",
+      "company": "StartupHaus",
+      "role": "Frontend Developer",
+      "startDate": "2020-07",
+      "endDate": "2021-05",
+      "description": "Aplikasi pemesanan makanan dengan pelacakan kurir real-time, rekomendasi menu personal, dan sistem loyalitas berbasis poin.",
       "techStack": [
-        "Next.js",
         "React",
-        "TypeScript",
+        "Redux Toolkit",
+        "Firebase",
         "Tailwind CSS",
-        "Jest",
-        "React Testing Library",
-        "Custom i18n system",
-        "PDF generation",
-        "RESTful APIs",
-        "SonarQube",
-        "ESLint"
+        "Google Maps API"
       ],
       "highlights": [
-        "Membangun infrastruktur i18n komprehensif yang mendukung Bahasa Inggris dan Indonesia, mengurangi waktu lokalisasi sebesar 70%.",
-        "Menghadirkan 2.000+ unit test yang mencapai cakupan 80%+ di seluruh komponen kritis.",
-        "Mendesain alur kerja pengiriman domestik dan internasional dengan harga dinamis dan pembuatan dokumen.",
-        "Melakukan refactoring arsitektur komponen yang mengurangi ukuran bundle sebesar 15% melalui code splitting dan lazy loading.",
-        "Memodernisasi komponen legacy menjadi functional component dengan hooks di 50+ file."
+        "Mengimplementasikan pelacakan kurir real-time dengan peta dan estimasi waktu dinamis.",
+        "Membangun sistem rekomendasi menu berdasarkan riwayat pesanan pengguna.",
+        "Optimasi bundle size sehingga aplikasi tetap ringan di perangkat kelas menengah ke bawah."
       ],
       "metrics": [
-        { "metric": "Total commit", "value": "37" },
-        { "metric": "Baris kode ditambahkan", "value": "8.456+" },
-        {
-          "metric": "Peningkatan cakupan pengujian",
-          "value": "<20% menjadi 80%+"
-        },
-        { "metric": "Unit test dihasilkan", "value": "2.000+" },
-        { "metric": "Pengurangan waktu lokalisasi", "value": "70%" },
-        { "metric": "Pengurangan bug kritis", "value": "95%" },
-        { "metric": "Pengurangan ukuran bundle", "value": "15%" }
+        { "metric": "Unduhan aplikasi", "value": "5.000+" },
+        { "metric": "Rating pengguna", "value": "4.6 / 5" }
       ],
-      "images": [],
-      "url": {}
-    },
-    {
-      "name": "C-Access",
-      "company": "PT Nutech Integrasi",
-      "role": "Back-End Developer",
-      "startDate": "2025-07",
-      "endDate": "2025-12",
-      "description": "Platform kereta microservices terdistribusi untuk KCI yang menangani pemesanan tiket, pemrosesan pembayaran, dan pembuatan tiket QR di seluruh layanan kereta bandara dan lokal, dikontribusikan sebagai pengembang backend sukarela.",
-      "techStack": [
-        "Golang",
-        "Fiber",
-        "PostgreSQL",
-        "GORM",
-        "Redis",
-        "JWT",
-        "MinIO",
-        "GitLab"
-      ],
-      "highlights": [
-        "Membangun mesin pemesanan kereta bandara dengan integrasi RTS real-time, mengurangi waktu pemrosesan pemesanan sebesar 40%.",
-        "Mengintegrasikan payment gateway C-Pay yang mencapai tingkat transaksi berhasil 99,5%.",
-        "Membangun alur kerja refund dan pembatalan, mengurangi waktu pemrosesan refund sebesar 60%.",
-        "Mengembangkan tiketing QR dengan integrasi Google Wallet API dan otomatisasi rilis berbasis scheduler.",
-        "Memimpin inisiatif refactoring yang menghapus 1.168 baris kode redundan sembari menjaga kesetaraan fitur."
-      ],
-      "metrics": [
-        { "metric": "Total commit", "value": "155+" },
-        { "metric": "Baris kode ditambahkan", "value": "~4.800" },
-        { "metric": "Pengurangan waktu pemrosesan pemesanan", "value": "40%" },
-        { "metric": "Tingkat keberhasilan pembayaran", "value": "99,5%" },
-        { "metric": "Pengurangan waktu pemrosesan refund", "value": "60%" },
-        { "metric": "Pengurangan utang teknis", "value": "35%" },
-        { "metric": "Kode redundan dihapus", "value": "1.168 baris" }
-      ],
-      "images": ["/images/projects/c-access.png"],
+      "images": ["/images/projects/foodcourier.png"],
       "url": {
-        "website": "https://play.google.com/store/apps/details?id=com.kci.access"
-      }
-    },
-    {
-      "name": "Project Management Application",
-      "company": "PT Nutech Integrasi",
-      "role": "Full-Stack Developer",
-      "startDate": "2025-05",
-      "endDate": "2025-10",
-      "description": "Platform web enterprise yang menyederhanakan manajemen siklus hidup project untuk project manager dan staf eksekutif, dengan kepemilikan atas fitur inti, sistem dokumen, dan arsitektur teknis.",
-      "techStack": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Redis",
-        "ESLint",
-        "GitLab"
-      ],
-      "highlights": [
-        "Membangun dashboard project komprehensif dengan kartu project real-time, filtering, dan desain responsif.",
-        "Mengimplementasikan import/export Excel lengkap dengan library xlsx untuk penanganan data massal dan pembuatan template.",
-        "Mendesain sistem manajemen siklus hidup dokumen lengkap untuk dokumen komersial, project, dan kontrak.",
-        "Mengembangkan komponen Gantt chart interaktif dengan parsing tanggal dinamis dan visualisasi progres.",
-        "Mengimplementasikan caching Redis dan optimasi query yang meningkatkan waktu muat halaman sebesar 40%."
-      ],
-      "metrics": [
-        { "metric": "Total commit", "value": "100+" },
-        { "metric": "Peningkatan waktu muat halaman", "value": "40%" },
-        { "metric": "Pengurangan masalah integritas data", "value": "80%" },
-        {
-          "metric": "Waktu pemrosesan import Excel",
-          "value": "30s menjadi 8s"
-        },
-        { "metric": "Pengurangan ukuran bundle awal", "value": "35%" },
-        { "metric": "Cakupan TypeScript", "value": "95%" }
-      ],
-      "images": ["/images/projects/pma.png"],
-      "url": {}
-    },
-    {
-      "name": "Mama Recipe",
-      "company": "Pijar Camp",
-      "role": "Front-End Developer",
-      "startDate": "2024-05",
-      "endDate": "2024-07",
-      "description": "Aplikasi web responsif untuk para pecinta memasak yang menyediakan resep dengan gambar dan instruksi terperinci, memanfaatkan Server-Side Rendering untuk performa dan SEO.",
-      "techStack": [
-        "Next.js",
-        "Tailwind CSS",
-        "JWT",
-        "Server-Side Rendering",
-        "Vercel",
-        "Github"
-      ],
-      "highlights": [
-        "Membuat antarmuka yang mudah digunakan yang memastikan kompatibilitas lintas perangkat.",
-        "Mengimplementasikan autentikasi dan otorisasi pengguna menggunakan JWT yang dikelola di cookie.",
-        "Memanfaatkan Server-Side Rendering untuk meningkatkan performa dan SEO."
-      ],
-      "metrics": [],
-      "images": ["/images/projects/mama-recipe.png"],
-      "url": {
-        "website": "https://mama-recipe-food.vercel.app",
-        "sourceCode": "https://github.com/harbanery/mama-food-recipe-app"
-      }
-    },
-    {
-      "name": "Blanja",
-      "company": "Pijar Camp",
-      "role": "Back-End Developer",
-      "startDate": "2024-05",
-      "endDate": "2024-07",
-      "description": "Platform e-commerce yang menawarkan berbagai produk lintas kategori, menghadirkan pengalaman belanja online yang mudah dan aman.",
-      "techStack": [
-        "Golang",
-        "Fiber",
-        "Cloudinary",
-        "GORM",
-        "PostgreSQL",
-        "JWT",
-        "Github"
-      ],
-      "highlights": [
-        "Mengembangkan arsitektur back-end untuk platform e-commerce yang responsif dan aman.",
-        "Menerapkan praktik terbaik pengembangan web modern untuk pengalaman belanja yang mudah digunakan."
-      ],
-      "metrics": [],
-      "images": ["/images/projects/blanja.png"],
-      "url": {
-        "website": "https://blanja-website-project.netlify.app",
-        "sourceCode": "https://github.com/harbanery/blanja-marketplace-app"
-      }
-    },
-    {
-      "name": "Peworld",
-      "company": "Pijar Camp",
-      "role": "Front-End Developer",
-      "startDate": "2024-05",
-      "endDate": "2024-07",
-      "description": "Aplikasi berbasis web yang membantu recruiter dalam mencari karyawan, menampilkan data karyawan, dan menawarkan pekerjaan, dibangun dengan antarmuka pengguna yang responsif dan menarik.",
-      "techStack": ["React.js", "Tailwind CSS", "Vercel", "Github"],
-      "highlights": [
-        "Mengembangkan dan menyempurnakan antarmuka pengguna menggunakan React.js dengan Vite.",
-        "Mengimplementasikan desain responsif untuk pengalaman recruiter dan kandidat yang menarik."
-      ],
-      "metrics": [],
-      "images": ["/images/projects/peworld.png"],
-      "url": {
-        "website": "https://peworld-hirejob.vercel.app",
-        "sourceCode": "https://github.com/harbanery/peworld-hirejob-app"
+        "website": "https://foodcourier.example.com",
+        "sourceCode": "https://github.com/johndoe/foodcourier"
       }
     }
   ],
 
   "awards": [
     {
-      "title": "Juara 2 Lomba Mading Ilmiah",
-      "issuer": "KIR MAN 2 Bogor",
-      "date": "2017-12",
-      "summary": ""
+      "title": "Winner — National Hackathon 2023",
+      "issuer": "TechFest Indonesia",
+      "date": "2023-11",
+      "summary": "Tim juara pertama kompetisi hackathon nasional dengan solusi logistik berbasis AI."
     },
     {
-      "title": "Lomba Problem Solving Komputer",
-      "issuer": "Pesta Sains Nasional",
-      "date": "2018-12",
-      "summary": ""
-    },
-    {
-      "title": "Matematika Ria",
-      "issuer": "Pesta Sains Nasional",
-      "date": "2017-12",
-      "summary": ""
+      "title": "Employee of the Year",
+      "issuer": "Digitalika Studio",
+      "date": "2022-12",
+      "summary": "Penghargaan tahunan untuk kontribusi luar biasa pada proyek klien."
     }
   ],
 
@@ -547,28 +325,8 @@
   "interests": [],
 
   "meta": {
-    "sourceFiles": [
-      "linkedin/Profile.csv",
-      "linkedin/Positions.csv",
-      "linkedin/Education.csv",
-      "linkedin/Skills.csv",
-      "linkedin/Certifications.csv",
-      "linkedin/Languages.csv",
-      "linkedin/Projects.csv",
-      "linkedin/Organizations.csv",
-      "linkedin/Email Addresses.csv",
-      "linkedin/PhoneNumbers.csv",
-      "linkedin/Publications.csv",
-      "my_experience_based_on_project_analysis.md",
-      "my_imperial_healthtech_experience_based_on_story.md",
-      "project_analysis_airport_train_web.md",
-      "project_analysis_c_access.md",
-      "project_analysis_project_management_app.md",
-      "project_analysis_pos_glid_web.md",
-      "project_analysis_pos_oms_web.md",
-      "project_analysis_om_predictive_web.md"
-    ],
-    "generatedAt": "2026-07-31",
+    "sourceFiles": [],
+    "generatedAt": "2026-08-27",
     "version": "1.0"
   }
 }

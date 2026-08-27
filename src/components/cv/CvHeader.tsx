@@ -13,7 +13,7 @@ import {
   emailHref,
   locationText,
   urlDisplay,
-} from "@/helpers/cvHelpers";
+} from "@/utils/cvUtils";
 import { useAvatarMode } from "@/components/avatar/AvatarProvider";
 
 const { Title, Text } = Typography;
@@ -98,23 +98,17 @@ export default function CvHeader({
     <>
       <Title
         level={1}
-        style={{
-          marginTop: 0,
-          marginBottom: 4,
-          fontSize: 32,
-          fontWeight: 700,
-          letterSpacing: "-0.02em",
-        }}
+        className="!mt-0 !mb-1 text-[26px] sm:!text-[32px]"
+        style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
       >
         {basics.name}
       </Title>
       <Text
+        className="!mb-3 text-sm sm:!text-[16px]"
         style={{
-          fontSize: 16,
           fontWeight: 500,
           color: "#6366f1",
           display: "block",
-          marginBottom: 12,
         }}
       >
         {basics.title ?? basics.label}

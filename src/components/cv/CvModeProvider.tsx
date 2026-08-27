@@ -15,6 +15,8 @@ import {
  * - CV mode ON  → layout dokumen CV sempit (seperti resume, max 850px).
  * - CV mode OFF → layout website yang melebar menyesuaikan resolusi layar.
  *
+ * Default: OFF (website mode), sesuai kebutuhan tampilan utama.
+ *
  * Mengikuti pola yang sama dengan LocaleProvider & ThemeProvider:
  * state disimpan di module-level variable dengan useSyncExternalStore
  * agar aman terhadap SSR hydration mismatch.
@@ -22,7 +24,7 @@ import {
 
 const STORAGE_KEY = "cv-portfolio:cv-mode";
 
-let clientCvMode = true;
+let clientCvMode = false;
 let clientHydrated = false;
 const listeners = new Set<() => void>();
 
@@ -40,7 +42,7 @@ function getSnapshot(): boolean {
 }
 
 function getServerSnapshot(): boolean {
-  return true;
+  return false;
 }
 
 function readPersisted(): boolean {
@@ -50,7 +52,7 @@ function readPersisted(): boolean {
   } catch {
     // ignore
   }
-  return true;
+  return false;
 }
 
 function applyCvMode(next: boolean): void {
@@ -71,7 +73,7 @@ interface CvModeContextValue {
 }
 
 const CvModeContext = createContext<CvModeContextValue>({
-  cvMode: true,
+  cvMode: false,
   hydrated: false,
   toggle: () => {},
   setCvMode: () => {},

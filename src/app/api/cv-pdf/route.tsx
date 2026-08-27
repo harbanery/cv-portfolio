@@ -1,44 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
-import { renderToBuffer } from "@react-pdf/renderer";
-import PdfDocument from "@/components/pdf/PdfDocument";
-import { getCvData } from "@/models/data";
-import {
-  getSectionTitles,
-  getContactLabels,
-  getProjectLinkLabels,
-  type PdfApiParams,
-} from "@/helpers/pdfHelpers";
+import { generateCvPdf } from "@/server/cvPdf";
+import type { Locale } from "@/models/types";
 
 /**
  * API route untuk generate PDF CV server-side.
  *
  * Method POST dengan body JSON berisi { locale, avatar }. Konten CV dipilih
- * per-locale dari `getCvData(locale)` (me.en.json / me.id.json).
- * Mengembalikan PDF binary dengan content-type application/pdf.
+ * per-locale dari `getCvData(locale)` (me.en.json / me.id.json) di dalam
+ * `server/cvPdf`. Mengembalikan PDF binary dengan content-type application/pdf.
  */
 export async function POST(request: NextRequest) {
-  const body = (await request.json()) as Partial<PdfApiParams>;
-  const locale = body.locale ?? "id";
+  const body = (await request.json()) as {
+    locale?: Locale;
+    avatar?: boolean;
+  };
+  const locale: Locale = body.locale ?? "id";
   const withAvatar = body.avatar === true;
-
-  const sectionTitles = getSectionTitles(locale);
-  const contactLabels = getContactLabels(locale);
-  const projectLinkLabels = getProjectLinkLabels(locale);
-
-  const doc = (
-    <PdfDocument
-      data={getCvData(locale)}
-      locale={locale}
-      sectionTitles={sectionTitles}
-      contactLabels={contactLabels}
-      projectLinkLabels={projectLinkLabels}
-      avatar={withAvatar}
-    />
-  );
 
   let buffer: Buffer;
   try {
-    buffer = await renderToBuffer(doc);
+    const result = await generateCvPdf({ locale, avatar: withAvatar });
+    buffer = result.buffer;
   } catch (error) {
     return NextResponse.json(
       {
@@ -53,7 +35,7 @@ export async function POST(request: NextRequest) {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": 'attachment; filename="CV-Raihan-Yusuf.pdf"',
+      "Content-Disposition": 'attachment; filename="CV.pdf"',
     },
   });
 }

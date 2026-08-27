@@ -10,12 +10,11 @@ export function formatDateRange(
   endDate: string | null,
   locale: Locale,
 ): string {
+  const dict = TRANSLATIONS[locale] ?? TRANSLATIONS.id;
   const start = formatDate(startDate, locale);
   const end = endDate
     ? formatDate(endDate, locale)
-    : locale === "id"
-      ? "Sekarang"
-      : "Present";
+    : translate(dict, "common.present");
   if (start === end) {
     return start;
   }

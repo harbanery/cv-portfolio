@@ -133,7 +133,7 @@ export default function CvDocument({ data }: { data?: CvData }) {
   const { cvMode, hydrated } = useCvMode();
   const translatedData = useTranslatedCvData();
   const resolvedData = data ?? translatedData;
-  const isCvMode = hydrated ? cvMode : true;
+  const isCvMode = hydrated ? cvMode : false;
 
   return isCvMode ? (
     <CvLayout data={resolvedData} />

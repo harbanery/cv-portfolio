@@ -2,7 +2,7 @@
 
 import { Tag, Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
-import { buildSkillGroups } from "@/helpers/cvHelpers";
+import { buildSkillGroups } from "@/utils/cvUtils";
 import type { CvSkills } from "@/models/types";
 
 const { Text } = Typography;

@@ -3,7 +3,7 @@
 import { CodeOutlined, GlobalOutlined } from "@ant-design/icons";
 import { Image, Tag, Typography } from "antd";
 import { useLocale } from "@/components/locale/LocaleProvider";
-import { formatDateRange, urlDisplay } from "@/helpers/cvHelpers";
+import { formatDateRange, urlDisplay } from "@/utils/cvUtils";
 import type { CvProjectItem } from "@/models/types";
 
 const { Text, Paragraph } = Typography;
@@ -27,7 +27,7 @@ export default function CvProjects({
               <div className="shrink-0">
                 <Image
                   alt={project.name}
-                  className={`${websiteMode ? "w-full md:!w-[280px]" : "w-full md:!w-[200px]"} h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700`}
+                  className={`${websiteMode ? "w-full sm:!w-[240px] md:!w-[280px]" : "w-full sm:!w-[180px] md:!w-[200px]"} h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700`}
                   src={project.images[0]}
                   preview={{
                     actionsRender: () => null,
