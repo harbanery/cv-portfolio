@@ -6,6 +6,8 @@ import { LocaleProvider } from "@/components/locale/LocaleProvider";
 import { AvatarProvider } from "@/components/avatar/AvatarProvider";
 import { CvModeProvider } from "@/components/cv/CvModeProvider";
 import Footer from "@/components/footer";
+import InstallPrompt from "@/components/pwa/InstallPrompt";
+import ServiceWorkerRegistrar from "@/components/pwa/ServiceWorkerRegistrar";
 import { VercelCompatibleComponents } from "@/components/vercel";
 import { geistMono, geistSans, inter } from "@/utils/fonts/next-google";
 import {
@@ -35,17 +37,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: META_TITLE,
     ...(META_DESCRIPTION && { description: META_DESCRIPTION }),
-    type: "profile",
+    type: "website",
     siteName: META_APP,
     countryName: "Indonesia",
-    locale: "id-ID",
-    alternateLocale: "en-US",
+    locale: "en-US",
     url: `/`,
     images: [
       {
         url: `images/opengraph-image.png`,
-        alt: META_APP,
+        alt: META_TITLE,
         type: "image/png",
+        width: 1200,
+        height: 630,
       },
     ],
   },
@@ -69,14 +72,14 @@ export const metadata: Metadata = {
     {
       rel: "apple-touch-icon",
       type: "image/png",
-      url: `/ios/152.png`,
-      sizes: "152x152",
+      url: `/ios/120.png`,
+      sizes: "120x120",
     },
     {
       rel: "apple-touch-icon",
       type: "image/png",
-      url: `/ios/120.png`,
-      sizes: "120x120",
+      url: `/ios/152.png`,
+      sizes: "152x152",
     },
     {
       rel: "apple-touch-icon",
@@ -130,6 +133,8 @@ export default function RootLayout({
             </ThemeProvider>
           </LocaleProvider>
         </AntdRegistry>
+        <InstallPrompt />
+        <ServiceWorkerRegistrar />
         <VercelCompatibleComponents.Analytics />
       </body>
     </html>

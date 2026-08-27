@@ -22,9 +22,9 @@ export default function CvProjects({
       {items
         ?.filter((p) => !p.disabled)
         ?.map((project, i) => (
-          <div key={i + 1} className="flex flex-col lg:flex-row gap-4">
+          <div key={i + 1} className="flex flex-col sm:flex-row lg:flex-row gap-4">
             {project.images[0] && (
-              <div className="shrink-0">
+              <div className="shrink-0 w-full sm:w-auto">
                 <Image
                   alt={project.name}
                   className={`${websiteMode ? "w-full sm:!w-[240px] md:!w-[280px]" : "w-full sm:!w-[180px] md:!w-[200px]"} h-auto object-contain rounded-lg border border-gray-200 dark:border-gray-700`}
@@ -37,7 +37,7 @@ export default function CvProjects({
             )}
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2 flex-wrap">
-                <div>
+                <div className="min-w-0">
                   <Text strong style={{ fontSize: 15 }}>
                     {project.name}
                   </Text>
@@ -49,7 +49,11 @@ export default function CvProjects({
                     {project.company ? ` - ${project.company}` : ""}
                   </Text>
                 </div>
-                <Text type="secondary" style={{ fontSize: 12 }}>
+                <Text
+                  type="secondary"
+                  style={{ fontSize: 12 }}
+                  className="whitespace-nowrap"
+                >
                   {formatDateRange(project.startDate, project.endDate, locale)}
                 </Text>
               </div>

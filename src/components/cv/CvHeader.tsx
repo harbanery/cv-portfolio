@@ -32,7 +32,7 @@ function ContactLinks({
       className={`flex flex-wrap ${justifyClass} items-center gap-x-4 gap-y-1`}
     >
       <div
-        className={`flex flex-wrap ${justifyClass} gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400`}
+        className={`flex flex-wrap ${justifyClass} items-center gap-x-3 sm:gap-x-4 gap-y-1 text-xs sm:text-[13px] text-gray-500 dark:text-gray-400`}
       >
         {contacts.map((c, i) =>
           c.href ? (

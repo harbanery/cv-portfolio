@@ -126,16 +126,40 @@ This application renders your CV data as a website by default. Use the toolbar a
 - **Avatar toggle**: show/hide the profile photo on the page header and in the PDF (hidden by default).
 - **Dark/Light mode** with localStorage persistence and system preference detection.
 - **Responsive design** for laptop, tablet, and phone — grids collapse gracefully and typography scales per breakpoint.
-- **PWA-ready**: web app manifest and installable on mobile home screens.
+- **PWA-ready**: installable on mobile/home screens with a web app manifest, service worker, and a localized install prompt (Chromium `beforeinstallprompt` + iOS "Add to Home Screen" hint).
 - **UI components** with **Ant Design** (ConfigProvider theming, locale-aware) and **Tailwind CSS** styling.
 - **Vercel Analytics** integration.
 - **Linting** with **ESLint** for maintaining code quality.
 
 ### Customizing CV Data
 
-All CV content is defined in **two JSON files**: [`public/data/me.id.json`](public/data/me.id.json) (Indonesian) and [`public/data/me.en.json`](public/data/me.en.json) (English). This is the single source of truth — edit these files to update your profile, work experience, education, certifications, skills, projects, awards, and languages. No other files need to be changed.
+All CV content is defined in **two JSON files**: [`public/data/me.id.json`](public/data/me.id.json) (Indonesian) and [`public/data/me.en.json`](public/data/me.en.json). This is the single source of truth — edit these files to update your profile, work experience, education, certifications, skills, projects, awards, and languages. No other files need to be changed.
 
-Both files share the same schema (see [`src/models/types.ts`](src/models/types.ts)):
+### Project Structure
+
+```bash
+src/
+├── app/                    # Next.js App Router (layout, page, manifest, PDF API)
+│   └── api/cv-pdf/         # Server-side PDF generation endpoint
+├── assets/                 # Global CSS & local fonts
+├── components/             # UI components
+│   ├── avatar/             # Avatar visibility provider
+│   ├── cv/                 # CV document sections (header, experience, etc.)
+│   ├── footer/             # Footer
+│   ├── locale/             # i18n providers & translations (id/en)
+│   ├── pdf/                # react-pdf document & font config
+│   ├── pwa/                # Service worker registrar & install prompt
+│   ├── theme/              # Dark/light theme provider
+│   └── vercel/             # Vercel Analytics
+├── config/                 # Environment variables
+├── helpers/                # Pure helper functions (PDF content limiting, etc.)
+├── models/                 # CV data types & locale data loader
+├── server/                 # Server-only modules (PDF renderer)
+├── services/               # Client/server services (PDF labels & download)
+└── utils/                  # Utilities (date/format helpers, fonts)
+```
+
+Both JSON files share the same schema (see [`src/models/types.ts`](src/models/types.ts)):
 
 ```json
 {

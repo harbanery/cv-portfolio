@@ -1,9 +1,5 @@
 import type { MetadataRoute } from "next";
-import {
-  META_APP,
-  META_DESCRIPTION,
-  META_TITLE,
-} from "@/config/variables";
+import { META_APP, META_DESCRIPTION, META_TITLE } from "@/config/variables";
 
 /**
  * Web App Manifest (PWA).
@@ -19,9 +15,9 @@ import {
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: META_TITLE ?? META_APP ?? "CV Portfolio",
-    short_name: META_APP ?? "CV Portfolio",
-    description: META_DESCRIPTION ?? "Personal CV portfolio website",
+    name: META_TITLE ?? META_APP ?? "Digital CV",
+    short_name: META_APP ?? "Digital CV",
+    description: META_DESCRIPTION ?? "Digital CV website",
     id: "/",
     start_url: "/",
     scope: "/",

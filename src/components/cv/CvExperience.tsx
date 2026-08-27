@@ -15,14 +15,18 @@ export default function CvExperience({ items }: { items: CvWorkItem[] }) {
       {items.map((exp, i) => (
         <div key={i}>
           <div className="flex items-start justify-between gap-2 flex-wrap">
-            <div>
+            <div className="min-w-0">
               <Text strong style={{ fontSize: 15 }}>
                 {exp.position}
               </Text>
               <span className="mx-2 text-gray-400">|</span>
               <Text type="secondary">{exp.company}</Text>
             </div>
-            <Text type="secondary" style={{ fontSize: 12 }}>
+            <Text
+              type="secondary"
+              style={{ fontSize: 12 }}
+              className="whitespace-nowrap"
+            >
               {formatDateRange(exp.startDate, exp.endDate, locale)}
             </Text>
           </div>

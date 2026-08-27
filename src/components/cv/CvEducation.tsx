@@ -15,14 +15,18 @@ export default function CvEducation({ items }: { items: CvEducationItem[] }) {
       {items.map((edu, i) => (
         <div key={i}>
           <div className="flex items-start justify-between gap-2 flex-wrap">
-            <div>
+            <div className="min-w-0">
               <Text strong style={{ fontSize: 15 }}>
                 {edu.institution}
               </Text>
               <span className="mx-2 text-gray-400">|</span>
               <Text type="secondary">{edu.field}</Text>
             </div>
-            <Text type="secondary" style={{ fontSize: 12 }}>
+            <Text
+              type="secondary"
+              style={{ fontSize: 12 }}
+              className="whitespace-nowrap"
+            >
               {formatDateRange(edu.startDate, edu.endDate, locale)}
             </Text>
           </div>

@@ -33,6 +33,15 @@ const id: TranslationDict = {
   "cvmode.enableCv": "Aktifkan mode CV",
   "cvmode.enableWebsite": "Aktifkan mode website",
 
+  // PWA Install Prompt
+  "pwa.installTitle": "Pasang Aplikasi",
+  "pwa.installDesc":
+    "Pasang aplikasi ini ke perangkat Anda untuk akses cepat.",
+  "pwa.installBtn": "Pasang",
+  "pwa.laterBtn": "Nanti Saja",
+  "pwa.iosHint":
+    "Untuk memasang di iOS: ketuk tombol Share, lalu pilih Add to Home Screen.",
+
   // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",
   "pdf.contact.phone": "wa:",
@@ -110,6 +119,14 @@ const en: TranslationDict = {
   "cvmode.disable": "Website Mode",
   "cvmode.enableCv": "Enable CV mode",
   "cvmode.enableWebsite": "Enable website mode",
+
+  // PWA Install Prompt
+  "pwa.installTitle": "Install App",
+  "pwa.installDesc": "Install this app to your device for quick access.",
+  "pwa.installBtn": "Install",
+  "pwa.laterBtn": "Maybe later",
+  "pwa.iosHint":
+    "To install on iOS: tap the Share button, then choose Add to Home Screen.",
 
   // PDF contact labels (prefix style, e.g. "email: name@example.com")
   "pdf.contact.email": "email:",
