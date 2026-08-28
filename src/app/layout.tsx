@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: META_APP,
     countryName: "Indonesia",
-    locale: "en-US",
+    locale: "id-ID",
     url: `/`,
     images: [
       {
